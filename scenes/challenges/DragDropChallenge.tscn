@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk2n0wrnsdld2"]
 
-[ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/components/ChallengeBase.tscn" id="1_85mbx"]
+[ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_85mbx"]
 [ext_resource type="Script" uid="uid://dqynq2sji5ktj" path="res://scripts/challenges/DragDropChallenge.gd" id="2_u4f5d"]
 
 [node name="ChallengeBase" instance=ExtResource("1_85mbx")]

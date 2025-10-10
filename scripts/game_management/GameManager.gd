@@ -5,6 +5,11 @@ extends Node
 var current_student_data: Dictionary = {} # Dados do aluno
 var game_progression_data: Dictionary = {} # Progresso do jogo
 
+# Variáveis para o menu de pause
+const PauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
+var selected_phase_id: String = ""
+var current_challenge_container: Node
+
 var current_challenge_node: Control # Para manter referência ao desafio atual
 
 # Caminho onde os arquivos do save dos alunos serãp armazenados
@@ -184,6 +189,8 @@ func start_phase(phase_id: String, container_node: Node):
 	_play_next_challenge(container_node)
 
 func _play_next_challenge(container_node: Node):
+	# Conexão para o menu de pause
+	current_challenge_node.pause_requested.connect(_on_pause_requested)
 	if challenge_index >= current_phase_challenges.size():
 		print("Fase Concluída!")
 		phase_completed.emit(current_phase_id, 0, true)
@@ -245,3 +252,42 @@ func _on_challenge_finished(id, score, is_success, additional_data, container_no
 	
 	# Chama o próximo desafio
 	_play_next_challenge(container_node)
+
+# Funções do menu de pause
+func set_current_phase_id(phase_id: String):
+	selected_phase_id = phase_id
+
+func _on_pause_requested():
+	if get_tree().paused: return
+	get_tree().paused = true
+	var pause_menu = PauseMenuScene.instantiate()
+	get_tree().root.add_child(pause_menu)
+	pause_menu.restart_phase.connect(_on_pause_menu_restart_phase)
+	pause_menu.quit_to_map.connect(_on_pause_menu_quit_to_map)
+
+func _on_pause_menu_restart_phase():
+	if is_instance_valid(current_challenge_node):
+		current_challenge_node.queue_free()
+	start_phase(selected_phase_id, current_challenge_container)
+
+func _on_pause_menu_quit_to_map():
+	_on_exit_to_map_requested()
+
+func _on_exit_to_map_requested():
+	print("Saindo do desafio e voltando para o mapa...")
+
+	# Garante que o jogo está despausado antes de mudar de cena
+	get_tree().paused = false
+
+	# Limpa o desafio atual para não ficar rodando em segundo plano
+	if is_instance_valid(current_challenge_node):
+		current_challenge_node.queue_free()
+		current_challenge_node = null
+
+	# Zera a progressão da fase atual para não causar problemas depois
+	if current_phase_challenges:
+		current_phase_challenges.clear()
+	challenge_index = 0
+
+	# Volta para a cena do mapa
+	get_tree().change_scene_to_file("res://scenes/menus/WorldMap.tscn")

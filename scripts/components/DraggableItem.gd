@@ -1,5 +1,5 @@
 # DraggableItem.gd
-extends TextureRect
+extends Control
 
 @export var id: String = ""
 @export var correct_drop_area_id: String = "" # ID da área de drop correta
@@ -7,7 +7,11 @@ extends TextureRect
 
 signal item_dropped(drag_item_id, dropped_on_area_id, is_correct, drag_item_node)
 
-@onready var drag_area: Area2D = $DragArea # Referência ao Area2D filho
+@onready var drag_area: Area2D = $DragArea # Referência ao Drag Area
+@onready var visuals: Control = $DragArea/Visuals 
+@onready var image_node: TextureRect = $DragArea/Image # Assumindo que Image está dentro de DragArea
+@onready var text_node: Label = $DragArea/Text # Assumindo que Text está dentro de DragArea
+
 
 var _is_dragging: bool = false
 var _drag_offset: Vector2 # Diferença entre o clique e o canto do item
@@ -20,26 +24,14 @@ func _ready():
 	_original_parent = get_parent()
 	_original_position_in_parent = position
 
-	# Habilita a detecção de input para arrastar
-	mouse_filter = Control.MOUSE_FILTER_STOP # Captura eventos de mouse
-	# Permite detectar arrasto via _input
-	set_process_input(true)
-
-func _input(event: InputEvent):
+func _gui_input(event: InputEvent):
 	if _is_locked: return # Se o item está travado (já colocado corretamente), ignora input
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed and get_rect().has_point(get_local_mouse_position()):
+		if event.pressed:
 			_is_dragging = true
-			_drag_offset = event.position - global_position
-			
-			# Traz o item para a frente (topo da árvore de nós) para que não seja escondido por outros itens
-			get_parent().remove_child(self)
-			get_tree().root.add_child(self)
-			
-			# Ajusta a posição para o mouse
-			global_position = event.position - _drag_offset
-			
+			_drag_offset = get_global_mouse_position() - global_position
+			reparent(get_tree().root)
 		elif not event.pressed and _is_dragging:
 			_is_dragging = false
 			_check_drop_location()
@@ -53,36 +45,29 @@ func _check_drop_location():
 	var drop_zone_node: DropZone = null
 	
 	# Usa o Area2D para verificar sobreposição com DropZones
-	for area in drag_area.get_overlapping_areas():
-		if area.get_parent() is DropZone: # Verifica se a área de colisão pertence a um DropZone
-			drop_zone_node = area.get_parent() as DropZone
+	for detected_area in drag_area.get_overlapping_areas():
+		# Verifica se o PAI da área detectada tem o script DropZone.gd
+		if detected_area.get_parent() is DropZone: 
+			# CORREÇÃO: Pegamos o pai da área, que é o nó que queremos.
+			drop_zone_node = detected_area.get_parent() as DropZone
 			dropped_on_area_id = drop_zone_node.id
-			break # Encontrou a primeira DropZone, pode ser suficiente
+			break
 	
 	if dropped_on_area_id:
 		is_correct_placement = (dropped_on_area_id == correct_drop_area_id)
-		print("Dropped on: ", dropped_on_area_id, " correct: ", is_correct_placement)
 		item_dropped.emit(id, dropped_on_area_id, is_correct_placement, self)
 
-		if is_correct_placement:
-			# Posiciona o item no centro da DropZone
-			if drop_zone_node:
-				# Transforma a posição global da DropZone para a posição local do PARENT do DraggableItem
-				# Antes de reposicionar o DraggableItem para seu pai original
-				var target_pos_global = drop_zone_node.global_position + drop_zone_node.size / 2
-				var new_pos_in_root = target_pos_global - size / 2
-				global_position = new_pos_in_root
-				
-				# O item permanece na cena raiz por enquanto, mas está visualmente sobre a DropZone
-				_is_locked = true # Trava o item no lugar
-			else: # Fallback se drop_zone_node for null por algum motivo
+		if drop_zone_node:
+			is_correct_placement = (dropped_on_area_id == correct_drop_area_id)
+			item_dropped.emit(id, dropped_on_area_id, is_correct_placement, self)
+		
+			if is_correct_placement:
+				# Centraliza a lógica de "travar no lugar" usando a função lock_in_place
+				lock_in_place(drop_zone_node.global_position)
+			else:
 				return_to_original_position()
-		else:
-			return_to_original_position()
 	else:
-		# Não soltou em nenhuma área válida, volta para a posição original
-		print("Dropped outside any valid drop zone.")
-		item_dropped.emit(id, "", false, self) # Sinaliza que não foi em área válida
+		item_dropped.emit(id, "", false, self)
 		return_to_original_position()
 
 func return_to_original_position():

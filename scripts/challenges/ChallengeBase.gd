@@ -2,14 +2,15 @@
 extends Control
 
 @export var challenge_id: String = "" # ID único desta instância de desafio (para carregar o JSON)
-@onready var mission_title_label: Label = %MissonTitleLabel
+@onready var mission_title_label: Label = %MissionTitleLabel
 @onready var instructions_label: Label = %InstructionsLabel
 @onready var progress_bar: ProgressBar = %ProgressBar
-@onready var challenge_content_container: Control = %ChallengeContentConteiner # Onde o conteúdo específico do dasafio vai
+@onready var challenge_content_container: Control = %ChallengeContentContainer # Onde o conteúdo específico do dasafio vai
+@onready var menu_button: Button = %MenuButton
 
 signal challenge_started(id)
-signal challenge_finished(id, score, is_sucess, additional_data) # Para o GameManager
-signal request_exit_to_map() # Para o FlowManager
+signal challenge_finished(id, score, is_success, additional_data) # Para o GameManager
+signal pause_requested() # Para o FlowManager
 
 var _challenge_data: Dictionary = {} #Dados carregados do JSON
 var _score: int = 0
@@ -19,7 +20,7 @@ var _start_time: float = 0.0
 
 func _ready():
 	# Conecte o botão de Menu, se houver
-	%MenuButton.pressed.connect(_on_menu_button_pressed) # Assumindo que tem um botão de menu na base
+	menu_button.pressed.connect(_on_menu_button_pressed) # Assumindo que tem um botão de menu na base
 
 # Métodos Virtuais (Implementados pelas classes filhas)
 # Carrega os dados específicos do desafio (do JSON)
@@ -49,7 +50,7 @@ func setup_challenge(data: Dictionary) -> void:
 	
 	if _challenge_data.is_empty():
 		printerr("ChallengeBase: Recebeu dados vazios!")
-		request_exit_to_map.emit()
+		pause_requested.emit()
 		return
 	
 	# Atualiza o challenge_id da classe com o ID vindo dos dados.
@@ -76,7 +77,7 @@ func _on_challenge_completed(is_success: bool, final_score: int, additional_info
 	
 	# Após a emissão, o FlowManager muda para a tela de recompensa
 	# Exemplo: FlowManager.goto_reward_screen(challenge_id, final_score, is_success)
-	request_exit_to_map.emit() # Temporário, até ter a tela de recompensa
+	pause_requested.emit() # Temporário, até ter a tela de recompensa
 
 # Atualiza a barra de progresso (a ser chamada pelas classes filhas)
 func update_progress_bar(current: int, total: int) -> void:
@@ -87,5 +88,5 @@ func update_progress_bar(current: int, total: int) -> void:
 
 func _on_menu_button_pressed() -> void:
 	print("Menu button pressed from challenge.")
-	request_exit_to_map.emit() # pedir ao FlowManager para voltar ao mapa
+	pause_requested.emit() # pedir ao FlowManager para voltar ao mapa
 	# Caso seja necessário adicionar a confirmação de saída, adicione

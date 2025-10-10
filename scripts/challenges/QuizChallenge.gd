@@ -30,7 +30,7 @@ func _setup_ui_for_challenge(data: Dictionary) -> void:
 	_questions_data = data.get("question", [])
 	if _questions_data.is_empty():
 		printerr("QuizChallenge: No questions found in challenge data.")
-		request_exit_to_map.emit()
+		pause_requested.emit()
 		return
 	
 	# Limpa botões antigos, caso tenha
