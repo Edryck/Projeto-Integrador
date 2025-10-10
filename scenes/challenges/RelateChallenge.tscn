@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://usqrmo73xgdt"]
+
+[ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/components/ChallengeBase.tscn" id="1_0h33l"]
+
+[node name="ChallengeBase" instance=ExtResource("1_0h33l")]
+
+[node name="BackGround_HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+layout_mode = 2
+
+[node name="LeftColumnContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/BackGround_HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 2
+alignment = 1
+
+[node name="DrawingCanvas" type="Control" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/BackGround_HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightColumnContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/BackGround_HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 1
