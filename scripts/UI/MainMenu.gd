@@ -1,16 +1,12 @@
 # MainMenu.gd
 extends Control
 
-var play_button: Button
-var options_button: Button
-var quit_button: Button
+@onready var play_button: Button = %PlayButton
+@onready var options_button: Button = %OptionsButton
+@onready var quit_button: Button = %QuitButton
 
 func _ready():
-	play_button = find_child("PlayButton", true, false)
-	options_button = find_child("OptionsButton", true, false)
-	quit_button = find_child("QuitButton", true, false)
-	
-	# Conecta os sinais dos botões às funções. Você pode fazer isso pelo editor também.
+	# Conecta os sinais dos botões às funções.
 	play_button.pressed.connect(_on_play_button_pressed)
 	options_button.pressed.connect(_on_options_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)

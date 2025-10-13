@@ -3,9 +3,9 @@ extends "res://scripts/challenges/ChallengeBase.gd"
 
 const RelateItem = preload("res://scripts/components/RelateItem.gd")
 
-var left_column_container: VBoxContainer # Contêiner para itens da coluna esquerda
-var right_column_container: VBoxContainer # Contêiner para itens da coluna direita
-var drawing_canvas: Control # Um Control onde as linhas serão desenhadas
+@onready var left_column_container: VBoxContainer = %LeftColumnContainer
+@onready var right_column_container: VBoxContainer = %RightColumnContainer
+@onready var drawing_canvas: Control = %DrawingCanvas
 
 var _items_left: Array = []
 var _items_right: Array = []
@@ -20,9 +20,6 @@ var _current_drawing_line_item_id: String
 
 func _ready():
 	super._ready()
-	left_column_container = find_child("LeftColumnContainer", true, false)
-	right_column_container = find_child("RightColumnContainer", true, false)
-	drawing_canvas = find_child("DrawingCanvas", true, false)
 	drawing_canvas.set_process_input(true)
 	drawing_canvas.gui_input.connect(_on_canvas_gui_input)
 

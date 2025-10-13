@@ -1,24 +1,18 @@
 # WorldMap.gd
 extends Control
 
-@onready var student_name_label: Label
-@onready var score_label: Label
-@onready var theme_title_label: Label
-@onready var theme_viewer
-@onready var previous_button
-@onready var next_button
+@onready var student_name_label: Label = $StudentHUD/HBoxContainer/StudentNameLabel
+@onready var score_label: Label = $StudentHUD/HBoxContainer/ScoreLabel
+@onready var theme_title_label: Label = %ThemeTitleLabel
+@onready var theme_viewer: Control = %ThemeViewer
+@onready var previous_button: Button = %PreviousThemeButton
+@onready var next_button: Button = %NextThemeButton
 
 # Vamos guardar nossos temas em um array para facilitar a navegação
 var themes: Array = []
 var current_theme_index: int = 0
 
 func _ready():
-	student_name_label = find_child("StudentNameLabel", true, false)
-	score_label = find_child("ScoreLabel", true, false)
-	theme_title_label = find_child("ThemeTitleLabel", true, false)
-	theme_viewer = find_child("ThemeViewer", true, false)
-	previous_button = find_child("PreviousThemeButton", true, false)
-	next_button = find_child("NextThemeButton", true, false)
 	# Conecta os sinais dos botões de navegação
 	previous_button.pressed.connect(_on_previous_theme_pressed)
 	next_button.pressed.connect(_on_next_theme_pressed)

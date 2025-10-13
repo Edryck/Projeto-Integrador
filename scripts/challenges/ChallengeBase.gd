@@ -6,7 +6,7 @@ var mission_title_label: Label
 var instructions_label: Label
 var progress_bar: ProgressBar
 var challenge_content_container: Control # Onde o conteúdo específico do dasafio vai
-var menu_button: Button
+@onready var menu_button: Button = $ExternalMarginContainer/MenuButton
 
 signal challenge_started(id)
 signal challenge_finished(id, score, is_success, additional_data) # Para o GameManager
@@ -25,7 +25,7 @@ func _ready():
 	instructions_label = find_child("InstructionsLabel", true, false)
 	progress_bar = find_child("ProgressBar", true, false)
 	challenge_content_container = find_child("ChallengeContentContainer", true, false)
-	menu_button = find_child("MenuButton", true, false)
+	menu_button.pressed.connect(_on_menu_button_pressed)
 
 	# Agora, verificamos se o nó foi encontrado ANTES de tentar usá-lo.
 	if is_instance_valid(menu_button):

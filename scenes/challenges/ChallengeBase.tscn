@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xetyg")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ExternalMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,26 +24,26 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MenuButton" type="Button" parent="MarginContainer"]
+[node name="MenuButton" type="Button" parent="ExternalMarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Menu"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="InternalMarginContainer" type="MarginContainer" parent="ExternalMarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 150
 theme_override_constants/margin_bottom = 20
 
-[node name="BackGround" type="TextureRect" parent="MarginContainer/MarginContainer"]
+[node name="BackGround" type="TextureRect" parent="ExternalMarginContainer/InternalMarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_8jpql")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/BackGround"]
+[node name="MarginContainer" type="MarginContainer" parent="ExternalMarginContainer/InternalMarginContainer/BackGround"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,36 +55,36 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MissionTitleLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="MissionTitleLabel" type="Label" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="InstructionsLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="InstructionsLabel" type="Label" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="ChallengeContentContainer" type="PanelContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ChallengeContentContainer" type="PanelContainer" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="ExternalMarginContainer/InternalMarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 
-[connection signal="pressed" from="MarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="ExternalMarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]

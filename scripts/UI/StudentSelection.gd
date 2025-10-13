@@ -2,18 +2,14 @@
 extends Control
 
 # Referências para os nós que vamos manipular
-var student_list_container
-var new_student_input
-var feedback_label
-var create_button
+@onready var student_list_container: VBoxContainer = %StudentListContainer
+@onready var new_student_input: LineEdit = %NewStudentInput
+@onready var create_button: Button = %CreateStudentButton
+@onready var feedback_label: Label = %FeedbackLabel
 
 
 func _ready():
-	student_list_container = find_child("StudentListContainer", true, false)
-	new_student_input = find_child("NewStudentInput", true, false)
-	feedback_label = find_child("FeedbackLabel", true, false)
-	create_button = find_child("CreateStudentButton", true, false)
-	# Assim que a cena carregar, preenchemos a lista com os alunos existentes
+	# Assim que a cena carregar, preenche a lista com os alunos existentes
 	_populate_student_list()
 	
 	# Conecta o sinal do botão de criar. Isso também pode ser feito pelo editor.

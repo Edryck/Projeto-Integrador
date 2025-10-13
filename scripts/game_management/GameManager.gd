@@ -160,50 +160,45 @@ func start_phase(phase_id: String, container_node: Node):
 	current_phase_challenges.shuffle()
 	
 	challenge_index = 0
-	_play_next_challenge(container_node)
+	_play_next_challenge()
 
-func _play_next_challenge(container_node: Node):
+func _play_next_challenge():
+	# Garante que o desafio anterior seja completamente removido.
+	if is_instance_valid(current_challenge_node):
+		current_challenge_node.queue_free()
+		current_challenge_node = null # Limpa a referência
+	
+	# Verifica se a fase terminou.
 	if challenge_index >= current_phase_challenges.size():
-		print("Fase Concluída!")
-		phase_completed.emit(current_phase_id, 0, true)
-		# Ir para a tela de resultados, etc.
+		print("Fase Concluída! Voltando para o mapa...")
+		_on_exit_to_map_requested() # Retorna ao mapa
 		return
 	
+	# Pega os dados do próximo desafio.
 	var challenge_data = current_phase_challenges[challenge_index]
 	var challenge_type = challenge_data.get("type", "")
 	
-	# Carrega a cena correta baseado no tipo de dasafio
 	var scene_path = ""
 	match challenge_type:
-		"quiz":
-			scene_path = "res://scenes/challenges/QuizChallenge.tscn"
-			pass
-		"relate":
-			scene_path = "res://scenes/challenges/RelateChallenge.tscn"
-			pass
-		"dragdrop":
-			scene_path = "res://scenes/challenges/DragDropChallenge.tscn"
-			pass
+		"quiz": scene_path = "res://scenes/challenges/QuizChallenge.tscn"
+		"relate": scene_path = "res://scenes/challenges/RelateChallenge.tscn"
+		"dragdrop": scene_path = "res://scenes/challenges/DragDropChallenge.tscn"
 	
 	if scene_path.is_empty():
-		print("AVISO: Cena não definida para o tipo '", challenge_type, "'. Pulando.")
 		challenge_index += 1
-		_play_next_challenge(container_node)
+		_play_next_challenge() # Pula para o próximo
 		return
 	
-	# Instancia, conecta o sinal e adiciona o desafio
+	# Cria a cena
 	var challenge_scene = load(scene_path).instantiate()
 	current_challenge_node = challenge_scene
-	container_node.add_child(current_challenge_node)
-		
-	# Conexão
-	current_challenge_node.challenge_finished.connect(_on_challenge_finished.bind(container_node))
-	# Conexão para o menu de pause
-	current_challenge_node.pause_requested.connect(_on_pause_requested)
+	current_challenge_container.add_child(current_challenge_node)
 	
-	# Passa os dados usando a nova conexão
-	current_challenge_node.setup_challenge(challenge_data)
+	# Conecta os sinais na nova instância.
+	challenge_scene.challenge_finished.connect(_on_challenge_finished)
+	challenge_scene.pause_requested.connect(_on_pause_requested)
 	
+	challenge_scene.setup_challenge(challenge_data)
 	challenge_index += 1
 
 func _on_challenge_finished(id, score, is_success, additional_data, container_node: Node):
@@ -225,7 +220,7 @@ func _on_challenge_finished(id, score, is_success, additional_data, container_no
 		)
 	
 	# Chama o próximo desafio
-	_play_next_challenge(container_node)
+	_play_next_challenge()
 
 # Funções do menu de pause
 func set_current_phase_id(phase_id: String):
