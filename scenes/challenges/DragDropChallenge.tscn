@@ -6,9 +6,10 @@
 [node name="ChallengeBase" instance=ExtResource("1_85mbx")]
 script = ExtResource("2_u4f5d")
 
-[node name="BackGround_HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer_VBoxContainer_ChallengeContentContainer#DraggableItemsContainer" type="HBoxContainer" parent="." index="0"]
+[node name="DraggableItemsContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BackGround_HBoxContainer_VBoxContainer_ChallengeContentContainer#HBoxContainer_VBoxContainer_ChallengeContentContainer#TargetsContainer" type="Control" parent="." index="1"]
+[node name="DropAreasContainer" type="Control" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="1"]
+unique_name_in_owner = true
 layout_mode = 2
-anchors_preset = 0

@@ -1,9 +1,9 @@
 # QuizChallenge.gd
 extends "res://scripts/challenges/ChallengeBase.gd" # Herda da classe de desafio
 
-@onready var question_text_label: Label = %QuestionTextLabel
-@onready var option_buttons_container: VBoxContainer = %OptionButtonsContainer # Um contêiner para os botões de opção
-@onready var feedback_label: Label = %FeedbackLabel # Para mostrar "Correto!" ou "Incorreto!"
+var question_text_label: RichTextLabel
+var option_buttons_container: VBoxContainer # Um contêiner para os botões de opção
+var feedback_label: Label # Para mostrar "Correto!" ou "Incorreto!"
 
 var _current_question_index: int = 0
 var _questions_data: Array = []
@@ -12,6 +12,9 @@ var _current_question_attempts: int = 0
 
 func _ready():
 	super._ready()
+	question_text_label = find_child("QuestionTextLabel", true, false)
+	option_buttons_container = find_child("OptionButtonsContainer", true, false)
+	feedback_label = find_child("FeedbackLabel", true, false)
 	# Conectar os sinais dos botões de opção se eles forem criados dinamicamente
 	# Ou conectar se eles forem estáticos e já existirem na cena
 	# For exemplo, se você tiver 4 botões, você os conectaria aqui:

@@ -5,10 +5,12 @@ extends PanelContainer
 var id: String
 
 # Referências para os nós filhos que foi configurado na cena.
-@onready var image_display: TextureRect = $VBoxContainer/ImageDisplay
-@onready var text_label: Label = $VBoxContainer/TextLabel
+@onready var image_display: TextureRect
+@onready var text_label: Label
 
 func _ready():
+	image_display = find_child("ImageDisplay", true, false)
+	text_label = find_child("TextLabel", true, false)
 	# Conecta os sinais do próprio PanelContainer para dar feedback visual ao jogador.
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)

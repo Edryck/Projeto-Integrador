@@ -2,11 +2,11 @@
 extends Control
 
 @export var challenge_id: String = "" # ID único desta instância de desafio (para carregar o JSON)
-@onready var mission_title_label: Label = %MissionTitleLabel
-@onready var instructions_label: Label = %InstructionsLabel
-@onready var progress_bar: ProgressBar = %ProgressBar
-@onready var challenge_content_container: Control = %ChallengeContentContainer # Onde o conteúdo específico do dasafio vai
-@onready var menu_button: Button = %MenuButton
+var mission_title_label: Label
+var instructions_label: Label
+var progress_bar: ProgressBar
+var challenge_content_container: Control # Onde o conteúdo específico do dasafio vai
+var menu_button: Button
 
 signal challenge_started(id)
 signal challenge_finished(id, score, is_success, additional_data) # Para o GameManager
@@ -19,8 +19,27 @@ var _time_spent: float = 0.0
 var _start_time: float = 0.0
 
 func _ready():
-	# Conecte o botão de Menu, se houver
-	menu_button.pressed.connect(_on_menu_button_pressed) # Assumindo que tem um botão de menu na base
+	# Vamos tentar encontrar o nó "MenuButton" de uma forma mais robusta.
+	# A função find_child procura recursivamente por um nó com este nome.
+	mission_title_label = find_child("MissionTitleLabel", true, false)
+	instructions_label = find_child("InstructionsLabel", true, false)
+	progress_bar = find_child("ProgressBar", true, false)
+	challenge_content_container = find_child("ChallengeContentContainer", true, false)
+	menu_button = find_child("MenuButton", true, false)
+
+	# Agora, verificamos se o nó foi encontrado ANTES de tentar usá-lo.
+	if is_instance_valid(menu_button):
+		# Se encontrou, conecta o sinal.
+		print("SUCESSO: Nó 'MenuButton' encontrado em ", name)
+		menu_button.pressed.connect(_on_menu_button_pressed)
+	else:
+		# Se NÃO encontrou, este bloco será executado.
+		printerr("FALHA CRÍTICA: Nó 'MenuButton' NÃO foi encontrado na cena '", name, "'.")
+		
+		# Esta função mágica vai imprimir a árvore de nós exata como ela está no jogo.
+		print("--- Imprimindo a árvore de nós atual para depuração ---")
+		print_tree_pretty()
+		print("------------------ Fim da Árvore ------------------")
 
 # Métodos Virtuais (Implementados pelas classes filhas)
 # Carrega os dados específicos do desafio (do JSON)
@@ -29,7 +48,7 @@ func _load_challenge_data() -> Dictionary:
 	return {}
 
 # Prepara a UI com base nos dados carregados
-func _setup_ui_for_challenge(data: Dictionary) -> void:
+func _setup_ui_for_challenge(_data: Dictionary) -> void:
 	printerr("ChallengeBase: _setup_ui_for_challenge() must be implemented by derived classes.")
 
 # Inicia a lógica do desafio
@@ -37,7 +56,7 @@ func _start_challenge_logic() -> void:
 	printerr("ChallengeBase: _start_challenge_logic() must be implemented by derived classes.")
 
 # Processa uma resposta/interação do jogador
-func _process_player_input(input_data) -> void:
+func _process_player_input(_input_data) -> void:
 	printerr("ChallengeBase: _process_player_input() must be implemented by derived classes.")
 
 #Métodos Comuns (Usados por todas as classes filhas)

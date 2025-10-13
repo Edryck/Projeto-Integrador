@@ -3,9 +3,9 @@ extends "res://scripts/challenges/ChallengeBase.gd"
 
 const RelateItem = preload("res://scripts/components/RelateItem.gd")
 
-@onready var left_column_container: VBoxContainer = %LeftColumnContainer # Contêiner para itens da coluna esquerda
-@onready var right_column_container: VBoxContainer = %RightColumnContêiner # Contêiner para itens da coluna direita
-@onready var drawing_canvas: Control = %DrawingConvas # Um Control onde as linhas serão desenhadas
+var left_column_container: VBoxContainer # Contêiner para itens da coluna esquerda
+var right_column_container: VBoxContainer # Contêiner para itens da coluna direita
+var drawing_canvas: Control # Um Control onde as linhas serão desenhadas
 
 var _items_left: Array = []
 var _items_right: Array = []
@@ -20,6 +20,9 @@ var _current_drawing_line_item_id: String
 
 func _ready():
 	super._ready()
+	left_column_container = find_child("LeftColumnContainer", true, false)
+	right_column_container = find_child("RightColumnContainer", true, false)
+	drawing_canvas = find_child("DrawingCanvas", true, false)
 	drawing_canvas.set_process_input(true)
 	drawing_canvas.gui_input.connect(_on_canvas_gui_input)
 
@@ -57,7 +60,7 @@ func _setup_ui_for_challenge(data: Dictionary) -> void:
 func _start_challenge_logic() -> void:
 	pass # Lógica é reativa à interação
 
-func _process_player_input(input_data) -> void:
+func _process_player_input(_input_data) -> void:
 	# O _input será gerenciado pelo gui_input do drawing_canvas
 	pass
 
@@ -86,28 +89,27 @@ func _on_canvas_gui_input(event: InputEvent) -> void:
 			drawing_canvas.queue_redraw() # Redesenha a linha enquanto o mouse se move
 
 func _get_relate_item_at_position(canvas_pos: Vector2) -> Node:
-	# Helper para encontrar qual item RelateItem está sob o mouse
-	# Precisa de uma maneira de iterar sobre todos os itens de ambas as colunas
-	# e verificar se o canvas_pos está dentro do retângulo de algum item
-	# Pode ser complexo, simplificando para exemplo:
+	# Converte a posição local do canvas para a posição global da tela
+	var global_mouse_pos = drawing_canvas.to_global(canvas_pos)
+	
 	for child in left_column_container.get_children():
-		if child is RelateItem and child.get_global_rect().has_point(canvas_pos):
+		if child is RelateItem and child.get_global_rect().has_point(global_mouse_pos): # <-- CORRIGIDO
 			return child
 	for child in right_column_container.get_children():
-		if child is RelateItem and child.get_global_rect().has_point(canvas_pos):
+		if child is RelateItem and child.get_global_rect().has_point(global_mouse_pos): # <-- CORRIGIDO
 			return child
 	return null
 
 func _try_connect(source_id: String, target_id: String) -> void:
 	var is_correct = false
-	var connection_key = ""
+	var _connection_key = ""
 	
 	# Verifica se a conexão é válida (fonte da esquerda, alvo da direita ou vice-versa)
 	var is_source_left = _items_left.any(func(item): return item.id == source_id)
 	var is_target_right = _items_right.any(func(item): return item.id == target_id)
 	
 	if is_source_left and is_target_right:
-		connection_key = source_id + "-" + target_id
+		_connection_key = source_id + "-" + target_id
 		for conn in _correct_connections_data:
 			if conn.left_id == source_id and conn.right_id == target_id:
 				is_correct = true

@@ -1,9 +1,9 @@
 # DragDropChallenge.gd
 extends "res://scripts/challenges/ChallengeBase.gd"
 
-@onready var background_texture_rect: TextureRect = %BackgroundTextureRect
-@onready var drag_items_container: HBoxContainer = %DragItemsContainer # Contêiner para os itens arrastáveis
-@onready var drop_areas_container: Control = %DropAreasContainer # Contêiner para as áreas de drop
+var background_texture_rect: TextureRect
+var drag_items_container: HBoxContainer # Contêiner para os itens arrastáveis
+var drop_areas_container: Control # Contêiner para as áreas de drop
 
 var _items_to_drag: Array = []
 var _drop_areas_data: Array = []
@@ -12,6 +12,9 @@ var _total_items_to_place: int = 0
 
 func _ready():
 	super._ready()
+	background_texture_rect = find_child("BackgroundTextureRect", true, false)
+	drag_items_container = find_child("DragItemsContainer", true, false)
+	drop_areas_container = find_child("DropAreasContainer", true, false)
 	# Conecte o signal de input global para capturar arrastar e  soltar
 	set_process_input(true) # Habilita o _input para esta cena
 
@@ -63,7 +66,7 @@ func _setup_ui_for_challenge(data: Dictionary) -> void:
 func _start_challenge_logic() -> void:
 	pass # A lógica principal é reativa ao drop
 
-func _process_player_input(input_data) -> void:
+func _process_player_input(_input_data) -> void:
 	# Este método não é diretamente usado para o Drag & Drop principal
 	# A interação acontece via sinais dos DraggableItem e DropZone
 	pass

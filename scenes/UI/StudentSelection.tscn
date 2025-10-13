@@ -98,5 +98,4 @@ text = "Criar e Entrar"
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[connection signal="sort_children" from="TextureRect/MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/StudentListContainer" to="." method="_populate_student_list"]
 [connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/CreateStudentButton" to="." method="_on_create_student_button_pressed"]

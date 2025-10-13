@@ -14,14 +14,21 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="QuestionLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer" index="0"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 
 [node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer" index="1"]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer" index="2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 text = "Confirmar Resposta"
+
+[node name="FeedbackLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer" index="3"]
+unique_name_in_owner = true
+layout_mode = 2

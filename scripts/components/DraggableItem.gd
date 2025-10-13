@@ -7,10 +7,10 @@ extends Control
 
 signal item_dropped(drag_item_id, dropped_on_area_id, is_correct, drag_item_node)
 
-@onready var drag_area: Area2D = $DragArea # Referência ao Drag Area
-@onready var visuals: Control = $DragArea/Visuals 
-@onready var image_node: TextureRect = $DragArea/Image # Assumindo que Image está dentro de DragArea
-@onready var text_node: Label = $DragArea/Text # Assumindo que Text está dentro de DragArea
+var drag_area: Area2D # Referência ao Drag Area
+var visuals: Control
+var image_node: TextureRect # Assumindo que Image está dentro de DragArea
+var text_node: Label # Assumindo que Text está dentro de DragArea
 
 
 var _is_dragging: bool = false
@@ -20,6 +20,10 @@ var _original_position_in_parent: Vector2
 var _is_locked: bool = false # Nova flag para controlar se o item pode ser arrastado
 
 func _ready():
+	drag_area = find_child("DragArea", true, false)
+	visuals = find_child("Visuals", true, false)
+	image_node = find_child("Image", true, false)
+	text_node = find_child("Text", true, false)
 	# Cache a posição original e o pai
 	_original_parent = get_parent()
 	_original_position_in_parent = position

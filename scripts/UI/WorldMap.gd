@@ -1,18 +1,24 @@
 # WorldMap.gd
 extends Control
 
-@onready var student_name_label: Label = $StudentHUD/HBoxContainer/StudentNameLabel
-@onready var score_label: Label = $StudentHUD/HBoxContainer/ScoreLabel
-@onready var theme_title_label: Label = $ThemeTitleLabel
-@onready var theme_viewer = $ThemeViewer
-@onready var previous_button = $PreviousThemeButton
-@onready var next_button = $NextThemeButton
+@onready var student_name_label: Label
+@onready var score_label: Label
+@onready var theme_title_label: Label
+@onready var theme_viewer
+@onready var previous_button
+@onready var next_button
 
 # Vamos guardar nossos temas em um array para facilitar a navegação
 var themes: Array = []
 var current_theme_index: int = 0
 
 func _ready():
+	student_name_label = find_child("StudentNameLabel", true, false)
+	score_label = find_child("ScoreLabel", true, false)
+	theme_title_label = find_child("ThemeTitleLabel", true, false)
+	theme_viewer = find_child("ThemeViewer", true, false)
+	previous_button = find_child("PreviousThemeButton", true, false)
+	next_button = find_child("NextThemeButton", true, false)
 	# Conecta os sinais dos botões de navegação
 	previous_button.pressed.connect(_on_previous_theme_pressed)
 	next_button.pressed.connect(_on_next_theme_pressed)
@@ -33,20 +39,20 @@ func _ready():
 
 # Atualiza a UI com os dados do aluno que fez "login"
 func update_student_info():
-	if GameManager.current_student_data:
-		student_name_label.text = "Aluno: " + GameManager.current_student_data.get("name", "N/A")
-		score_label.text = "Pontuação: " + str(GameManager.current_student_data.get("total_score", 0))
+	if GameManager.current_student:
+		student_name_label.text = "Aluno: " + GameManager.current_player.student_name
+		score_label.text = "Pontuação: " + str(GameManager.current_player.total_score)
 
 # A função principal que mostra o tema correto e esconde os outros
 func _update_theme_display():
 	for i in themes.size():
-		var theme = themes[i]
+		var theme_node = themes[i]
 		if i == current_theme_index:
-			theme.visible = true
+			theme_node.visible = true
 			# Atualiza o título. Ex: "Theme_Sistema_Solar" vira "Sistema Solar"
-			theme_title_label.text = theme.name.replace("Theme_", "").replace("_", " ")
+			theme_title_label.text = theme_node.name.replace("Theme_", "").replace("_", " ")
 		else:
-			theme.visible = false
+			theme_node.visible = false
 			
 # Chamado quando o botão ">" é pressionado
 func _on_next_theme_pressed():
@@ -76,13 +82,13 @@ func _on_previous_theme_button_pressed() -> void:
 	pass # Replace with function body.
 
 
-func _on_theme_title_label_gui_input(event: InputEvent) -> void:
+func _on_theme_title_label_gui_input(_event: InputEvent) -> void:
 	pass # Replace with function body.
 
 
-func _on_student_name_label_gui_input(event: InputEvent) -> void:
+func _on_student_name_label_gui_input(_event: InputEvent) -> void:
 	pass # Replace with function body.
 
 
-func _on_score_label_gui_input(event: InputEvent) -> void:
+func _on_score_label_gui_input(_event: InputEvent) -> void:
 	pass # Replace with function body.

@@ -2,13 +2,17 @@
 extends Control
 
 # Referências para os nós que vamos manipular
-@onready var student_list_container = $VBoxContainer/ScrollContainer/StudentListContainer
-@onready var new_student_input = $VBoxContainer/HBoxContainer/NewStudentInput
-@onready var feedback_label = $VBoxContainer/FeedbackLabel
-@onready var create_button = $VBoxContainer/HBoxContainer/CreateStudentButton
+var student_list_container
+var new_student_input
+var feedback_label
+var create_button
 
 
 func _ready():
+	student_list_container = find_child("StudentListContainer", true, false)
+	new_student_input = find_child("NewStudentInput", true, false)
+	feedback_label = find_child("FeedbackLabel", true, false)
+	create_button = find_child("CreateStudentButton", true, false)
 	# Assim que a cena carregar, preenchemos a lista com os alunos existentes
 	_populate_student_list()
 	

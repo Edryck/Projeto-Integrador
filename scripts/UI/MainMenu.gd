@@ -1,11 +1,19 @@
 # MainMenu.gd
 extends Control
 
+var play_button: Button
+var options_button: Button
+var quit_button: Button
+
 func _ready():
+	play_button = find_child("PlayButton", true, false)
+	options_button = find_child("OptionsButton", true, false)
+	quit_button = find_child("QuitButton", true, false)
+	
 	# Conecta os sinais dos botões às funções. Você pode fazer isso pelo editor também.
-	$MenuOptions/PlayButton.pressed.connect(_on_play_button_pressed)
-	$MenuOptions/OptionsButton.pressed.connect(_on_options_button_pressed)
-	$MenuOptions/QuitButton.pressed.connect(_on_quit_button_pressed)
+	play_button.pressed.connect(_on_play_button_pressed)
+	options_button.pressed.connect(_on_options_button_pressed)
+	quit_button.pressed.connect(_on_quit_button_pressed)
 
 func _on_play_button_pressed():
 	# Muda para a cena de seleção de aluno.
