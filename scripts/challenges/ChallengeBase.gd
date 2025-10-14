@@ -19,27 +19,24 @@ var _time_spent: float = 0.0
 var _start_time: float = 0.0
 
 func _ready():
-	# Vamos tentar encontrar o nó "MenuButton" de uma forma mais robusta.
-	# A função find_child procura recursivamente por um nó com este nome.
+	# Encontra os nós usando caminhos mais específicos
 	mission_title_label = find_child("MissionTitleLabel", true, false)
 	instructions_label = find_child("InstructionsLabel", true, false)
 	progress_bar = find_child("ProgressBar", true, false)
 	challenge_content_container = find_child("ChallengeContentContainer", true, false)
-	menu_button.pressed.connect(_on_menu_button_pressed)
-
-	# Agora, verificamos se o nó foi encontrado ANTES de tentar usá-lo.
-	if is_instance_valid(menu_button):
-		# Se encontrou, conecta o sinal.
+	
+	# Tenta encontrar o MenuButton de forma mais robusta
+	menu_button = find_child("MenuButton", true, false)
+	if not menu_button:
+		# Procura em caminhos alternativos
+		menu_button = $VBoxContainer/MenuButton if has_node("VBoxContainer/MenuButton") else null
+	
+	if menu_button:
 		print("SUCESSO: Nó 'MenuButton' encontrado em ", name)
 		menu_button.pressed.connect(_on_menu_button_pressed)
 	else:
-		# Se NÃO encontrou, este bloco será executado.
-		printerr("FALHA CRÍTICA: Nó 'MenuButton' NÃO foi encontrado na cena '", name, "'.")
-		
-		# Esta função mágica vai imprimir a árvore de nós exata como ela está no jogo.
-		print("--- Imprimindo a árvore de nós atual para depuração ---")
+		printerr("FALHA: MenuButton não encontrado")
 		print_tree_pretty()
-		print("------------------ Fim da Árvore ------------------")
 
 # Métodos Virtuais (Implementados pelas classes filhas)
 # Carrega os dados específicos do desafio (do JSON)

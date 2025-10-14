@@ -9,10 +9,10 @@ var dragdrop_data: Dictionary
 func _ready(): 
 	# Na versão final, seria carregado os JSONs aqui
 	# Por enquanto, vamos simular com os dados direto no script
-	fases_data = carregar_json("res://data/fases.json")
-	quiz_data = carregar_json("res://data/quiz.json")
-	relate_data = carregar_json("res://data/relate.json")
-	dragdrop_data = carregar_json("res://data/dragdrop.json")
+	fases_data = carregar_json("res://data/levels/fases.json")
+	quiz_data = carregar_json("res://data/levels/quiz.json")
+	relate_data = carregar_json("res://data/levels/relate.json")
+	dragdrop_data = carregar_json("res://data/levels/dragdrop.json")
 
 # Função para carregar e parsear um arquivo JSON
 func carregar_json(path: String) -> Dictionary:

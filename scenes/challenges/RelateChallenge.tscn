@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://usqrmo73xgdt"]
+[gd_scene load_steps=2 format=3 uid="uid://brlnwi3s2b6nn"]
 
 [ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_0h33l"]
 

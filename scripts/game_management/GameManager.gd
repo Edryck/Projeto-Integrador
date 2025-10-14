@@ -201,21 +201,17 @@ func _play_next_challenge():
 	challenge_scene.setup_challenge(challenge_data)
 	challenge_index += 1
 
-func _on_challenge_finished(id, score, is_success, additional_data, container_node: Node):
-	print(str("Desafio ", id, " finalizado!"))
+func _on_challenge_finished(id: String, score: int, is_success: bool, additional_data: Dictionary):
+	print("Desafio ", id, " finalizado!")
 	
 	# Atualiza o progresso do aluno
-	# O 'id' aqui pode ser o id da FASE, não do mini-desafio.
-	# Precisará ajustar como o progresso é salvo (por fase ou por mini-desafio).
-	# update_phase_progress(...)
-	var challenge_node = current_challenge_node as ChallengeBase
-	if challenge_node:
+	if current_player:
 		update_phase_progress(
 			current_phase_id,
 			score,
 			is_success,
-			challenge_node._attempts,
-			challenge_node._time_spent,
+			current_challenge_node._attempts if current_challenge_node else 0,
+			current_challenge_node._time_spent if current_challenge_node else 0.0,
 			additional_data
 		)
 	
@@ -259,4 +255,4 @@ func _on_exit_to_map_requested():
 	challenge_index = 0
 
 	# Volta para a cena do mapa
-	get_tree().change_scene_to_file("res://scenes/menus/WorldMap.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")

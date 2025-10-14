@@ -30,11 +30,15 @@ func _setup_ui_for_challenge(data: Dictionary) -> void:
 	_placed_correctly_count = 0
 	
 	if data.has("background_image_path"):
-		background_texture_rect.texture = load(data["background_image_path"])
+		var bg_texture = load(data["background_image_path"])
+		if bg_texture:
+			background_texture_rect.texture = bg_texture
 	
 	# Limpa contêineres
-	for child in drag_items_container.get_children(): child.queue_free()
-	for child in drop_areas_container.get_children(): child.queue_free()
+	for child in drag_items_container.get_children(): 
+		child.queue_free()
+	for child in drop_areas_container.get_children(): 
+		child.queue_free()
 	
 	# Cria itens arrastáveis
 	for item_data in _items_to_drag:

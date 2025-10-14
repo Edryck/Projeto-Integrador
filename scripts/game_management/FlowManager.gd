@@ -4,9 +4,7 @@ extends Node
 # Caminhos das cenas
 # Cenas principais
 const SCENE_MAIN_MENU = "res://scenes/UI/MainMenu.tscn"
-const SCENE_PLAYER_LOGIN = "res://scenes/GameFlow/PlayerLogin.tscn"
-const SCENE_WORLD_MAP = "res://scenes/GameFlow/WorldMap.tscn"
-const SCENE_TEACHER_DASHBOARD = "res://scenes/GameFlow/TeacherDashboard.tscn"
+const SCENE_WORLD_MAP = "res://scenes/UI/WorldMap.tscn"
 
 # Dicionário para mapear IDs de fases e seus caminhos de cena
 var level_scene_paths: Dictionary = {
@@ -46,14 +44,8 @@ func change_scene(scene_path: String) -> void:
 func goto_main_menu() -> void:
 	change_scene(SCENE_MAIN_MENU)
 
-func goto_player_login() -> void:
-	change_scene(SCENE_PLAYER_LOGIN)
-
 func goto_world_map() -> void:
 	change_scene(SCENE_WORLD_MAP)
-
-func goto_teacher_dashboard() -> void:
-	change_scene(SCENE_TEACHER_DASHBOARD)
 
 # Método para carregar um cena de fase dinamicamente pelo ID
 func goto_level(level_id: String) -> void:

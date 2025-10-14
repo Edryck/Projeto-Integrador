@@ -1,22 +1,20 @@
 # WorldMap.gd
 extends Control
 
-@onready var student_name_label: Label = $StudentHUD/HBoxContainer/StudentNameLabel
-@onready var score_label: Label = $StudentHUD/HBoxContainer/ScoreLabel
-@onready var theme_title_label: Label = %ThemeTitleLabel
-@onready var theme_viewer: Control = %ThemeViewer
-@onready var previous_button: Button = %PreviousThemeButton
-@onready var next_button: Button = %NextThemeButton
+var student_name_label: Label
+var score_label: Label
+var theme_title_label: Label
+var theme_viewer: Control
+var previous_button: TextureButton
+var next_button: TextureButton
 
 # Vamos guardar nossos temas em um array para facilitar a navegação
 var themes: Array = []
 var current_theme_index: int = 0
 
 func _ready():
-	# Conecta os sinais dos botões de navegação
-	previous_button.pressed.connect(_on_previous_theme_pressed)
-	next_button.pressed.connect(_on_next_theme_pressed)
-	
+	# Busca os nós
+	_find_all_nodes()
 	# Pega todos os nós de tema (filhos do ThemeViewer) e os coloca no nosso array
 	for theme_node in theme_viewer.get_children():
 		themes.append(theme_node)
@@ -30,10 +28,25 @@ func _ready():
 	update_student_info()
 	_update_theme_display()
 
+func _find_all_nodes():
+	student_name_label = find_child("StudentNameLabel", true, false)
+	score_label = find_child("ScoreLabel", true, false)
+	theme_title_label = find_child("ThemeTitleLabel", true, false)
+	theme_viewer = find_child("ThemeViewer", true, false)
+	previous_button = find_child("PreviousThemeButton", true, false)
+	next_button = find_child("NextThemeButton", true, false)
+	
+	# Se ainda não encontrou, tenta caminhos alternativos
+	if not theme_viewer:
+		theme_viewer = $StudentHUD/HBoxContainer/ThemeViewer if has_node("StudentHUD/HBoxContainer/ThemeViewer") else null
+	if not previous_button:
+		previous_button = $StudentHUD/HBoxContainer/Background/PreviousThemeButton if has_node("StudentHUD/HBoxContainer/Background/PreviousThemeButton") else null
+	if not next_button:
+		next_button = $StudentHUD/HBoxContainer/Background/NextThemeButton if has_node("StudentHUD/HBoxContainer/Background/NextThemeButton") else null
 
 # Atualiza a UI com os dados do aluno que fez "login"
 func update_student_info():
-	if GameManager.current_student:
+	if GameManager.current_player:
 		student_name_label.text = "Aluno: " + GameManager.current_player.student_name
 		score_label.text = "Pontuação: " + str(GameManager.current_player.total_score)
 

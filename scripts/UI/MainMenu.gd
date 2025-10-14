@@ -6,10 +6,7 @@ extends Control
 @onready var quit_button: Button = %QuitButton
 
 func _ready():
-	# Conecta os sinais dos botões às funções.
-	play_button.pressed.connect(_on_play_button_pressed)
-	options_button.pressed.connect(_on_options_button_pressed)
-	quit_button.pressed.connect(_on_quit_button_pressed)
+	pass
 
 func _on_play_button_pressed():
 	# Muda para a cena de seleção de aluno.
