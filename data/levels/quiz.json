@@ -5,7 +5,7 @@
 		"question": "A energia utilizada nas casas dos brasileiros capaz de fazer funcionar um computador é considerada uma energia: ",
 		"options": [
 			"Mecânica",
-			"Química",
+			"Química", 
 			"Radiante",
 			"Elétrica"
 		],
@@ -24,7 +24,7 @@
 		"correct_answer": "Mecânica"
 	},
 	"quiz_prop_fisicas_mat_3": {
-		"title": "Propriedades Físicas dos Materiais",
+		"title": "Propriedades Físicas dos Materiais", 
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
 		"question": "Em relação à energia elétrica, marque a opção CORRETA.",
 		"options": [

@@ -2,93 +2,107 @@
 extends Control
 
 @export var id: String = ""
-@export var correct_drop_area_id: String = "" # ID da área de drop correta
-@export var drag_speed: float = 2000.0 # Velocidade de retorno, se for o caso
+@export var id_area_soltura_correta: String = ""
+@export var velocidade_arrasto: float = 2000.0
 
-signal item_dropped(drag_item_id, dropped_on_area_id, is_correct, drag_item_node)
+signal item_soltado(id_item_arrastavel, id_area_soltada, correto, no_item_arrastavel)
 
-var drag_area: Area2D # Referência ao Drag Area
-var visuals: Control
-var image_node: TextureRect # Assumindo que Image está dentro de DragArea
-var text_node: Label # Assumindo que Text está dentro de DragArea
-
-
-var _is_dragging: bool = false
-var _drag_offset: Vector2 # Diferença entre o clique e o canto do item
-var _original_parent: Node
-var _original_position_in_parent: Vector2
-var _is_locked: bool = false # Nova flag para controlar se o item pode ser arrastado
+# Já não precisa mais da Area2D separada
+var _arrastando: bool = false
+var _offset_arrasto: Vector2
+var _pai_original: Node
+var _posicao_original_no_pai: Vector2
+var _travado: bool = false
 
 func _ready():
-	drag_area = find_child("DragArea", true, false)
-	visuals = find_child("Visuals", true, false)
-	image_node = find_child("Image", true, false)
-	text_node = find_child("Text", true, false)
-	# Cache a posição original e o pai
-	_original_parent = get_parent()
-	_original_position_in_parent = position
-
-func _gui_input(event: InputEvent):
-	if _is_locked: return # Se o item está travado (já colocado corretamente), ignora input
+	_pai_original = get_parent()
+	_posicao_original_no_pai = position
 	
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			_is_dragging = true
-			_drag_offset = get_global_mouse_position() - global_position
-			reparent(get_tree().root)
-		elif not event.pressed and _is_dragging:
-			_is_dragging = false
-			_check_drop_location()
+	# Configurar para ser arrastável
+	mouse_filter = Control.MOUSE_FILTER_PASS
+
+func _gui_input(evento):
+	if _travado: 
+		return
+	
+	if evento is InputEventMouseButton and evento.button_index == MOUSE_BUTTON_LEFT:
+		if evento.pressed:
+			# Iniciar arrasto
+			_arrastando = true
+			_offset_arrasto = get_global_mouse_position() - global_position
+			# Mover para a raiz para ficar acima de tudo
+			get_parent().remove_child(self)
+			get_tree().root.add_child(self)
+			z_index = 1000  # Garantir que fique por cima
+		elif not evento.pressed and _arrastando:
+			# Finalizar arrasto
+			_arrastando = false
+			_verificar_local_soltura()
 		
-	if event is InputEventMouseMotion and _is_dragging:
-		global_position = event.position - _drag_offset
+	if evento is InputEventMouseMotion and _arrastando:
+		# Atualizar posição durante o arrasto
+		global_position = get_global_mouse_position() - _offset_arrasto
 
-func _check_drop_location():
-	var dropped_on_area_id = ""
-	var is_correct_placement = false
-	var drop_zone_node: DropZone = null
+func _verificar_local_soltura():
+	var posicao_soltura = get_global_mouse_position()
+	var id_area_soltada = ""
+	var colocacao_correta = false
+	var zona_soltura_encontrada: DropZone = null
 	
-	# Usa o Area2D para verificar sobreposição com DropZones
-	for detected_area in drag_area.get_overlapping_areas():
-		# Verifica se o PAI da área detectada tem o script DropZone.gd
-		if detected_area.get_parent() is DropZone: 
-			# CORREÇÃO: Pegamos o pai da área, que é o nó que queremos.
-			drop_zone_node = detected_area.get_parent() as DropZone
-			dropped_on_area_id = drop_zone_node.id
+	# Buscar todas as zonas de soltura na cena
+	var zonas_soltura = _buscar_todas_zonas_soltura()
+	
+	for zona in zonas_soltura:
+		if zona.ponto_esta_dentro(posicao_soltura):
+			zona_soltura_encontrada = zona
+			id_area_soltada = zona.id
 			break
 	
-	if dropped_on_area_id:
-		is_correct_placement = (dropped_on_area_id == correct_drop_area_id)
-		item_dropped.emit(id, dropped_on_area_id, is_correct_placement, self)
-
-		if drop_zone_node:
-			is_correct_placement = (dropped_on_area_id == correct_drop_area_id)
-			item_dropped.emit(id, dropped_on_area_id, is_correct_placement, self)
+	if id_area_soltada:
+		colocacao_correta = (id_area_soltada == id_area_soltura_correta)
 		
-			if is_correct_placement:
-				# Centraliza a lógica de "travar no lugar" usando a função lock_in_place
-				lock_in_place(drop_zone_node.global_position)
-			else:
-				return_to_original_position()
+		item_soltado.emit(id, id_area_soltada, colocacao_correta, self)
+		
+		if colocacao_correta:
+			travar_em_posicao(zona_soltura_encontrada.global_position)
+		else:
+			retornar_para_posicao_original()
 	else:
-		item_dropped.emit(id, "", false, self)
-		return_to_original_position()
+		# Soltou em lugar nenhum
+		item_soltado.emit(id, "", false, self)
+		retornar_para_posicao_original()
 
-func return_to_original_position():
-	# Remover da cena raiz
+func _buscar_todas_zonas_soltura() -> Array:
+	var zonas: Array = []
+	
+	# Buscar recursivamente por DropZones na cena atual
+	_buscar_zonas_recursivamente(get_tree().current_scene, zonas)
+	
+	return zonas
+
+func _buscar_zonas_recursivamente(no: Node, resultado: Array):
+	if no is DropZone:
+		resultado.append(no)
+	
+	for filho in no.get_children():
+		_buscar_zonas_recursivamente(filho, resultado)
+
+func retornar_para_posicao_original():
+	# Voltar para o pai original
 	get_tree().root.remove_child(self)
-	# Adicionar de volta ao pai original na posição original
-	_original_parent.add_child(self)
-	position = _original_position_in_parent
-	# Pode adicionar uma animação aqui (Tween)
+	_pai_original.add_child(self)
+	position = _posicao_original_no_pai
+	z_index = 0
 
-# Método para travar o item no lugar (útil se o DragDropChallenge quiser fazer isso)
-func lock_in_place(target_global_position: Vector2):
+func travar_em_posicao(posicao_global_alvo: Vector2):
 	get_tree().root.remove_child(self)
-	_original_parent.add_child(self) # Adiciona de volta ao pai original para manter a hierarquia
+	_pai_original.add_child(self)
 
-	# Calcular a posição local dentro do PARENT ORIGINAL
-	position = _original_parent.to_local(target_global_position - size / 2)
+	# Calcular posição local relativa ao pai original
+	position = _pai_original.to_local(posicao_global_alvo) - (size / 2)
 
-	_is_locked = true
+	_travado = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	# Feedback visual de sucesso
+	modulate = Color(0.5, 1, 0.5)  # Verde claro

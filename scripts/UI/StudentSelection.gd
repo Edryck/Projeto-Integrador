@@ -1,92 +1,71 @@
 # StudentSelection.gd
 extends Control
 
-## Remove as referências @onready e busca os nós manualmente
-var student_list_container: VBoxContainer
-var new_student_input: LineEdit
-var create_button: Button
-var feedback_label: Label
-
+var container_lista_alunos: VBoxContainer
+var entrada_novo_aluno: LineEdit
+var botao_criar: Button
+var label_feedback: Label
 
 func _ready():
-	# Busca os nós manualmente
-	student_list_container = find_child("StudentListContainer", true, false)
-	new_student_input = find_child("NewStudentInput", true, false)
-	create_button = find_child("CreateStudentButton", true, false)
-	feedback_label = find_child("FeedbackLabel", true, false)
+	_buscar_nos_interface()
+	_preencher_lista_alunos()
 	
-	# Verifica se todos os nós foram encontrados
-	if not student_list_container:
+	if entrada_novo_aluno:
+		entrada_novo_aluno.grab_focus()
+
+func _buscar_nos_interface():
+	container_lista_alunos = find_child("StudentListContainer", true, false)
+	entrada_novo_aluno = find_child("NewStudentInput", true, false)
+	botao_criar = find_child("CreateStudentButton", true, false)
+	label_feedback = find_child("FeedbackLabel", true, false)
+	
+	if not container_lista_alunos:
 		printerr("ERRO CRÍTICO: StudentListContainer não encontrado!")
-		print("Árvore da cena:")
-		print_tree_pretty()
-		return
-	# Assim que a cena carregar, preenche a lista com os alunos existentes
-	_populate_student_list()
-	
-	# Foca no campo de texto para o jogador já poder digitar
-	new_student_input.grab_focus()
 
-
-# Função para limpar e preencher a lista de alunos
-func _populate_student_list():
-	# 1. Limpa qualquer botão que já exista para não duplicar
-	for child in student_list_container.get_children():
-		child.queue_free()
-		
-	# 2. Pega a lista de todos os dados dos alunos do GameManager
-	var students = GameManager.get_all_students_for_dashboard()
+func _preencher_lista_alunos():
+	for filho in container_lista_alunos.get_children():
+		filho.queue_free()
 	
-	# 3. Cria um botão para cada aluno
-	if students.is_empty():
-		feedback_label.text = "Nenhum aluno cadastrado. Crie um novo perfil!"
+	var alunos = GameManager.obter_todos_alunos()
+	
+	if alunos.is_empty():
+		label_feedback.text = "Nenhum aluno cadastrado. Crie um novo perfil!"
 	else:
-		feedback_label.text = "Selecione seu perfil ou crie um novo."
-		for student_data in students:
-			var student_name = student_data.get("name", "Nome Desconhecido")
-			var button = Button.new()
-			button.text = student_name
-			# Define um tamanho mínimo para os botões ficarem uniformes
-			button.custom_minimum_size = Vector2(250, 50) 
-			# Conecta o sinal 'pressed' deste botão à função de seleção
-			button.pressed.connect(_on_student_button_pressed.bind(student_name))
-			student_list_container.add_child(button)
+		label_feedback.text = "Selecione seu perfil ou crie um novo."
+		for dados_aluno in alunos:
+			var nome_aluno = dados_aluno.get("name", "Nome Desconhecido")
+			var botao = Button.new()
+			botao.text = nome_aluno
+			botao.custom_minimum_size = Vector2(250, 50)
+			botao.pressed.connect(_on_botao_aluno_pressionado.bind(nome_aluno))
+			container_lista_alunos.add_child(botao)
 
-
-# Chamado quando o botão "Criar e Entrar" é pressionado
-func _on_create_student_button_pressed():
-	print("=== DEBUG ===")
-	print("feedback_label é válido:", is_instance_valid(feedback_label))
-	print("new_student_input é válido:", is_instance_valid(new_student_input))
-	print("create_button é válido:", is_instance_valid(create_button))
-	# Busca os nós novamente para garantir que estão válidos
-	var current_feedback_label = find_child("FeedbackLabel", true, false)
-	var current_new_student_input = find_child("NewStudentInput", true, false)
+func _on_botao_criar_aluno_pressionado():
+	var label_feedback_atual = find_child("FeedbackLabel", true, false)
+	var entrada_aluno_atual = find_child("NewStudentInput", true, false)
 	
-	var student_name = current_new_student_input.text.strip_edges() if current_new_student_input else ""
+	var nome_aluno = entrada_aluno_atual.text.strip_edges() if entrada_aluno_atual else ""
 	
-	if student_name.is_empty():
-		if current_feedback_label:
-			current_feedback_label.text = "O nome não pode estar em branco."
+	if nome_aluno.is_empty():
+		if label_feedback_atual:
+			label_feedback_atual.text = "O nome não pode estar em branco."
 		return
 	
-	if GameManager.create_new_student_profile(student_name):
-		if current_feedback_label:
-			current_feedback_label.text = str("Bem-vindo(a), ", student_name, "!")
-		if current_new_student_input:
-			current_new_student_input.clear()
-		_populate_student_list()
-		# _on_student_button_pressed(student_name)
+	if GameManager.criar_novo_perfil_aluno(nome_aluno):
+		if label_feedback_atual:
+			label_feedback_atual.text = str("Bem-vindo(a), ", nome_aluno, "!")
+		if entrada_aluno_atual:
+			entrada_aluno_atual.clear()
+		_preencher_lista_alunos()
 	else:
-		if current_feedback_label:
-			current_feedback_label.text = "Este nome já existe. Tente outro."
+		if label_feedback_atual:
+			label_feedback_atual.text = "Este nome já existe. Tente outro."
 
-# Chamado quando um dos botões de aluno (da lista) é pressionado
-func _on_student_button_pressed(student_name: String):
-	print("Tentando carregar estudante: ", student_name)
+func _on_botao_aluno_pressionado(nome_aluno: String):
+	print("Tentando carregar estudante: ", nome_aluno)
 	
-	if GameManager.load_student_profile(student_name):
+	if GameManager.carregar_perfil_aluno(nome_aluno):
 		print("Estudante carregado com sucesso, indo para o mapa...")
 		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
 	else:
-		printerr("FALHA ao carregar estudante: ", student_name)
+		printerr("FALHA ao carregar estudante: ", nome_aluno)
