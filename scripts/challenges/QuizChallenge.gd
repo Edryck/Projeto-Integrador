@@ -1,124 +1,174 @@
 # QuizChallenge.gd
-extends "res://scripts/challenges/ChallengeBase.gd" # Herda da classe de desafio
+extends "res://scripts/challenges/ChallengeBase.gd"
+
+# SINAL para controlar a pausa
+signal continue_requested()
 
 var question_text_label: RichTextLabel
-var option_buttons_container: VBoxContainer # Um contêiner para os botões de opção
-var feedback_label: Label # Para mostrar "Correto!" ou "Incorreto!"
+var option_buttons_container: VBoxContainer
+var feedback_label: Label
+var next_button: Button
 
 var _current_question_index: int = 0
 var _questions_data: Array = []
 var _correct_answers_count: int = 0
-var _current_question_attempts: int = 0
+var _waiting_for_continue: bool = false
 
 func _ready():
 	super._ready()
+	print("QUIZCHALLENGE CARREGADO!")
+	_find_quiz_ui_nodes()
+
+func _find_quiz_ui_nodes():
 	question_text_label = find_child("QuestionTextLabel", true, false)
 	option_buttons_container = find_child("OptionButtonsContainer", true, false)
 	feedback_label = find_child("FeedbackLabel", true, false)
-	# Conectar os sinais dos botões de opção se eles forem criados dinamicamente
-	# Ou conectar se eles forem estáticos e já existirem na cena
-	# For exemplo, se você tiver 4 botões, você os conectaria aqui:
-	# %OptionButton1.pressed.connect(func(): _process_player_input(0))
-	# %OptionButton2.pressed.connect(func(): _process_player_input(1))
-	# ...
-
-# Métodos Sobrescritos da ChallengeBase
-
-func _load_challenge_data() -> Dictionary:
-	# A lógica de carregamento de JSON já está na init_challenge da base
-	# Apenas retornar os dados que a base já carregou
-	return _challenge_data
+	next_button = find_child("NextButton", true, false)
+	
+	if next_button and next_button.pressed.is_connected(_on_next_button_pressed):
+		next_button.pressed.disconnect(_on_next_button_pressed)
+	
+	if next_button:
+		next_button.pressed.connect(_on_next_button_pressed)
+		next_button.visible = false
 
 func _setup_ui_for_challenge(data: Dictionary) -> void:
-	_questions_data = data.get("question", [])
-	if _questions_data.is_empty():
-		printerr("QuizChallenge: No questions found in challenge data.")
-		pause_requested.emit()
+	print("_setup_ui_for_challenge()")
+	
+	if not option_buttons_container:
+		printerr("OptionButtonsContainer não encontrado!")
 		return
 	
-	# Limpa botões antigos, caso tenha
+	# Validar dados obrigatórios
+	if not data.has("question") or not data.has("options") or not data.has("correct_answer"):
+		printerr("Dados da questão incompletos!")
+		return
+	
+	if data["options"].is_empty():
+		printerr("Nenhuma opção fornecida!")
+		return
+	
+	if data["correct_answer"].is_empty():
+		printerr("Resposta correta não fornecida!")
+		return
+	
+	# Limpa botões antigos
 	for child in option_buttons_container.get_children():
 		child.queue_free()
 	
-	# Cria os botões de opção dinamicamente
-	for i in range(_questions_data[0].get("options", []).size()):
-		var button = Button.new()
-		button.text = "Opção " + str(i+1) # Texto placeholder, será atualizado
-		button.add_theme_font_size_override("font_size", 30) #Exemplo de estilo
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		button.pressed.connect(func(_idx = i): _process_player_input(_idx))
-		option_buttons_container.add_child(button)
+	# Configura dados da questão
+	if data.has("questions"):
+		_questions_data = data["questions"]
+	else:
+		# Formato de questão única
+		_questions_data = [{
+			"question_text": data.get("question", ""),
+			"options": data.get("options", []),
+			"correct_answer": data.get("correct_answer", "")
+		}]
 	
 	_current_question_index = 0
 	_correct_answers_count = 0
-	_current_question_attempts = 0
-	_display_current_question()
+
+func _load_challenge_data() -> Dictionary:
+	return _challenge_data
 
 func _start_challenge_logic() -> void:
-	# Nada de especial para iniciar além do setup da UI
+	print("_start_challenge_logic()")
+	_display_current_question()
+
+func _process_player_input(_input_data) -> void:
 	pass
 
-func _process_player_input(selected_option_index: int) -> void:
-	_current_question_attempts += 1
+# Função principal que controla o fluxo
+func _display_current_question():
+	print("Exibindo pergunta: ", _current_question_index)
 	
-	var current_question = _questions_data[_current_question_index]
-	var correct_index = current_question.get("correct_answer_index")
-	
-	# Desabilita botões para evitar cliques múltiplos
-	for button in option_buttons_container.get_children():
-		button.disabled = true
-	
-	if selected_option_index == correct_index:
-		_correct_answers_count += 1
-		_score += 10 # Exemplo de pontuação
-		feedback_label.text = "Correto!"
-		feedback_label.modulate = Color.GREEN # Feedback visual
-		# Animação ou som de sucesso
-		print("Quiz: Correct answer!")
-		await get_tree().create_timer(1.0).timeout # Espera 1 segundo
-		_go_to_next_question()
-	else:
-		feedback_label.text = "Incorreto!"
-		feedback_label.modulate = Color.RED # Feedback visual
-		# Animação ou som de erro
-		print("Quiz: Incorrect answer!")
-		await get_tree().create_timer(1.5).timeout # Espera 1.5 segundos
-		# Se quiser limitar tentativas ou mostrar a correta depois de X erros
-		# if _current_question_attempts >= 2:
-		#    feedback_label.text = "A resposta correta era: " + current_question.options[correct_index]
-		#    await get_tree().create_timer(2.0).timeout
-		_go_to_next_question()
-	
-	feedback_label.text = "" # Limpa feedback
-	_current_question_attempts = 0 # Reinicia tentativas para próxima pergunta
-
-# Métodos específicos do quiz
-
-func _display_current_question() -> void:
 	if _current_question_index >= _questions_data.size():
 		_finish_quiz()
 		return
 	
-	var question = _questions_data[_current_question_index]
-	question_text_label.text = question.get("question_text", "Erro: Pergunta não encontrada.")
+	var current_question = _questions_data[_current_question_index]
+	# Atualiza UI
+	if question_text_label:
+		question_text_label.text = "Pergunta %d/%d:\n%s" % [
+			_current_question_index + 1, 
+			_questions_data.size(), 
+			current_question["question_text"]
+		]
 	
-	var options = question.get("options", [])
-	for i in range(option_buttons_container.get_child_count()):
-		var button = option_buttons_container.get_child(i) as Button
-		if i < options.size():
-			button.text = options[i]
-			button.visible = true
-			button.disabled = false # Reabilita botões
-		else: 
-			button.visible = false # Esconde botões extras
+	# Habilita botões de opção
+	for button in option_buttons_container.get_children():
+		button.disabled = false
+	
+	# Limpa feedback
+	if feedback_label:
+		feedback_label.text = ""
+		feedback_label.modulate = Color.WHITE
+	
+	# Esconde botão "Continuar"
+	if next_button:
+		next_button.visible = false
 	
 	update_progress_bar(_current_question_index + 1, _questions_data.size())
 
-func _go_to_next_question() -> void:
+func _on_option_selected(option_index: int):
+	print("Opção selecionada: ", option_index)
+	
+	var current_question = _questions_data[_current_question_index]
+	var correct_answer = current_question["correct_answer"]
+	var selected_answer = current_question["options"][option_index]
+	
+	# Desabilita botões de opção
+	for button in option_buttons_container.get_children():
+		button.disabled = true
+	
+	# Mostra feedback
+	if selected_answer == correct_answer:
+		_correct_answers_count += 1
+		_score += 10
+		if feedback_label:
+			feedback_label.text = "Correto! ✅"
+			feedback_label.modulate = Color.GREEN
+	else:
+		if feedback_label:
+			feedback_label.text = "Incorreto! ❌\nResposta: " + correct_answer
+			feedback_label.modulate = Color.RED
+	
+	# Mostra botão "Continuar"
+	if next_button:
+		next_button.visible = true
+	
+	# Espera até o sinal continue_requested ser emitido
+	print("CENA PARADA - Esperando continuar...")
+	await continue_requested
+	print("CENA CONTINUANDO...")
+	
+	# Continua o fluxo
+	_go_to_next_question()
+
+func _on_next_button_pressed():
+	print("🎯 Continuar pressionado")
+	
+	continue_requested.emit()
+
+# Função que faz a cena esperar
+func _go_to_next_question():
+	print("🎯 Preparando próxima questão...")
 	_current_question_index += 1
+	
+	# A cena continua normalmente daqui
 	_display_current_question()
 
-func _finish_quiz() -> void:
-	var is_sucess = _correct_answers_count >= (_questions_data.size() * 0.7) # Ex: 70% de acertos para sucesso
-	_on_challenge_completed(is_sucess, _score, {"correct_count": _correct_answers_count, "total_questions": _questions_data.size()})
+func _finish_quiz():
+	print("🎯 Quiz finalizado! Acertos: ", _correct_answers_count, "/", _questions_data.size())
+	var is_success = _correct_answers_count > 0
+	_on_challenge_completed(is_success, _score, {
+		"correct_count": _correct_answers_count,
+		"total_questions": _questions_data.size()
+	})
+
+func _exit_tree():
+	# Limpar conexões
+	if next_button and next_button.pressed.is_connected(_on_next_button_pressed):
+		next_button.pressed.disconnect(_on_next_button_pressed)

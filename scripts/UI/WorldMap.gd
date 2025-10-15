@@ -11,22 +11,63 @@ var next_button: TextureButton
 # Vamos guardar nossos temas em um array para facilitar a navegação
 var themes: Array = []
 var current_theme_index: int = 0
+var phases_data: Dictionary = {}
 
 func _ready():
 	# Busca os nós
 	_find_all_nodes()
-	# Pega todos os nós de tema (filhos do ThemeViewer) e os coloca no nosso array
-	for theme_node in theme_viewer.get_children():
-		themes.append(theme_node)
-		# Conecta todos os botões de fase dentro de cada tema
-		for phase_button in theme_node.get_children():
-			if phase_button is Button:
-				# O nome do botão será o ID da fase!
-				var phase_id = phase_button.name
-				phase_button.pressed.connect(_on_phase_button_pressed.bind(phase_id))
-
+	
+	# Carrega os dados das fases do JSON
+	_load_phases_data()
+	
+	# Conecta os botões de fase que já existem no editor
+	_setup_existing_phase_buttons()
+	
 	update_student_info()
 	_update_theme_display()
+
+func _load_phases_data():
+	var file = FileAccess.open("res://data/levels/fases.json", FileAccess.READ)
+	if file:
+		var content = file.get_as_text()
+		file.close()
+		
+		print("Conteúdo do arquivo fases.json:")
+		print(content)  # Isso vai mostrar exatamente o que está sendo lido
+		
+		var json = JSON.new()
+		var error = json.parse(content)
+		if error == OK:
+			phases_data = json.data
+			print("Dados das fases carregados com sucesso: ", phases_data)
+		else:
+			printerr("Erro ao parsear JSON das fases na linha ", json.get_error_line(), ": ", json.get_error_message())
+			printerr("Texto do erro: ", content.substr(max(0, json.get_error_line() - 50), 100))
+	else:
+		printerr("Arquivo de fases não encontrado: res://data/levels/fases.json")
+
+func _setup_existing_phase_buttons():
+	# Limpa o array de temas
+	themes.clear()
+	
+	# Para cada tema no ThemeViewer
+	for theme_node in theme_viewer.get_children():
+		themes.append(theme_node)
+		
+		# Para cada botão dentro deste tema
+		for phase_button in theme_node.get_children():
+			if phase_button is Button:
+				var phase_id = phase_button.name
+				var phase_data = phases_data.get(phase_id, {})
+				
+				# Atualiza o texto do botão baseado no JSON
+				if phase_data.has("title"):
+					phase_button.text = phase_data["title"]
+				
+				# Feedback visual se a fase foi completada
+				if GameManager.is_phase_completed(phase_id):
+					phase_button.add_theme_color_override("font_color", Color.GREEN)
+					phase_button.text += " ✓"
 
 func _find_all_nodes():
 	student_name_label = find_child("StudentNameLabel", true, false)
@@ -73,29 +114,19 @@ func _on_previous_theme_pressed():
 		current_theme_index = themes.size() - 1
 	_update_theme_display()
 
-# Chamado quando um botão de FASE (dentro de um tema) é pressionado
-func _on_phase_button_pressed(phase_id: String):
-	print("Iniciando fase: ", phase_id)
-	
-	GameManager.set_current_phase_id(phase_id)
-	get_tree().change_scene_to_file("res://scenes/Main.tscn")
-
-
-func _on_next_theme_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_previous_theme_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_theme_title_label_gui_input(_event: InputEvent) -> void:
-	pass # Replace with function body.
-
-
-func _on_student_name_label_gui_input(_event: InputEvent) -> void:
-	pass # Replace with function body.
-
-
-func _on_score_label_gui_input(_event: InputEvent) -> void:
-	pass # Replace with function body.
+# Função chamada quando qualquer botão de fase é pressionado
+# Tem que conectar todos os botões no editor para esta função
+func _on_phase_button_pressed():
+	var phase_button = get_viewport().gui_get_focus_owner()
+	if phase_button and phase_button is Button:
+		var phase_id = phase_button.name
+		
+		if phases_data.has(phase_id):
+			print("=== INICIANDO FASE ===")
+			
+			# Define a fase
+			GameManager.current_phase_id = phase_id
+			
+			# Troca para ChallengeBase (container vazio)
+			print("Carregando container de desafios...")
+			get_tree().change_scene_to_file("res://scenes/challenges/ChallengeBase.tscn")

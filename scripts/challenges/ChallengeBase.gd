@@ -1,42 +1,59 @@
 # ChallengeBase.gd
 extends Control
 
-@export var challenge_id: String = "" # ID único desta instância de desafio (para carregar o JSON)
+@export var challenge_id: String = ""
 var mission_title_label: Label
 var instructions_label: Label
 var progress_bar: ProgressBar
-var challenge_content_container: Control # Onde o conteúdo específico do dasafio vai
-@onready var menu_button: Button = $ExternalMarginContainer/MenuButton
+var challenge_content_container: Control
+var phase_id: String = ""
+@onready var menu_button: Button
 
 signal challenge_started(id)
-signal challenge_finished(id, score, is_success, additional_data) # Para o GameManager
-signal pause_requested() # Para o FlowManager
+signal challenge_finished(id, score, is_success, additional_data)
+signal pause_requested()
 
-var _challenge_data: Dictionary = {} #Dados carregados do JSON
+var _challenge_data: Dictionary = {}
 var _score: int = 0
 var _attempts: int = 0
 var _time_spent: float = 0.0
 var _start_time: float = 0.0
 
+var is_initialized: bool = false  # Evita inicialização múltipla
+
 func _ready():
-	# Encontra os nós usando caminhos mais específicos
+	print("=== CHALLENGEBASE: Container carregado ===")
+	
+	if is_initialized:
+		return
+		
+	is_initialized = true
+	_find_ui_nodes()
+	
+	# Inicia os desafios após a cena estar pronta
+	await get_tree().process_frame
+	_start_challenges()
+
+func _start_challenges():
+	print("Iniciando desafios para: ", GameManager.current_phase_id)
+	
+	if GameManager.current_phase_id:
+		GameManager.start_phase(GameManager.current_phase_id, self)
+	else:
+		printerr("Nenhuma fase definida!")
+
+func _find_ui_nodes():
 	mission_title_label = find_child("MissionTitleLabel", true, false)
 	instructions_label = find_child("InstructionsLabel", true, false)
 	progress_bar = find_child("ProgressBar", true, false)
 	challenge_content_container = find_child("ChallengeContentContainer", true, false)
-	
-	# Tenta encontrar o MenuButton de forma mais robusta
 	menu_button = find_child("MenuButton", true, false)
-	if not menu_button:
-		# Procura em caminhos alternativos
-		menu_button = $VBoxContainer/MenuButton if has_node("VBoxContainer/MenuButton") else null
 	
 	if menu_button:
-		print("SUCESSO: Nó 'MenuButton' encontrado em ", name)
+		print("MenuButton encontrado")
 		menu_button.pressed.connect(_on_menu_button_pressed)
 	else:
-		printerr("FALHA: MenuButton não encontrado")
-		print_tree_pretty()
+		printerr("MenuButton não encontrado")
 
 # Métodos Virtuais (Implementados pelas classes filhas)
 # Carrega os dados específicos do desafio (do JSON)

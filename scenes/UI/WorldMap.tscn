@@ -26,16 +26,27 @@ grow_vertical = 2
 [node name="StudentHUD" type="PanelContainer" parent="."]
 layout_mode = 1
 offset_right = 237.0
-offset_bottom = 92.0
+offset_bottom = 73.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StudentHUD"]
+[node name="MarginContainer" type="MarginContainer" parent="StudentHUD"]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="StudentNameLabel" type="Label" parent="StudentHUD/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StudentHUD/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="ScoreLabel" type="Label" parent="StudentHUD/HBoxContainer"]
+[node name="StudentNameLabel" type="Label" parent="StudentHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ScoreLabel" type="Label" parent="StudentHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="ThemeTitleLabel" type="Label" parent="."]
 layout_mode = 1
@@ -120,7 +131,7 @@ grow_vertical = 2
 texture = ExtResource("3_ofp3r")
 expand_mode = 1
 
-[node name="PhaseButton" type="Button" parent="ThemeViewer/Background/Theme1"]
+[node name="fase_propriedade_fisica_dos_materiais" type="Button" parent="ThemeViewer/Background/Theme1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
@@ -204,8 +215,9 @@ offset_top = 121.0
 offset_right = 118.0
 offset_bottom = 152.0
 
-[connection signal="gui_input" from="StudentHUD/HBoxContainer/StudentNameLabel" to="." method="_on_student_name_label_gui_input"]
-[connection signal="gui_input" from="StudentHUD/HBoxContainer/ScoreLabel" to="." method="_on_score_label_gui_input"]
+[connection signal="gui_input" from="StudentHUD/MarginContainer/VBoxContainer/StudentNameLabel" to="." method="_on_student_name_label_gui_input"]
+[connection signal="gui_input" from="StudentHUD/MarginContainer/VBoxContainer/ScoreLabel" to="." method="_on_score_label_gui_input"]
 [connection signal="gui_input" from="ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
-[connection signal="pressed" from="ThemeViewer/Background/PreviousThemeButton" to="." method="_on_previous_theme_button_pressed"]
-[connection signal="pressed" from="ThemeViewer/Background/NextThemeButton" to="." method="_on_next_theme_button_pressed"]
+[connection signal="pressed" from="ThemeViewer/Background/PreviousThemeButton" to="." method="_on_previous_theme_pressed"]
+[connection signal="pressed" from="ThemeViewer/Background/NextThemeButton" to="." method="_on_next_theme_pressed"]
+[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_propriedade_fisica_dos_materiais" to="." method="_on_phase_button_pressed"]

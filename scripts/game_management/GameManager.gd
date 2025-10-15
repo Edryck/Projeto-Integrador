@@ -90,7 +90,7 @@ func update_phase_progress(phase_id: String, score: int, is_success: bool, attem
 	if not current_player:
 		printerr("No student logged in.")
 		return
-
+	
 	var phase_entry = current_player.progress.get(phase_id, {})
 	phase_entry["score"] = score
 	phase_entry["is_success"] = is_success
@@ -122,7 +122,7 @@ func generate_unique_id() -> String:
 	return str(Time.get_unix_time_from_system()) + "_" + str(randi() % 10000)
 
 # Função para obter dados de todos os alunos para o Dashboard do Professor
-func get_all_students_for_dashboard() -> Array:
+func get_all_students() -> Array:
 	var students_data_list: Array = []
 	var dir = DirAccess.open(SAVE_PATH)
 	if dir:
@@ -151,55 +151,84 @@ var challenge_index: int = 0
 
 # Função para iniciar uma fase
 func start_phase(phase_id: String, container_node: Node):
-	# container_node é o nó da cena onde os desafios serão adicionados
-	# Pega a lista de desafios para a fase
-	current_challenge_container = container_node
+	print("=== GAMEMANAGER: INICIANDO FASE ===")
+	print("Phase ID: ", phase_id)
+	print("Container node: ", container_node)
+	
 	current_phase_id = phase_id
 	current_phase_challenges = ChallengeDataManager.get_challenges_for_phase(phase_id)
-	# Randomiza a ordem
+	
+	print("Desafios carregados: ", current_phase_challenges.size())
+	for i in range(current_phase_challenges.size()):
+		print("Desafio ", i, ": ", current_phase_challenges[i])
+	
+	# Randomiza a ordem dos desafios
 	current_phase_challenges.shuffle()
 	
 	challenge_index = 0
+	current_challenge_container = container_node
+	
+	print("Chamando _play_next_challenge()...")
 	_play_next_challenge()
 
 func _play_next_challenge():
-	# Garante que o desafio anterior seja completamente removido.
-	if is_instance_valid(current_challenge_node):
-		current_challenge_node.queue_free()
-		current_challenge_node = null # Limpa a referência
+	print("=== GAMEMANAGER: _play_next_challenge ===")
+	print("Challenge index: ", challenge_index)
 	
-	# Verifica se a fase terminou.
+	# Remove desafio anterior
+	if is_instance_valid(current_challenge_node):
+		print("Removendo desafio anterior...")
+		current_challenge_node.queue_free()
+		current_challenge_node = null
+	
 	if challenge_index >= current_phase_challenges.size():
-		print("Fase Concluída! Voltando para o mapa...")
-		_on_exit_to_map_requested() # Retorna ao mapa
+		print("FASE CONCLUÍDA")
+		_on_exit_to_map_requested()
 		return
 	
-	# Pega os dados do próximo desafio.
 	var challenge_data = current_phase_challenges[challenge_index]
-	var challenge_type = challenge_data.get("type", "")
+	print("Dados do desafio: ", challenge_data)
 	
 	var scene_path = ""
-	match challenge_type:
-		"quiz": scene_path = "res://scenes/challenges/QuizChallenge.tscn"
-		"relate": scene_path = "res://scenes/challenges/RelateChallenge.tscn"
-		"dragdrop": scene_path = "res://scenes/challenges/DragDropChallenge.tscn"
+	match challenge_data.get("type", "quiz"):
+		"quiz": 
+			scene_path = "res://scenes/challenges/QuizChallenge.tscn"
+		"relate": 
+			scene_path = "res://scenes/challenges/RelateChallenge.tscn"
+		"dragdrop": 
+			scene_path = "res://scenes/challenges/DragDropChallenge.tscn"
+	
+	print("Carregando: ", scene_path)
 	
 	if scene_path.is_empty():
 		challenge_index += 1
-		_play_next_challenge() # Pula para o próximo
+		_play_next_challenge()
 		return
 	
-	# Cria a cena
-	var challenge_scene = load(scene_path).instantiate()
-	current_challenge_node = challenge_scene
-	current_challenge_container.add_child(current_challenge_node)
-	
-	# Conecta os sinais na nova instância.
-	challenge_scene.challenge_finished.connect(_on_challenge_finished)
-	challenge_scene.pause_requested.connect(_on_pause_requested)
-	
-	challenge_scene.setup_challenge(challenge_data)
-	challenge_index += 1
+	var challenge_scene = load(scene_path)
+	if challenge_scene:
+		# Substitui o ChallengeBase atual pelo desafio específico
+		if is_instance_valid(current_challenge_container):
+			# Limpa todos os filhos do container
+			for child in current_challenge_container.get_children():
+				child.queue_free()
+			
+			# Adiciona o desafio específico diretamente
+			var challenge_instance = challenge_scene.instantiate()
+			current_challenge_node = challenge_instance
+			current_challenge_container.add_child(current_challenge_node)
+			
+			# Conecta os sinais
+			challenge_instance.challenge_finished.connect(_on_challenge_finished)
+			challenge_instance.pause_requested.connect(_on_pause_requested)
+			
+			print("Configurando desafio...")
+			challenge_instance.setup_challenge(challenge_data)
+			challenge_index += 1
+	else:
+		printerr("Cena não encontrada")
+		challenge_index += 1
+		_play_next_challenge()
 
 func _on_challenge_finished(id: String, score: int, is_success: bool, additional_data: Dictionary):
 	print("Desafio ", id, " finalizado!")
@@ -219,8 +248,9 @@ func _on_challenge_finished(id: String, score: int, is_success: bool, additional
 	_play_next_challenge()
 
 # Funções do menu de pause
-func set_current_phase_id(phase_id: String):
-	selected_phase_id = phase_id
+func set_current_phase_id(new_phase_id: String):
+	print("GameManager: Definindo current_phase_id para: ", new_phase_id)
+	current_phase_id = new_phase_id
 
 func _on_pause_requested():
 	if get_tree().paused: return

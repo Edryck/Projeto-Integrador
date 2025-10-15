@@ -35,7 +35,7 @@ func _populate_student_list():
 		child.queue_free()
 		
 	# 2. Pega a lista de todos os dados dos alunos do GameManager
-	var students = GameManager.get_all_students_for_dashboard()
+	var students = GameManager.get_all_students()
 	
 	# 3. Cria um botão para cada aluno
 	if students.is_empty():
