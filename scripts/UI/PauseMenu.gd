@@ -1,35 +1,40 @@
 # PauseMenu.gd
 extends CanvasLayer
 
-# Sinais que este menu vai emitir para que o GameManager saiba o que fazer.
-signal resume_game
-signal restart_phase
-signal quit_to_map
+signal retomar_jogo
+signal reiniciar_fase
+signal sair_para_mapa
 
 func _ready():
-	# Conecta os botões locais às suas funções
-	$VBoxContainer/ResumeButton.pressed.connect(_on_resume_button_pressed)
-	$VBoxContainer/RestartButton.pressed.connect(_on_restart_button_pressed)
-	$VBoxContainer/QuitToMapButton.pressed.connect(_on_quit_to_map_button_pressed)
+	_conectar_botoes_locais()
 
-func _on_resume_button_pressed():
-	# Despausa o jogo e se remove da tela
+func _conectar_botoes_locais():
+	var botao_retomar = find_child("ResumeButton", true, false)
+	var botao_reiniciar = find_child("RestartButton", true, false)
+	var botao_sair_mapa = find_child("QuitToMapButton", true, false)
+	
+	if botao_retomar:
+		botao_retomar.pressed.connect(_on_botao_retomar_pressionado)
+	if botao_reiniciar:
+		botao_reiniciar.pressed.connect(_on_botao_reiniciar_pressionado)
+	if botao_sair_mapa:
+		botao_sair_mapa.pressed.connect(_on_botao_sair_mapa_pressionado)
+
+func _on_botao_retomar_pressionado():
 	get_tree().paused = false
-	resume_game.emit() # Avisa que o jogo continuou
+	retomar_jogo.emit()
 	queue_free()
 
-func _on_restart_button_pressed():
-	# Primeiro despausa para evitar problemas
+func _on_botao_reiniciar_pressionado():
 	get_tree().paused = false
-	restart_phase.emit() # Avisa que o jogador quer recomeçar
+	reiniciar_fase.emit()
 	queue_free()
 
-func _on_quit_to_map_button_pressed():
+func _on_botao_sair_mapa_pressionado():
 	get_tree().paused = false
-	quit_to_map.emit() # Avisa que o jogador quer sair
+	sair_para_mapa.emit()
 	queue_free()
 
-# Permite fechar o menu de pause com a tecla Esc também
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"): # ui_cancel é a tecla Esc por padrão
-		_on_resume_button_pressed()
+func _input_nao_tratado(evento):
+	if evento.is_action_pressed("ui_cancel"):
+		_on_botao_retomar_pressionado()

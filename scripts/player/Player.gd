@@ -2,65 +2,61 @@
 class_name Player
 extends Resource
 
-const SAVE_PATH = "res://data/player_saves/"
-const FILE_PREFIX = "aluno_"
-const FILE_EXTENSION = ".json"
+const CAMINHO_SALVAMENTO = "user://saves/"
+const PREFIXO_ARQUIVO = "aluno_"
+const EXTENSAO_ARQUIVO = ".json"
 
-# Propriedades do jogador 
 @export var id: String = ""
 @export var student_name: String = ""
-@export var total_score: int = 0
-@export var progress: Dictionary = {}
+@export var pontuacao_total: int = 0
+@export var progresso: Dictionary = {}
 
-# Construtor
-func _init(s_name: String = ""):
-	if not s_name.is_empty():
-		student_name = s_name
+func _init(nome_aluno: String = ""):
+	if not nome_aluno.is_empty():
+		student_name = nome_aluno
 		id = str(Time.get_unix_time_from_system()) + "_" + str(randi() % 10000)
 
-# Método para salvar os dados deste jogador em um arquivo .json
-func save() -> bool:
-	var file_path = SAVE_PATH + FILE_PREFIX + student_name.to_lower().strip_edges() + FILE_EXTENSION
+func salvar() -> bool:
+	var caminho_arquivo = CAMINHO_SALVAMENTO + PREFIXO_ARQUIVO + student_name.to_lower().strip_edges() + EXTENSAO_ARQUIVO
 	
-	var data_dict = {
-		"id": id,
-		"name": student_name,
-		"total_score": total_score,
-		"progress": progress
-	}
-	
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
-	if file:
-		var json_string = JSON.stringify(data_dict, "\t")
-		file.store_string(json_string)
-		print("Player profile saved: ", student_name)
+	var arquivo = FileAccess.open(caminho_arquivo, FileAccess.WRITE)
+	if arquivo:
+		var string_json = JSON.stringify(serializar(), "\t")
+		arquivo.store_string(string_json)
+		print("Perfil de aluno salvo: ", student_name)
 		return true
 	else:
-		printerr("Failed to save player profile: ", student_name)
+		printerr("Falha ao salvar perfil de aluno: ", student_name)
 		return false
 
-# Função estática para carregar um jogador de um arquivo .json
-static func load(student_name: String) -> Player:
-	var file_path = SAVE_PATH + FILE_PREFIX + student_name.to_lower().strip_edges() + FILE_EXTENSION
-	if not FileAccess.file_exists(file_path):
+static func load(nome_aluno: String) -> Player:
+	var caminho_arquivo = CAMINHO_SALVAMENTO + PREFIXO_ARQUIVO + nome_aluno.to_lower().strip_edges() + EXTENSAO_ARQUIVO
+	if not FileAccess.file_exists(caminho_arquivo):
 		return null
 	
-	var file = FileAccess.open(file_path, FileAccess.READ)
-	var content = file.get_as_text()
-	var json_data = JSON.parse_string(content)
+	var arquivo = FileAccess.open(caminho_arquivo, FileAccess.READ)
+	var conteudo = arquivo.get_as_text()
+	var dados_json = JSON.parse_string(conteudo)
 	
-	if json_data is Dictionary:
-		var loaded_player = Player.new()
-		loaded_player.id = json_data.get("id", "")
-		loaded_player.student_name = json_data.get("name", "")
-		loaded_player.total_score = json_data.get("total_score", 0)
-		loaded_player.progress = json_data.get("progress", {})
-		print("Player profile loaded: ", student_name)
-		return loaded_player
+	if dados_json is Dictionary:
+		var aluno_carregado = Player.new()
+		aluno_carregado.id = dados_json.get("id", "")
+		aluno_carregado.student_name = dados_json.get("name", "")
+		aluno_carregado.pontuacao_total = dados_json.get("total_score", 0)
+		aluno_carregado.progresso = dados_json.get("progress", {})
+		print("Perfil de aluno carregado: ", nome_aluno)
+		return aluno_carregado
 	
 	return null
 
-# Função estática que verifica se um perfil existe
-static func profile_exists(student_name: String) -> bool:
-	var file_path = SAVE_PATH + FILE_PREFIX + student_name.to_lower().strip_edges() + FILE_EXTENSION
-	return FileAccess.file_exists(file_path)
+static func perfil_existe(nome_aluno: String) -> bool:
+	var caminho_arquivo = CAMINHO_SALVAMENTO + PREFIXO_ARQUIVO + nome_aluno.to_lower().strip_edges() + EXTENSAO_ARQUIVO
+	return FileAccess.file_exists(caminho_arquivo)
+
+func serializar() -> Dictionary:
+	return {
+		"id": id,
+		"name": student_name,
+		"total_score": pontuacao_total,
+		"progress": progresso
+	}

@@ -220,4 +220,8 @@ offset_bottom = 152.0
 [connection signal="gui_input" from="ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
 [connection signal="pressed" from="ThemeViewer/Background/PreviousThemeButton" to="." method="_on_previous_theme_pressed"]
 [connection signal="pressed" from="ThemeViewer/Background/NextThemeButton" to="." method="_on_next_theme_pressed"]
+<<<<<<< HEAD
 [connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_propriedade_fisica_dos_materiais" to="." method="_on_phase_button_pressed"]
+=======
+[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_propriedade_fisica_dos_materiais" to="." method="_on_botao_fase_pressionado"]
+>>>>>>> 9bd3b91e70dc7065013bfc314b91e94c4e59cf4d
