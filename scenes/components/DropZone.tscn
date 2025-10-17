@@ -6,6 +6,8 @@
 
 [node name="DropZone" type="Area2D"]
 script = ExtResource("1_83b3g")
+id = null
+tamanho_padrao = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_23k0s")

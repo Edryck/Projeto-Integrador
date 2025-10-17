@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm5575sipopee"]
+[gd_scene load_steps=4 format=3 uid="uid://cm5575sipopee"]
 
 [ext_resource type="Script" uid="uid://nmgb7i4wgbro" path="res://scripts/challenges/ChallengeBase.gd" id="1_xetyg"]
 [ext_resource type="Texture2D" uid="uid://d223ecvdflouy" path="res://assets/backgrounds/Background.png" id="2_8jpql"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ro30q"]
 
 [node name="ChallengeBase" type="Control"]
 layout_mode = 3
@@ -23,13 +25,6 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-
-[node name="MenuButton" type="Button" parent="MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Menu"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -61,6 +56,7 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 
 [node name="MissionTitleLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -69,6 +65,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
@@ -77,17 +74,27 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
+visible = false
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ChallengeContentContainer" type="PanelContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 7.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_ro30q")
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
+
+[node name="MenuButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Menu"
 
 [connection signal="pressed" from="MarginContainer/MenuButton" to="." method="_on_menu_pressionado"]

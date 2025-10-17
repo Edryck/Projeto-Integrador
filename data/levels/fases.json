@@ -12,5 +12,14 @@
 		"challenges": [
 			{ "type": "relate", "id": "relate_prop_fis_mat" }
 		]
+	},
+	"fase_exemplo_completa": {
+		"title": "Conhecimentos Gerais",
+		"challenges": [
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_1" },
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_2" },
+			{ "type": "relate", "id": "relate_prop_fis_mat" },
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_3" }
+		]
 	}
 }

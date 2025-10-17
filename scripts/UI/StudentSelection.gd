@@ -32,7 +32,7 @@ func carregar_lista_jogadores():
 		feedback.text = "Nenhum jogador cadastrado. Crie um novo!"
 	else:
 		feedback.text = "Selecione seu jogador:"
-		
+	
 		for jogador in jogadores:
 			var botao = Button.new()
 			botao.text = jogador.nome

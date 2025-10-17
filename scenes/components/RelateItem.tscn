@@ -10,6 +10,8 @@ layout_mode = 2
 
 [node name="ImageDisplay" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="TextLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2

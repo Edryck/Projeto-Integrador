@@ -1,116 +1,290 @@
 # DragDropChallenge.gd
 extends "res://scripts/challenges/ChallengeBase.gd"
 
-var textura_fundo: TextureRect
-var container_itens_arrastaveis: HBoxContainer
-var container_areas_soltura: Control
+# Containers da UI
+@onready var container_itens_arrastaveis: VBoxContainer = find_child("DraggableItemsContainer", true, false)
+@onready var container_areas_soltura: Control = find_child("DropAreasContainer", true, false)
 
-var _itens_para_arrastar: Array = []
-var _dados_areas_soltura: Array = []
-var _contador_colocacoes_corretas: int = 0
-var _total_itens_para_colocar: int = 0
+# Dados do desafio
+var itens_arrastaveis: Array = []
+var zonas_soltura: Array = []
+var itens_colocados_corretamente: int = 0
+var total_itens: int = 0
+
+# Item sendo arrastado
+var item_sendo_arrastado: Control = null
+var offset_arrasto: Vector2 = Vector2.ZERO
 
 func _ready():
 	super._ready()
-	textura_fundo = find_child("BackgroundTextureRect", true, false)
-	container_itens_arrastaveis = find_child("DragItemsContainer", true, false)
-	container_areas_soltura = find_child("DropAreasContainer", true, false)
-	set_process_input(true)
+	print("DRAG DROP CHALLENGE - Carregado")
+	iniciar_com_dados()
 
-func _carregar_dados_desafio() -> Dictionary:
-	return _dados_desafio
+func iniciar_com_dados():
+	var dados = SceneManager.obter_dados_desafio_atual()
+	if not dados.is_empty():
+		print("Dados disponíveis no SceneManager")
+		iniciar_desafio(dados)
+	else:
+		printerr("Nenhum dado de desafio recebido!")
+		# Dados de fallback
+		var dados_teste = {
+			"id": "dragdrop_teste",
+			"type": "dragdrop",
+			"title": "Arraste e Solte",
+			"instructions": "Arraste os itens para as posições corretas",
+			"draggable_items": [
+				{"id": "item1", "text": "Item 1"},
+				{"id": "item2", "text": "Item 2"}
+			],
+			"drop_zones": [
+				{"id": "zona1", "accepts": "item1"},
+				{"id": "zona2", "accepts": "item2"}
+			]
+		}
+		iniciar_desafio(dados_teste)
 
-func _configurar_interface_desafio(dados: Dictionary) -> void:
-	_itens_para_arrastar = dados.get("items_to_drag", [])
-	_dados_areas_soltura = dados.get("drop_areas", [])
-	_total_itens_para_colocar = _itens_para_arrastar.size()
-	_contador_colocacoes_corretas = 0
+func iniciar_desafio(dados: Dictionary):
+	print("DragDropChallenge.iniciar_desafio()")
+	super.iniciar_desafio(dados)
 	
-	# Carregar background
-	if dados.has("background_image_path"):
-		var textura_fundo_carregada = load(dados["background_image_path"])
-		if textura_fundo_carregada:
-			textura_fundo.texture = textura_fundo_carregada
+	carregar_dados_desafio(dados)
+	configurar_interface()
+
+func carregar_dados_desafio(dados: Dictionary):
+	itens_arrastaveis = dados.get("draggable_items", [])
+	zonas_soltura = dados.get("drop_zones", [])
+	total_itens = itens_arrastaveis.size()
+	itens_colocados_corretamente = 0
 	
-	# Limpar contêineres
-	for filho in container_itens_arrastaveis.get_children(): 
+	print("Itens arrastavéis: ", total_itens)
+	print("Zonas de soltura: ", zonas_soltura.size())
+
+func configurar_interface():
+	print("Configurando interface Drag & Drop...")
+	
+	# Limpar containers
+	for filho in container_itens_arrastaveis.get_children():
 		filho.queue_free()
-	for filho in container_areas_soltura.get_children(): 
+	for filho in container_areas_soltura.get_children():
 		filho.queue_free()
+	
+	await get_tree().process_frame
 	
 	# Criar itens arrastáveis
-	for dados_item in _itens_para_arrastar:
-		var item_arrastavel = DraggableItem.new()
-		item_arrastavel.id = dados_item.id
-		item_arrastavel.id_area_soltura_correta = dados_item.correct_drop_area_id
-		
-		# Configurar visual do item
-		item_arrastavel.custom_minimum_size = Vector2(80, 80)
-		item_arrastavel.size = Vector2(80, 80)
-		
-		# Adicionar TextureRect como filho para a imagem
-		var textura_item = TextureRect.new()
-		textura_item.texture = load(dados_item.image_path)
-		textura_item.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		textura_item.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		textura_item.size = Vector2(70, 70)
-		textura_item.position = Vector2(5, 5)
-		item_arrastavel.add_child(textura_item)
-		
-		item_arrastavel.item_soltado.connect(_on_item_soltado)
-		container_itens_arrastaveis.add_child(item_arrastavel)
+	for item_data in itens_arrastaveis:
+		var item = criar_item_arrastavel(item_data)
+		container_itens_arrastaveis.add_child(item)
 	
-	# Criar áreas de soltura
-	for dados_area in _dados_areas_soltura:
-		var zona_soltura = preload("res://scenes/components/DropZone.tscn").instantiate()
-		zona_soltura.id = dados_area.id
-		zona_soltura.position = Vector2(dados_area.position_x, dados_area.position_y)
-		zona_soltura.tamanho_padrao = Vector2(dados_area.size_x, dados_area.size_y)
-		
-		# Opcional: adicionar label para identificar
+	# Criar zonas de soltura
+	for zona_data in zonas_soltura:
+		var zona = criar_zona_soltura(zona_data)
+		container_areas_soltura.add_child(zona)
+	
+	atualizar_progresso(0, total_itens)
+
+func criar_item_arrastavel(dados: Dictionary) -> Control:
+	var item = PanelContainer.new()
+	item.custom_minimum_size = Vector2(100, 100)
+	item.set_meta("id", dados["id"])
+	item.set_meta("tipo", "arrastavel")
+	item.set_meta("posicao_original", Vector2.ZERO)
+	item.set_meta("pai_original", null)
+	
+	var conteudo = VBoxContainer.new()
+	conteudo.alignment = BoxContainer.ALIGNMENT_CENTER
+	item.add_child(conteudo)
+	
+	# Adicionar imagem ou texto
+	if dados.has("image_path"):
+		var texture_rect = TextureRect.new()
+		var texture = load(dados["image_path"])
+		if texture:
+			texture_rect.texture = texture
+			texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			texture_rect.custom_minimum_size = Vector2(80, 80)
+		conteudo.add_child(texture_rect)
+	
+	if dados.has("text"):
 		var label = Label.new()
-		label.text = dados_area.id
-		label.position = Vector2(5, 5)
-		zona_soltura.add_child(label)
-		
-		container_areas_soltura.add_child(zona_soltura)
+		label.text = dados["text"]
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		conteudo.add_child(label)
 	
-	atualizar_barra_progresso(_contador_colocacoes_corretas, _total_itens_para_colocar)
+	# Configurar para ser arrastável
+	item.gui_input.connect(_on_item_gui_input.bind(item))
+	item.mouse_filter = Control.MOUSE_FILTER_PASS
+	
+	return item
 
-func _iniciar_logica_desafio() -> void:
-	pass
+func criar_zona_soltura(dados: Dictionary) -> Control:
+	var zona = PanelContainer.new()
+	zona.custom_minimum_size = Vector2(120, 120)
+	zona.set_meta("id", dados["id"])
+	zona.set_meta("accepts", dados["accepts"])
+	zona.set_meta("tipo", "zona_soltura")
+	zona.set_meta("ocupada", false)
+	
+	# Visual da zona
+	var estilo = StyleBoxFlat.new()
+	estilo.bg_color = Color(0.3, 0.3, 0.3, 0.5)
+	estilo.border_color = Color.WHITE
+	estilo.border_width_left = 2
+	estilo.border_width_right = 2
+	estilo.border_width_top = 2
+	estilo.border_width_bottom = 2
+	zona.add_theme_stylebox_override("panel", estilo)
+	
+	# Label indicando a zona
+	var label = Label.new()
+	label.text = "Zona " + dados["id"]
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	zona.add_child(label)
+	
+	return zona
 
-func _processar_entrada_jogador(_dados_entrada) -> void:
-	pass
+func _on_item_gui_input(event: InputEvent, item: Control):
+	# Verificar se o item está travado
+	if item.get_meta("travado", false):
+		return
+	
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				# Iniciar arrasto
+				_iniciar_arrasto(item)
+			elif item_sendo_arrastado == item:
+				# Finalizar arrasto
+				_finalizar_arrasto(item)
+	
+	elif event is InputEventMouseMotion and item_sendo_arrastado == item:
+		# Atualizar posição durante o arrasto
+		item.global_position = get_global_mouse_position() - offset_arrasto
 
-func _on_item_soltado(id_item_arrastavel: String, id_area_soltada: String, correto: bool, no_item_arrastavel: Node) -> void:
-	if correto:
-		_contador_colocacoes_corretas += 1
-		_pontuacao += 20
-		print("DragDrop: Item ", id_item_arrastavel, " colocado corretamente em ", id_area_soltada)
-		
-		var no_area_soltura: Control = null
-		for area in container_areas_soltura.get_children():
-			if area.id == id_area_soltada:
-				no_area_soltura = area
-				break
+func _iniciar_arrasto(item: Control):
+	print("Iniciando arrasto de: ", item.get_meta("id"))
+	
+	item_sendo_arrastado = item
+	offset_arrasto = get_global_mouse_position() - item.global_position
+	
+	# Salvar posição e pai original se ainda não foi salvo
+	if item.get_meta("pai_original") == null:
+		item.set_meta("pai_original", item.get_parent())
+		item.set_meta("posicao_original", item.position)
+	
+	# Mover para a raiz para ficar acima de tudo
+	var pai_atual = item.get_parent()
+	pai_atual.remove_child(item)
+	get_tree().root.add_child(item)
+	
+	# Destacar visualmente
+	item.modulate = Color(1.2, 1.2, 0.8)
+	item.z_index = 1000
 
-		if no_area_soltura:
-			no_item_arrastavel.get_parent().remove_child(no_item_arrastavel)
-			no_area_soltura.add_child(no_item_arrastavel)
-			no_item_arrastavel.position = (no_area_soltura.size / 2) - (no_item_arrastavel.size / 2)
-		no_item_arrastavel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+func _finalizar_arrasto(item: Control):
+	print("Finalizando arrasto de: ", item.get_meta("id"))
+	
+	var posicao_soltura = item.global_position + item.size / 2
+	var zona_encontrada = _encontrar_zona_sob_posicao(posicao_soltura)
+	
+	if zona_encontrada:
+		_tentar_soltar_em_zona(item, zona_encontrada)
 	else:
-		_tentativas += 1
-		_pontuacao = max(0, _pontuacao - 5)
-		print("DragDrop: Item ", id_item_arrastavel, " colocado INCORRETAMENTE em ", id_area_soltada)
-		no_item_arrastavel.retornar_para_posicao_original()
+		_retornar_item_origem(item)
 	
-	atualizar_barra_progresso(_contador_colocacoes_corretas, _total_itens_para_colocar)
+	item_sendo_arrastado = null
+	item.modulate = Color.WHITE
+	item.z_index = 0
+
+func _encontrar_zona_sob_posicao(pos_global: Vector2) -> Control:
+	for zona in container_areas_soltura.get_children():
+		if zona.get_meta("tipo") == "zona_soltura":
+			var rect = Rect2(zona.global_position, zona.size)
+			if rect.has_point(pos_global):
+				return zona
+	return null
+
+func _tentar_soltar_em_zona(item: Control, zona: Control):
+	var item_id = item.get_meta("id")
+	var zona_aceita = zona.get_meta("accepts")
+	var zona_id = zona.get_meta("id")
 	
-	if _contador_colocacoes_corretas == _total_itens_para_colocar:
-		var sucesso = _contador_colocacoes_corretas == _total_itens_para_colocar
-		_on_desafio_concluido(sucesso, _pontuacao, {
-			"colocacoes_corretas": _contador_colocacoes_corretas, 
-			"total_colocacoes": _total_itens_para_colocar
-		})
+	print("Tentando soltar ", item_id, " em zona que aceita ", zona_aceita)
+	
+	# Verificar se a zona já está ocupada
+	if zona.get_meta("ocupada", false):
+		print("Zona já ocupada!")
+		_retornar_item_origem(item)
+		return
+	
+	# Verificar se é a correspondência correta
+	if item_id == zona_aceita:
+		print("CORRETO! Item colocado na zona correta")
+		_colocar_item_na_zona(item, zona)
+		
+		itens_colocados_corretamente += 1
+		pontuacao += 20
+		
+		# Feedback visual de sucesso
+		zona.modulate = Color.GREEN
+		item.modulate = Color.GREEN
+		item.set_meta("travado", true)
+		
+		atualizar_progresso(itens_colocados_corretamente, total_itens)
+		
+		# Verificar se completou o desafio
+		if itens_colocados_corretamente >= total_itens:
+			await get_tree().create_timer(0.5).timeout
+			finalizar_drag_drop()
+	else:
+		print("INCORRETO! Item não pertence a esta zona")
+		pontuacao = max(0, pontuacao - 5)
+		
+		# Feedback visual de erro
+		zona.modulate = Color.RED
+		await get_tree().create_timer(0.3).timeout
+		zona.modulate = Color.WHITE
+		
+		_retornar_item_origem(item)
+
+func _colocar_item_na_zona(item: Control, zona: Control):
+	# Remover da raiz
+	get_tree().root.remove_child(item)
+	
+	# Adicionar à zona
+	zona.add_child(item)
+	
+	# Centralizar na zona
+	item.position = (zona.size - item.size) / 2
+	
+	# Marcar zona como ocupada
+	zona.set_meta("ocupada", true)
+
+func _retornar_item_origem(item: Control):
+	print("Retornando item para origem")
+	
+	# Remover da raiz
+	get_tree().root.remove_child(item)
+	
+	# Retornar ao pai original
+	var pai_original = item.get_meta("pai_original")
+	if pai_original:
+		pai_original.add_child(item)
+		item.position = item.get_meta("posicao_original")
+
+func finalizar_drag_drop():
+	print("DRAG & DROP FINALIZADO!")
+	print("   - Itens corretos: ", itens_colocados_corretamente, "/", total_itens)
+	
+	var sucesso = itens_colocados_corretamente == total_itens
+	
+	var dados_resultado = {
+		"tipo": "dragdrop",
+		"itens_corretos": itens_colocados_corretamente,
+		"total_itens": total_itens,
+		"precisao": int(float(itens_colocados_corretamente) / total_itens * 100) if total_itens > 0 else 0
+	}
+	
+	finalizar_desafio(sucesso, dados_resultado)
