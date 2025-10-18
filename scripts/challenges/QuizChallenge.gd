@@ -200,7 +200,11 @@ func _on_opcao_selecionada(indice_opcao: int):
 	
 	# Mostrar botão próximo
 	if botao_proximo:
-		botao_proximo.text = "Próxima Pergunta"
+		# Trocar texto se for a última pergunta
+		if pergunta_atual >= perguntas.size() - 1:
+			botao_proximo.text = "Finalizar Quiz"
+		else:
+			botao_proximo.text = "Próxima Pergunta"
 		
 		botao_proximo.visible = true
 	
@@ -221,6 +225,7 @@ func finalizar_quiz():
 	print("   - Acertos: ", acertos, "/", perguntas.size())
 	print("   - Pontuação: ", pontuacao)
 	
+	@warning_ignore("incompatible_ternary")
 	var precisao = float(acertos) / perguntas.size() if perguntas.size() > 0 else 0
 	var sucesso = acertos > 0
 	

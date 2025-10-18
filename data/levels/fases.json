@@ -1,6 +1,6 @@
 {
-	"fase_propriedade_fisica_dos_materiais": {
-		"title": "Propriedades Físicas dos Materiais",
+	"fase_quiz_teste": {
+		"title": "Teste - Quiz",
 		"challenges": [
 			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_1" },
 			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_2" },
@@ -10,16 +10,26 @@
 	"fase_relate_teste": {
 		"title": "Fase teste de relacionar",
 		"challenges": [
-			{ "type": "relate", "id": "relate_prop_fis_mat" }
+			{ "type": "relate", "id": "relate_prop_fis_mat_1" },
+			{ "type": "relate", "id": "relate_prop_fis_mat_2" } 
+		]
+	},
+	"fase_dd_teste": {
+		"title": "Fase teste de Arrastar e Soltar",
+		"challenges": [
+			{ "type": "dragdrop", "id": "dd_prop_fisica_mat" }
 		]
 	},
 	"fase_exemplo_completa": {
-		"title": "Conhecimentos Gerais",
+		"title": "Propriedades Físicas dos Materiais",
 		"challenges": [
 			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_1" },
 			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_2" },
-			{ "type": "relate", "id": "relate_prop_fis_mat" },
-			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_3" }
+			{ "type": "relate", "id": "relate_prop_fis_mat_1" },
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_3" },
+			{ "type": "relate", "id": "relate_prop_fis_mat_2" },
+			{ "type": "dragdrop", "id": "dd_prop_fisica_mat"},
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_4" }
 		]
 	}
 }

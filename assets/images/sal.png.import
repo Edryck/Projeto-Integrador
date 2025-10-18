@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmgmf4wq357x0"
-path="res://.godot/imported/botas_couro.png-63c94d41c7b811c18b4f7fac21002c21.ctex"
+uid="uid://wwailg5lpegi"
+path="res://.godot/imported/sal.png-0321c60ea4566effaefc7d170e4bd5c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/botas_couro.png"
-dest_files=["res://.godot/imported/botas_couro.png-63c94d41c7b811c18b4f7fac21002c21.ctex"]
+source_file="res://assets/images/sal.png"
+dest_files=["res://.godot/imported/sal.png-0321c60ea4566effaefc7d170e4bd5c4.ctex"]
 
 [params]
 

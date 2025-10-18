@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbn75enmqpmuu"
-path="res://.godot/imported/jarro_barro.png-b756be7cb8a981f021f54a56b680d1ee.ctex"
+uid="uid://o0v7rm8ms71o"
+path="res://.godot/imported/flauta.png-3dd19fc82c46371e9513fa375106c54d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/jarro_barro.png"
-dest_files=["res://.godot/imported/jarro_barro.png-b756be7cb8a981f021f54a56b680d1ee.ctex"]
+source_file="res://assets/images/flauta.png"
+dest_files=["res://.godot/imported/flauta.png-3dd19fc82c46371e9513fa375106c54d.ctex"]
 
 [params]
 

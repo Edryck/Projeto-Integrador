@@ -34,5 +34,17 @@
 			"Está relacionada com a temperatura e o calor."
 		],
 		"correct_answer": "É a mais utilizada pelas pessoas."
+	},
+	"quiz_prop_fisicas_mat_4": {
+		"title": "Propriedades Físicas dos Materiais", 
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual a diferença fundamental entre corpo e objeto na classificação da matéria?",
+		"options": [
+			"Corpo tem forma definida, objeto não",
+			"Objeto é a matéria com função específica, corpo é a matéria sem função definida",
+			"Corpo é natural, objeto é artificial",
+			"Objeto tem massa, corpo não"
+		],
+		"correct_answer": "Objeto é a matéria com função específica, corpo é a matéria sem função definida"
 	}
 }

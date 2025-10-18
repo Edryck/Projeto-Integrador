@@ -9,5 +9,5 @@ func _ready():
 	collision_mask = 1
 
 func _on_area_entered(area):
-	if area is DraggableItem:
+	if area.is_class("DraggableItem"):
 		item_dropped.emit(area, self)

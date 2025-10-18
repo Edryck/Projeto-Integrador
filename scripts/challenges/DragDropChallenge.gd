@@ -71,10 +71,14 @@ func configurar_interface():
 	
 	await get_tree().process_frame
 	
-	# Criar itens arrastáveis
+	# Criar grid adaptativo para itens arrastáveis
+	var grid_container = criar_grid_adaptativo(itens_arrastaveis, 2)
+	container_itens_arrastaveis.add_child(grid_container)
+
+	# Criar itens arrastáveis dentro do grid
 	for item_data in itens_arrastaveis:
 		var item = criar_item_arrastavel(item_data)
-		container_itens_arrastaveis.add_child(item)
+		grid_container.add_child(item)
 	
 	# Criar zonas de soltura
 	for zona_data in zonas_soltura:
@@ -85,7 +89,7 @@ func configurar_interface():
 
 func criar_item_arrastavel(dados: Dictionary) -> Control:
 	var item = PanelContainer.new()
-	item.custom_minimum_size = Vector2(100, 100)
+	item.custom_minimum_size = Vector2(50, 50)
 	item.set_meta("id", dados["id"])
 	item.set_meta("tipo", "arrastavel")
 	item.set_meta("posicao_original", Vector2.ZERO)
@@ -118,30 +122,25 @@ func criar_item_arrastavel(dados: Dictionary) -> Control:
 	
 	return item
 
-func criar_zona_soltura(dados: Dictionary) -> Control:
-	var zona = PanelContainer.new()
-	zona.custom_minimum_size = Vector2(120, 120)
+func criar_zona_soltura(dados: Dictionary) -> Area2D:
+	var drop_zone_scene = preload("res://scenes/components/DropZone.tscn")
+	var zona = drop_zone_scene.instantiate()
 	zona.set_meta("id", dados["id"])
 	zona.set_meta("accepts", dados["accepts"])
 	zona.set_meta("tipo", "zona_soltura")
 	zona.set_meta("ocupada", false)
 	
-	# Visual da zona
-	var estilo = StyleBoxFlat.new()
-	estilo.bg_color = Color(0.3, 0.3, 0.3, 0.5)
-	estilo.border_color = Color.WHITE
-	estilo.border_width_left = 2
-	estilo.border_width_right = 2
-	estilo.border_width_top = 2
-	estilo.border_width_bottom = 2
-	zona.add_theme_stylebox_override("panel", estilo)
-	
-	# Label indicando a zona
-	var label = Label.new()
-	label.text = "Zona " + dados["id"]
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	zona.add_child(label)
+	# Se sua DropZone tiver um label interno, configure-o
+	# Caso contrário, adicione um label como antes
+	var label = zona.find_child("Label", true, false)  # Tenta encontrar label existente
+	if not label:
+		label = Label.new()
+		label.text = "Zona " + dados["id"]
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		zona.add_child(label)
+	else:
+		label.text = "Zona " + dados["id"]
 	
 	return zona
 
@@ -261,6 +260,19 @@ func _colocar_item_na_zona(item: Control, zona: Control):
 	
 	# Marcar zona como ocupada
 	zona.set_meta("ocupada", true)
+
+func criar_grid_adaptativo(items: Array, max_columns: int = 2) -> GridContainer:
+	var container = GridContainer.new()
+
+	# Calcular número ideal de colunas
+	var colunas = min(max_columns, ceil(items.size() / 3.0))
+	container.columns = colunas
+
+	# Configurar espaçamento
+	container.add_theme_constant_override("h_separation", 15)
+	container.add_theme_constant_override("v_separation", 15)
+
+	return container
 
 func _retornar_item_origem(item: Control):
 	print("Retornando item para origem")

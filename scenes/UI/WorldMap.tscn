@@ -131,7 +131,7 @@ grow_vertical = 2
 texture = ExtResource("3_ofp3r")
 expand_mode = 1
 
-[node name="fase_exemplo_completa" type="Button" parent="ThemeViewer/Background/Theme1"]
+[node name="fase_quiz_teste" type="Button" parent="ThemeViewer/Background/Theme1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
@@ -140,6 +140,18 @@ offset_left = 87.0
 offset_top = 121.0
 offset_right = 118.0
 offset_bottom = 152.0
+text = "quiz"
+
+[node name="fase_dd_teste" type="Button" parent="ThemeViewer/Background/Theme1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 294.0
+offset_top = 223.0
+offset_right = 347.136
+offset_bottom = 254.0
+text = "dd"
 
 [node name="fase_relate_teste" type="Button" parent="ThemeViewer/Background/Theme1"]
 layout_mode = 1
@@ -150,6 +162,18 @@ offset_left = 382.0
 offset_top = 100.0
 offset_right = 413.0
 offset_bottom = 131.0
+text = "relate"
+
+[node name="fase_exemplo_completa" type="Button" parent="ThemeViewer/Background/Theme1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 162.0
+offset_top = 332.0
+offset_right = 193.0
+offset_bottom = 363.0
+text = "pfm"
 
 [node name="Theme2" type="Control" parent="ThemeViewer/Background"]
 visible = false
@@ -230,5 +254,7 @@ offset_bottom = 152.0
 [connection signal="gui_input" from="ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
 [connection signal="pressed" from="ThemeViewer/Background/PreviousThemeButton" to="." method="_on_previous_theme_pressed"]
 [connection signal="pressed" from="ThemeViewer/Background/NextThemeButton" to="." method="_on_next_theme_pressed"]
-[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_exemplo_completa" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_quiz_teste" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_dd_teste" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_relate_teste" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_exemplo_completa" to="." method="_on_botao_fase_pressionado"]
