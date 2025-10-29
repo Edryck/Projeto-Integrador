@@ -44,11 +44,7 @@ func mostrar_resultado(sucesso: bool, pontuacao: int, dados: Dictionary):
 	# Animação de entrada
 	animar_entrada()
 
-<<<<<<< HEAD
 func calcular_estrelas(_pontuacao: int, dados: Dictionary):
-=======
-func calcular_estrelas(pontuacao: int, dados: Dictionary):
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	var total_perguntas = dados.get("total_perguntas", 1)
 	var acertos = dados.get("acertos", 0)
 	var precisao = float(acertos) / total_perguntas if total_perguntas > 0 else 0

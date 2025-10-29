@@ -24,15 +24,6 @@ func _ready():
 func configurar_ui_base():
 	print("Configurando UI base...")
 	
-<<<<<<< HEAD
-=======
-	print("   - mission_title_label: ", mission_title_label != null)
-	print("   - instructions_label: ", instructions_label != null)
-	print("   - progress_bar: ", progress_bar != null)
-	print("   - challenge_content_container: ", challenge_content_container != null)
-	print("   - menu_button: ", menu_button != null)
-	
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	if menu_button:
 		if not menu_button.pressed.is_connected(_on_menu_pressionado):
 			menu_button.pressed.connect(_on_menu_pressionado)
@@ -66,7 +57,6 @@ func finalizar_desafio(sucesso: bool, dados_extras: Dictionary = {}):
 	print("   - Tempo: ", tempo_gasto, "s")
 	print("   - Dados: ", dados_extras)
 	
-<<<<<<< HEAD
 	# Adicionar sucesso aos dados extras
 	dados_extras["sucesso"] = sucesso
 	dados_extras["id"] = dados_desafio.get("id", "")
@@ -83,18 +73,6 @@ func mostrar_tela_recompensa(sucesso: bool, pontuacao_desafio: int, dados: Dicti
 	# Atualizar pontuação do jogador ANTES de mostrar a tela
 	if pontuacao_desafio > 0:
 		GameManager.atualizar_pontuacao_jogador(pontuacao_desafio, dados)
-=======
-	# Emitir sinal e mostrar recompensa
-	desafio_concluido.emit(sucesso, pontuacao, dados_extras)
-	mostrar_tela_recompensa(sucesso, pontuacao, dados_extras)
-
-func mostrar_tela_recompensa(sucesso: bool, pontuacao: int, dados: Dictionary):
-	print("Mostrando tela de recompensa...")
-	
-	# Atualizar pontuação do jogador
-	if pontuacao > 0:
-		GameManager.atualizar_pontuacao_jogador(pontuacao, dados)
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	
 	# Carregar e mostrar tela de recompensa
 	var cena_recompensa = load("res://scenes/UI/RewardScreen.tscn")
@@ -102,7 +80,6 @@ func mostrar_tela_recompensa(sucesso: bool, pontuacao: int, dados: Dictionary):
 		var tela_recompensa = cena_recompensa.instantiate()
 		get_tree().root.add_child(tela_recompensa)
 		
-<<<<<<< HEAD
 		# Chamar função de mostrar resultado
 		if tela_recompensa.has_method("mostrar_resultado"):
 			tela_recompensa.mostrar_resultado(sucesso, pontuacao_desafio, dados)
@@ -151,54 +128,6 @@ func _continuar_apos_recompensa():
 		# Voltar para o mapa
 		await get_tree().create_timer(0.3).timeout
 		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
-=======
-		# Conectar ao sinal de fechamento - verifica sinais disponíveis
-		if tela_recompensa.has_signal("fechado"):
-			tela_recompensa.fechado.connect(_on_recompensa_fechada)
-		elif tela_recompensa.has_signal("closed"):
-			tela_recompensa.closed.connect(_on_recompensa_fechada)
-		elif tela_recompensa.has_signal("continuar"):
-			tela_recompensa.continuar.connect(_on_recompensa_fechada)
-		else:
-			# Se não encontrar sinal, usar fallback após tempo
-			print("Nenhum sinal de fechamento encontrado, usando fallback")
-			await get_tree().create_timer(3.0).timeout
-			_on_recompensa_fechada()
-		
-		# Chamar função de mostrar resultado se existir
-		if tela_recompensa.has_method("mostrar_resultado"):
-			tela_recompensa.mostrar_resultado(sucesso, pontuacao, dados)
-		elif tela_recompensa.has_method("show_result"):
-			tela_recompensa.show_result(sucesso, pontuacao, dados)
-		else:
-			print("Método mostrar_resultado não encontrado na RewardScreen")
-	else:
-		printerr("RewardScreen não encontrada!")
-		# Se não tiver tela de recompensa, vai direto para o mapa
-		voltar_para_mapa()
-
-func _on_recompensa_fechada():
-	print("Tela de recompensa fechada, voltando para mapa...")
-	voltar_para_mapa()
-
-func voltar_para_mapa():
-	print("Voltando para WorldMap...")
-	
-	# Pequeno delay para garantir que tudo foi processado
-	await get_tree().process_frame
-	
-	# Verificar se tem mais desafios na fase atual
-	if SceneManager and SceneManager.tem_mais_desafios():
-		print("Próximo desafio disponível")
-		SceneManager.avancar_para_proximo_desafio()
-	else:
-		print("Fase completa! Limpando dados")
-		if SceneManager:
-			SceneManager.limpar_dados()
-	
-	# Voltar para o mapa
-	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 
 func atualizar_progresso(atual: int, total: int):
 	if progress_bar:
@@ -216,11 +145,7 @@ func abrir_menu_pause():
 		var menu_pause = cena_pause.instantiate()
 		get_tree().root.add_child(menu_pause)
 		
-<<<<<<< HEAD
 		# Conectar sinais do menu de pause usando Callable
-=======
-		# Conectar sinais do menu de pause
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		if menu_pause.has_signal("retomado"):
 			menu_pause.retomado.connect(_on_pause_retomado)
 		if menu_pause.has_signal("reiniciar_desafio"):
@@ -233,11 +158,6 @@ func abrir_menu_pause():
 		print("Jogo pausado")
 	else:
 		printerr("Menu de pause não encontrado!")
-<<<<<<< HEAD
-=======
-		# Fallback: voltar para mapa
-		voltar_para_mapa()
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 
 func _on_pause_retomado():
 	print("Retomando do pause...")
@@ -246,19 +166,10 @@ func _on_pause_retomado():
 func _on_pause_reiniciar():
 	print("Reiniciando desafio do pause...")
 	get_tree().paused = false
-<<<<<<< HEAD
-=======
-	# Recarregar a cena atual
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	get_tree().reload_current_scene()
 
 func _on_pause_sair():
 	print("Saindo para mapa do pause...")
 	get_tree().paused = false
-<<<<<<< HEAD
 	SceneManager.limpar_dados()
-=======
-	if SceneManager:
-		SceneManager.limpar_dados()
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")

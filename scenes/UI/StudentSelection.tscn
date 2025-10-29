@@ -63,11 +63,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="TextureRect/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
-<<<<<<< HEAD
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 

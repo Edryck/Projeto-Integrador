@@ -12,7 +12,6 @@ func _ready():
 	entrada_novo = find_child("NewStudentInput", true, false) 
 	botao_criar = find_child("CreateStudentButton", true, false)
 	label_feedback = find_child("FeedbackLabel", true, false)
-<<<<<<< HEAD
 	
 	# Cria o botão de voltar
 	criar_botao_voltar()
@@ -33,10 +32,6 @@ func _on_botao_voltar_pressionado():
 	print("Voltando para menu principal...")
 	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
 
-=======
-	carregar_lista_jogadores()
-
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 func carregar_lista_jogadores():
 	var container = find_child("StudentListContainer", true, false)
 	var feedback = find_child("FeedbackLabel", true, false)
@@ -55,11 +50,7 @@ func carregar_lista_jogadores():
 		feedback.text = "Nenhum jogador cadastrado. Crie um novo!"
 	else:
 		feedback.text = "Selecione seu jogador:"
-<<<<<<< HEAD
 	
-=======
-		
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		for jogador in jogadores:
 			var botao = Button.new()
 			botao.text = jogador.nome

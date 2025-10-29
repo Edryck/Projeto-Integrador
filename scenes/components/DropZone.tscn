@@ -3,10 +3,7 @@
 [ext_resource type="Script" uid="uid://c8qli5e2eqlno" path="res://scripts/components/DropZone.gd" id="1_83b3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23k0s"]
-<<<<<<< HEAD
 size = Vector2(50, 50)
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 
 [node name="DropZone" type="Area2D"]
 script = ExtResource("1_83b3g")

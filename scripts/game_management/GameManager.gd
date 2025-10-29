@@ -23,13 +23,10 @@ func _ready():
 	if instance == null:
 		instance = self
 		process_mode = Node.PROCESS_MODE_ALWAYS
-<<<<<<< HEAD
 		# Garantir que o diretório de saves existe
 		var dir = DirAccess.open("res://data/")
 		if not dir.dir_exists("player_saves"):
 			dir.make_dir("player_saves")
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		carregar_todos_jogadores()
 	else:
 		queue_free()
@@ -59,11 +56,8 @@ func carregar_jogador(nome: String) -> bool:
 	if todos_jogadores.has(nome):
 		jogador_atual = todos_jogadores[nome].duplicate(true)
 		print("Jogador carregado: ", nome)
-<<<<<<< HEAD
 		print("   - Pontuação: ", jogador_atual["pontuacao"])
 		print("   - Fases completadas: ", jogador_atual["fases_completadas"].size())
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		return true
 	else:
 		print("Jogador não encontrado: ", nome)
@@ -79,7 +73,6 @@ func obter_pontuacao_jogador() -> int:
 	return jogador_atual.get("pontuacao", 0)
 
 func atualizar_pontuacao_jogador(pontos: int, dados_desafio: Dictionary = {}):
-<<<<<<< HEAD
 	# Atualizar pontuação no jogador atual
 	jogador_atual["pontuacao"] += pontos
 	
@@ -87,28 +80,20 @@ func atualizar_pontuacao_jogador(pontos: int, dados_desafio: Dictionary = {}):
 	if jogador_atual.has("nome") and todos_jogadores.has(jogador_atual["nome"]):
 		todos_jogadores[jogador_atual["nome"]] = jogador_atual.duplicate(true)
 	
-=======
-	jogador_atual["pontuacao"] += pontos
-	
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	# Registrar desafio completado se for bem-sucedido
 	if dados_desafio.get("sucesso", false):
 		var desafio_id = dados_desafio.get("id", "")
 		if desafio_id and not jogador_atual["desafios_completados"].has(desafio_id):
 			jogador_atual["desafios_completados"].append(desafio_id)
-<<<<<<< HEAD
 			# Sincronizar novamente
 			if jogador_atual.has("nome") and todos_jogadores.has(jogador_atual["nome"]):
 				todos_jogadores[jogador_atual["nome"]] = jogador_atual.duplicate(true)
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	
 	salvar_todos_jogadores()
 	print("Pontuação atualizada: +", pontos, " pontos (Total: ", jogador_atual["pontuacao"], ")")
 
 # Sistema de save/load
 func salvar_todos_jogadores():
-<<<<<<< HEAD
 	# Usar JSON para melhor compatibilidade e debugging
 	var save_data = {
 		"todos_jogadores": todos_jogadores,
@@ -146,32 +131,6 @@ func carregar_todos_jogadores():
 		else:
 			printerr("Erro ao parsear JSON de save: ", json.get_error_message())
 			todos_jogadores = {}
-=======
-	var save_data = {
-		"todos_jogadores": todos_jogadores,
-		"ultimo_jogador": jogador_atual.get("nome", "")
-	}
-	
-	var arquivo = FileAccess.open("user://jogadores.dat", FileAccess.WRITE)
-	if arquivo:
-		arquivo.store_var(save_data)
-		print("Jogadores salvos com sucesso!")
-	else:
-		printerr("Erro ao salvar jogadores!")
-
-func carregar_todos_jogadores():
-	var arquivo = FileAccess.open("user://jogadores.dat", FileAccess.READ)
-	if arquivo:
-		var save_data = arquivo.get_var()
-		todos_jogadores = save_data.get("todos_jogadores", {})
-		
-		# Tentar carregar último jogador usado
-		var ultimo_jogador = save_data.get("ultimo_jogador", "")
-		if ultimo_jogador and todos_jogadores.has(ultimo_jogador):
-			carregar_jogador(ultimo_jogador)
-		
-		print("Jogadores carregados: ", todos_jogadores.size())
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	else:
 		print("Nenhum save encontrado, iniciando com dados vazios")
 		todos_jogadores = {}
@@ -181,14 +140,11 @@ func completar_fase(fase_id: String):
 	if not jogador_atual["fases_completadas"].has(fase_id):
 		jogador_atual["fases_completadas"].append(fase_id)
 		jogador_atual["pontuacao"] += 100  # Bônus por completar fase
-<<<<<<< HEAD
 		
 		# Sincronizar com todos os jogadores
 		if jogador_atual.has("nome") and todos_jogadores.has(jogador_atual["nome"]):
 			todos_jogadores[jogador_atual["nome"]] = jogador_atual.duplicate(true)
 		
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		salvar_todos_jogadores()
 		print("Fase completada: ", fase_id, " +100 pontos")
 
@@ -206,15 +162,9 @@ func resetar_jogo():
 	todos_jogadores = {}
 	
 	# Deletar arquivo de save
-<<<<<<< HEAD
 	var arquivo_path = "res://data/player_saves/jogadores.json"
 	if FileAccess.file_exists(arquivo_path):
 		DirAccess.remove_absolute(arquivo_path)
-=======
-	var dir = DirAccess.open("user://")
-	if dir.file_exists("user://jogadores.dat"):
-		dir.remove("user://jogadores.dat")
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	
 	print("Progresso do jogo resetado")
 

@@ -1,24 +1,4 @@
 {
-<<<<<<< HEAD
-=======
-	"relate_energia_1": {
-		"items_left_column": [
-			{"id": "solar", "text": "Energia Solar", "image_path": "res://assets/energy/solar.png"},
-			{"id": "eolica", "text": "Energia Eólica", "image_path": "res://assets/energy/wind.png"},
-			{"id": "hidro", "text": "Energia Hidrelétrica", "image_path": "res://assets/energy/water.png"}
-		],
-		"items_right_column": [
-			{"id": "sol", "text": "Sol", "image_path": "res://assets/sources/sun.png"},
-			{"id": "vento", "text": "Vento", "image_path": "res://assets/sources/wind.png"},
-			{"id": "agua", "text": "Água", "image_path": "res://assets/sources/water.png"}
-		],
-		"correct_connections": [
-			{"left_id": "solar", "right_id": "sol"},
-			{"left_id": "eolica", "right_id": "vento"},
-			{"left_id": "hidro", "right_id": "agua"}
-		]
-	},
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	"relate_test": {
 		"items_left_column": [
 			{"id": "pais_brasil", "text": "Brasil"},
@@ -33,11 +13,7 @@
 			{"left_id": "pais_eua", "right_id": "capital_eua"}
 		]
 	},
-<<<<<<< HEAD
 	"relate_prop_fis_mat_1": {
-=======
-	"relate_prop_fis_mat": {
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		"items_left_column": [
 			{"id": "jarro_barro", "image_path": "res://assets/sprites/jarro_barro.png"},
 			{"id": "botas_couro", "image_path": "res://assets/sprites/botas_couro.png"},
@@ -53,7 +29,6 @@
 			{"left_id": "botas_couro", "right_id": "couro"},
 			{"left_id": "chapeu_palha", "right_id": "palha"}
 		]
-<<<<<<< HEAD
 	},
 	"relate_prop_fis_mat_2": {
 		"items_left_column": [
@@ -74,7 +49,5 @@
 			{"left_id": "para-brisa", "right_id": "vidro"},
 			{"left_id": "capo", "right_id": "aco"}
 		]
-=======
->>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	}
 }
