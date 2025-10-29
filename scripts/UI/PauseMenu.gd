@@ -23,11 +23,15 @@ func _ready():
 func _on_retomar_pressionado():
 	print("Retomando jogo...")
 	retomado.emit()
+<<<<<<< HEAD
 	get_tree().paused = false
+=======
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 	queue_free()
 
 func _on_reiniciar_pressionado():
 	print("Reiniciando desafio...")
+<<<<<<< HEAD
 	get_tree().paused = false
 	
 	# Limpar dados do desafio atual mas manter a fase
@@ -55,6 +59,15 @@ func _on_sair_pressionado():
 	# Aguardar um frame antes de mudar de cena
 	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
+=======
+	reiniciar_desafio.emit()
+	queue_free()
+
+func _on_sair_pressionado():
+	print("Saindo para o mapa...")
+	sair_para_mapa.emit()
+	queue_free()
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 
 func _input(event):
 	# Fechar com ESC

@@ -1,0 +1,894 @@
+{
+  "quiz_metadata": {
+    "titulo": "Quiz de Ciências - Projeto Integrador",
+    "versao": "1.0",
+    "categorias": [
+      "Matéria e Energia",
+      "Vida e Evolução",
+      "Terra e Universo"
+    ]
+  },
+  "categorias": {
+    "materia_energia": {
+      "nome": "Matéria e Energia",
+      "subcategorias": [
+        {
+          "id": "propriedades_fisicas",
+          "nome": "Propriedades Físicas dos Materiais",
+          "perguntas": [
+            {
+              "id": "mat_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A energia utilizada nas casas dos brasileiros capaz de fazer funcionar um computador é considerada uma energia",
+              "alternativas": [
+                {"letra": "a", "texto": "mecânica"},
+                {"letra": "b", "texto": "química"},
+                {"letra": "c", "texto": "radiante"},
+                {"letra": "d", "texto": "elétrica"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "mat_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A energia utilizada para lançar uma flecha com um arco, gerando a capacidade de um corpo em produzir trabalho é chamada de",
+              "alternativas": [
+                {"letra": "a", "texto": "química"},
+                {"letra": "b", "texto": "mecânica"},
+                {"letra": "c", "texto": "radiante"},
+                {"letra": "d", "texto": "térmica"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "mat_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Em relação à energia elétrica, marque a opção CORRETA.",
+              "alternativas": [
+                {"letra": "a", "texto": "É a mais utilizada pelas pessoas"},
+                {"letra": "b", "texto": "É liberada em uma reação química"},
+                {"letra": "c", "texto": "Aparece em forma de calor, raios ou luzes"},
+                {"letra": "d", "texto": "Está relacionada com a temperatura e o calor"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            }
+          ]
+        },
+        {
+          "id": "ciclo_hidrologico",
+          "nome": "Ciclo Hidrológico",
+          "perguntas": [
+            {
+              "id": "hidro_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Na natureza, os estados físicos da água mudam com a variação da temperatura do ambiente. Os blocos que formam a água (que chamamos molécula) reagem à mudança de temperatura se transformando em:",
+              "alternativas": [
+                {"letra": "a", "texto": "fusão, plasma ou líquido"},
+                {"letra": "b", "texto": "gasoso, sólido ou fusão"},
+                {"letra": "c", "texto": "líquido, gasoso ou plasma"},
+                {"letra": "d", "texto": "sólido, líquido ou gasoso"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "hidro_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Rafaela acabou esquecendo o gelo fora do congelador e ele derreteu. Isso aconteceu porque o gelo passou do estado:",
+              "alternativas": [
+                {"letra": "a", "texto": "sólido para o gasoso"},
+                {"letra": "b", "texto": "sólido para o líquido"},
+                {"letra": "c", "texto": "gasoso para o líquido"},
+                {"letra": "d", "texto": "líquido para o gasoso"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "hidro_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Complete: Quanto mais frio o ambiente, mais juntos os blocos de água estarão, nesse caso, teremos o estado _____ da água. A água em seu estado _____ não possui forma própria. O estado _____ ocorre quando uma substância no estado líquido é aquecida.",
+              "alternativas": [
+                {"letra": "a", "texto": "líquido, fusão e gasoso"},
+                {"letra": "b", "texto": "gasoso, sólido e líquido"},
+                {"letra": "c", "texto": "sólido, líquido e gasoso"},
+                {"letra": "d", "texto": "líquido, gasoso e sólido"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 15
+            },
+            {
+              "id": "hidro_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Luana preparou um suco de maracujá e colocou bastante gelo. Com o passar do tempo, o gelo derreteu. No processo de derretimento do gelo ocorreu a:",
+              "alternativas": [
+                {"letra": "a", "texto": "Condensação"},
+                {"letra": "b", "texto": "Solidificação"},
+                {"letra": "c", "texto": "Liquefação"},
+                {"letra": "d", "texto": "Fusão"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "hidro_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Bruno colocou água numa vasilha e levou ao congelador. Duas horas depois, a água congelou completamente. A água passou do estado _____ para o estado _____.",
+              "alternativas": [
+                {"letra": "a", "texto": "Sólido e líquido"},
+                {"letra": "b", "texto": "Líquido e sólido"},
+                {"letra": "c", "texto": "Gasoso e sólido"},
+                {"letra": "d", "texto": "Gasoso e líquido"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "hidro_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Às vezes, o fenômeno da precipitação acontece na forma de pedaços de gelo que caem do céu, devastam telhas e podem machucar pessoas. Essa forma de precipitação é chamada de:",
+              "alternativas": [
+                {"letra": "a", "texto": "Granizo"},
+                {"letra": "b", "texto": "Chuva"},
+                {"letra": "c", "texto": "Neve"},
+                {"letra": "d", "texto": "Gêiser"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "hidro_7",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Qual mudança de estado físico acontece quando as roupas estão secando no varal?",
+              "alternativas": [
+                {"letra": "a", "texto": "Vaporização"},
+                {"letra": "b", "texto": "Condensação"},
+                {"letra": "c", "texto": "Solidificação"},
+                {"letra": "d", "texto": "Fusão"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            }
+          ]
+        },
+        {
+          "id": "consumo_consciente",
+          "nome": "Consumo Consciente",
+          "perguntas": [
+            {
+              "id": "consumo_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Uma das ações para contribuir com a sustentabilidade da água é",
+              "alternativas": [
+                {"letra": "a", "texto": "aumentar processos erosivos"},
+                {"letra": "b", "texto": "cuidar da cobertura vegetal"},
+                {"letra": "c", "texto": "desperdiçar água usada"},
+                {"letra": "d", "texto": "utilizar filtros de água"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "consumo_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Dos itens abaixo, o único que apresenta uma prática de desperdício é",
+              "alternativas": [
+                {"letra": "a", "texto": "escovar os dentes com um copo de água"},
+                {"letra": "b", "texto": "reutilizar água do banho quando possível"},
+                {"letra": "c", "texto": "lavar o carro com um balde de água"},
+                {"letra": "d", "texto": "lavar o carro sempre com mangueira"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "consumo_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Das ações abaixo, uma que proporciona a economia de água é",
+              "alternativas": [
+                {"letra": "a", "texto": "deixar o chuveiro ligado frequentemente"},
+                {"letra": "b", "texto": "reutilizar a água da máquina de lavar"},
+                {"letra": "c", "texto": "escovar os dentes com a torneira ligada"},
+                {"letra": "d", "texto": "regar estradas para evitar poeira"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "consumo_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Dona Maria utilizou o pote de margarina para guardar feijão. Esse processo é chamado de",
+              "alternativas": [
+                {"letra": "a", "texto": "economia"},
+                {"letra": "b", "texto": "reciclagem"},
+                {"letra": "c", "texto": "reutilização"},
+                {"letra": "d", "texto": "recusa"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 10
+            }
+          ]
+        },
+        {
+          "id": "reciclagem",
+          "nome": "Reciclagem",
+          "perguntas": [
+            {
+              "id": "recic_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Em que data comemora-se o Dia Nacional da Educação Ambiental?",
+              "alternativas": [
+                {"letra": "a", "texto": "2 de março"},
+                {"letra": "b", "texto": "3 de abril"},
+                {"letra": "c", "texto": "2 de maio"},
+                {"letra": "d", "texto": "3 de junho"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "recic_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Qual dos materiais listados abaixo não podemos descartar em lixões e aterros sanitários?",
+              "alternativas": [
+                {"letra": "a", "texto": "Pilhas"},
+                {"letra": "b", "texto": "Papéis"},
+                {"letra": "c", "texto": "Plásticos"},
+                {"letra": "d", "texto": "Latas"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "recic_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Qual é o destino mais comum do lixo produzido nos hospitais?",
+              "alternativas": [
+                {"letra": "a", "texto": "Compostagem"},
+                {"letra": "b", "texto": "Reciclagem"},
+                {"letra": "c", "texto": "Lixões"},
+                {"letra": "d", "texto": "Incineração"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "recic_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O que devemos fazer com pilhas, baterias e outros lixos eletrônicos?",
+              "alternativas": [
+                {"letra": "a", "texto": "Jogar no lixo comum para ser levado ao lixão"},
+                {"letra": "b", "texto": "Deixar nos postos específicos que mandam para depósitos de reciclagem"},
+                {"letra": "c", "texto": "Jogar no vaso e dar descarga"},
+                {"letra": "d", "texto": "Levar para lugares onde fazem incineração desse material"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "recic_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Marque a alternativa que encontramos materiais considerados recicláveis:",
+              "alternativas": [
+                {"letra": "a", "texto": "Lâmpadas fluorescentes, espelhos e etiquetas adesivas"},
+                {"letra": "b", "texto": "Cerâmica, grampos e fotografias"},
+                {"letra": "c", "texto": "Plástico, isopor e caixa de leite"},
+                {"letra": "d", "texto": "Agulhas de seringas, pilhas e baterias de celulares"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 10
+            },
+            {
+              "id": "recic_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Assinale a alternativa que mostra a correta identificação dos tipos de materiais recicláveis nas latas de lixo:",
+              "alternativas": [
+                {"letra": "a", "texto": "Lata de lixo azul – plástico"},
+                {"letra": "b", "texto": "Lata de lixo vermelha – metal"},
+                {"letra": "c", "texto": "Lata de lixo amarela – papel e papelão"},
+                {"letra": "d", "texto": "Lata de lixo verde – vidro"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            }
+          ]
+        }
+      ]
+    },
+    "vida_evolucao": {
+      "nome": "Vida e Evolução",
+      "subcategorias": [
+        {
+          "id": "nutricao_organismo",
+          "nome": "Nutrição do Organismo",
+          "perguntas": [
+            {
+              "id": "nutri_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Quando ingerimos qualquer tipo de alimento, ele precisa ser transformado. Em que local do corpo humano isso acontece?",
+              "alternativas": [
+                {"letra": "a", "texto": "No sistema digestório"},
+                {"letra": "b", "texto": "No sistema respiratório"},
+                {"letra": "c", "texto": "No fígado"},
+                {"letra": "d", "texto": "No coração"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "nutri_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "NÃO é um órgão que faz parte do sistema digestório:",
+              "alternativas": [
+                {"letra": "a", "texto": "a boca"},
+                {"letra": "b", "texto": "a faringe"},
+                {"letra": "c", "texto": "o estômago"},
+                {"letra": "d", "texto": "o rim"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "nutri_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Em qual parte do sistema digestório ocorre grande absorção de água e de sais minerais?",
+              "alternativas": [
+                {"letra": "a", "texto": "No intestino delgado"},
+                {"letra": "b", "texto": "No estômago"},
+                {"letra": "c", "texto": "No intestino grosso"},
+                {"letra": "d", "texto": "No esôfago"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "nutri_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Qual órgão transforma o alimento em massa pastosa e inicia a digestão das proteínas?",
+              "alternativas": [
+                {"letra": "a", "texto": "Pâncreas"},
+                {"letra": "b", "texto": "Fígado"},
+                {"letra": "c", "texto": "Intestino"},
+                {"letra": "d", "texto": "Estômago"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "nutri_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Qual a função da boca e dos dentes no sistema digestório?",
+              "alternativas": [
+                {"letra": "a", "texto": "Checar os alimentos para ver se estão bons"},
+                {"letra": "b", "texto": "Levar o alimento até o estômago"},
+                {"letra": "c", "texto": "Eliminar o nutriente não necessário"},
+                {"letra": "d", "texto": "Iniciar o processo de digestão"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "nutri_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O esôfago está situado:",
+              "alternativas": [
+                {"letra": "a", "texto": "Entre a boca e o estômago"},
+                {"letra": "b", "texto": "Entre o pâncreas e o estômago"},
+                {"letra": "c", "texto": "Entre o intestino grosso e o intestino delgado"},
+                {"letra": "d", "texto": "Entre o estômago e o intestino delgado"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "nutri_7",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Digerir é quebrar os alimentos em pedaços cada vez menores. Os dois tipos de digestão são:",
+              "alternativas": [
+                {"letra": "a", "texto": "digestão simples e digestão composta"},
+                {"letra": "b", "texto": "digestão mecânica e digestão química"},
+                {"letra": "c", "texto": "digestão muscular e digestão química"},
+                {"letra": "d", "texto": "digestão mecânica e digestão intestinal"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 10
+            }
+          ]
+        },
+        {
+          "id": "habitos_alimentares",
+          "nome": "Hábitos Alimentares",
+          "perguntas": [
+            {
+              "id": "habito_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Uma alimentação saudável ajuda o nosso corpo a",
+              "alternativas": [
+                {"letra": "a", "texto": "funcionar melhor"},
+                {"letra": "b", "texto": "ganhar muito peso"},
+                {"letra": "c", "texto": "não se desenvolver"},
+                {"letra": "d", "texto": "perder peso em excesso"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "habito_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "NÃO é uma recomendação adequada quanto ao cuidado com os alimentos:",
+              "alternativas": [
+                {"letra": "a", "texto": "Lavar bem verduras, legumes e frutas"},
+                {"letra": "b", "texto": "Preferir alimentos com cheiros estranhos"},
+                {"letra": "c", "texto": "Sempre verificar o prazo de validade"},
+                {"letra": "d", "texto": "Proteger alimentos de insetos e animais"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "habito_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Em quantos grupos a pirâmide alimentar está dividida?",
+              "alternativas": [
+                {"letra": "a", "texto": "6 grupos"},
+                {"letra": "b", "texto": "8 grupos"},
+                {"letra": "c", "texto": "10 grupos"},
+                {"letra": "d", "texto": "9 grupos"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            }
+          ]
+        }
+      ]
+    },
+    "terra_universo": {
+      "nome": "Terra e Universo",
+      "subcategorias": [
+        {
+          "id": "constelacoes",
+          "nome": "Constelações e Mapas Celestes",
+          "perguntas": [
+            {
+              "id": "const_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "As estrelas só são vistas em tamanhos pequenos devido",
+              "alternativas": [
+                {"letra": "a", "texto": "à proximidade com a terra"},
+                {"letra": "b", "texto": "à distância elevada da terra"},
+                {"letra": "c", "texto": "ao brilho intenso das estrelas"},
+                {"letra": "d", "texto": "à luz fraca das estrelas"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "const_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A constelação do Cruzeiro do Sul é representada pela figura que lembra",
+              "alternativas": [
+                {"letra": "a", "texto": "uma cruz, formada pela ligação imaginária de 05 estrelas"},
+                {"letra": "b", "texto": "um cruzeiro no mar, formada pela ligação imaginária de 10 estrelas"},
+                {"letra": "c", "texto": "uma espada, formada pela ligação imaginária de 20 estrelas"},
+                {"letra": "d", "texto": "um animal crucificado, formada pela ligação imaginária de 25 estrelas"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "const_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Abaixo estão algumas constelações que são visualizadas da terra, EXCETO:",
+              "alternativas": [
+                {"letra": "a", "texto": "Cruzeiro do sul"},
+                {"letra": "b", "texto": "Andrômeda"},
+                {"letra": "c", "texto": "Ursa maior"},
+                {"letra": "d", "texto": "Lunar"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "const_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A constelação Cruzeiro do Sul é visualizada do hemisfério Sul, compondo as constelações",
+              "alternativas": [
+                {"letra": "a", "texto": "Boreais"},
+                {"letra": "b", "texto": "Austrais"},
+                {"letra": "c", "texto": "Lurais"},
+                {"letra": "d", "texto": "Siriais"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "const_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "As constelações Ursa Maior e Ursa Menor fazem parte da constelação que pode ser observada do _____, chamada de constelações _____.",
+              "alternativas": [
+                {"letra": "a", "texto": "Hemisfério sul celeste; austrais"},
+                {"letra": "b", "texto": "Hemisfério sul celeste; boreais"},
+                {"letra": "c", "texto": "Hemisfério norte celeste; austrais"},
+                {"letra": "d", "texto": "Hemisfério norte celeste; boreais"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 15
+            },
+            {
+              "id": "const_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A Cão Maior possui uma estrela caracterizada pelo seu brilho intenso no céu. Marque a estrela descrita:",
+              "alternativas": [
+                {"letra": "a", "texto": "Polar"},
+                {"letra": "b", "texto": "Sirius"},
+                {"letra": "c", "texto": "Orion"},
+                {"letra": "d", "texto": "Zodíaco"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "const_7",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A constelação de Orion possui estrelas bem brilhantes que recebem o nome de:",
+              "alternativas": [
+                {"letra": "a", "texto": "Três Marias"},
+                {"letra": "b", "texto": "Três Órion"},
+                {"letra": "c", "texto": "Três Sirius"},
+                {"letra": "d", "texto": "Três lunares"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "const_8",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Sobre as constelações, assinale as alternativas verdadeiras:\nI- Os nomes das constelações tiveram origem pela interpretação de desenhos que formam no céu.\nII- As constelações são formadas pelo conjunto de estrelas localizadas no céu.\nIII- As Três Marias são as estrelas mais brilhantes e as únicas vistas aqui da terra.",
+              "alternativas": [
+                {"letra": "a", "texto": "Apenas I está correta"},
+                {"letra": "b", "texto": "I e II está correta"},
+                {"letra": "c", "texto": "II e III está correta"},
+                {"letra": "d", "texto": "Apenas III está correta"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 15
+            },
+            {
+              "id": "const_9",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "A bandeira do Brasil possui 27 estrelas em nove constelações. Quais são essas constelações?",
+              "alternativas": [
+                {"letra": "a", "texto": "Cruzeiro do Norte, Sirius, Triângulo Boreal, Ursa Maior e Ursa Menor"},
+                {"letra": "b", "texto": "Cruzeiro do Norte, Sirius, Triângulo Austral, Cão Maior e Ursa Menor"},
+                {"letra": "c", "texto": "Cruzeiro do Sul, Escorpião, Triângulo Austral, Cão Maior e Cão Menor"},
+                {"letra": "d", "texto": "Cinturão de Orion, Sirius, Cruzeiro do Sul, Cão Maior e Ursa Menor"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 15
+            }
+          ]
+        },
+        {
+          "id": "movimento_rotacao",
+          "nome": "Movimento de Rotação da Terra",
+          "perguntas": [
+            {
+              "id": "rotacao_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O movimento que a Terra realiza em volta do seu próprio eixo, definindo a separação entre o dia e a noite é chamado de:",
+              "alternativas": [
+                {"letra": "a", "texto": "órbita"},
+                {"letra": "b", "texto": "rotatório"},
+                {"letra": "c", "texto": "translação"},
+                {"letra": "d", "texto": "rotação"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Por muitos anos, acreditou-se que a Terra era o centro do universo. Essa visão ficou conhecida como",
+              "alternativas": [
+                {"letra": "a", "texto": "geocentrismo"},
+                {"letra": "b", "texto": "evolucionismo"},
+                {"letra": "c", "texto": "criacionismo"},
+                {"letra": "d", "texto": "teocentrismo"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Um ciclo de rotação completo chama-se dia sideral e tem a duração de:",
+              "alternativas": [
+                {"letra": "a", "texto": "24 horas"},
+                {"letra": "b", "texto": "24 dias"},
+                {"letra": "c", "texto": "20 semanas"},
+                {"letra": "d", "texto": "60 minutos"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O movimento que a Terra realiza em torno do Sol em aproximadamente 365 dias, 5 horas e 48 minutos é:",
+              "alternativas": [
+                {"letra": "a", "texto": "rotação"},
+                {"letra": "b", "texto": "elíptica"},
+                {"letra": "c", "texto": "translação"},
+                {"letra": "d", "texto": "rotatória"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Assinale a alternativa FALSA:",
+              "alternativas": [
+                {"letra": "a", "texto": "A Terra realiza um giro sobre si mesma, em torno de um eixo imaginário"},
+                {"letra": "b", "texto": "O sol realiza um movimento de aproximadamente 24 horas ao redor da terra"},
+                {"letra": "c", "texto": "A Terra gira ao redor do Sol"},
+                {"letra": "d", "texto": "A terra e os demais planetas realizam movimentos em torno do sol"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "No Brasil, dividimos as mudanças no clima em quatro estações. Quais são essas estações?",
+              "alternativas": [
+                {"letra": "a", "texto": "Estação quente, estação fria, estação chuvosa e estação rochosa"},
+                {"letra": "b", "texto": "Estação frio, estio, inverno e verão"},
+                {"letra": "c", "texto": "Estio, primavera, inverno e outono"},
+                {"letra": "d", "texto": "Primavera, verão, outono e inverno"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_7",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Variações de temperatura, períodos de chuva e secos, dias mais curtos e noites mais longas são mudanças que ocorrem por conta do:",
+              "alternativas": [
+                {"letra": "a", "texto": "aumento da temperatura do Sol"},
+                {"letra": "b", "texto": "aumento da temperatura da terra"},
+                {"letra": "c", "texto": "movimento de rotação e translação"},
+                {"letra": "d", "texto": "movimento de translação"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_8",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Se observarmos os movimentos dos corpos celestes a partir da terra, é possível notar que:",
+              "alternativas": [
+                {"letra": "a", "texto": "o sol e o planeta terra parecem não se movimentar"},
+                {"letra": "b", "texto": "o planeta terra e o sol circundam os outros planetas"},
+                {"letra": "c", "texto": "o sol parece circundar outros planetas"},
+                {"letra": "d", "texto": "o planeta gira em torno de um eixo imaginário"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_9",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O modelo geocêntrico esclarecia que:",
+              "alternativas": [
+                {"letra": "a", "texto": "não havia movimento dos corpos celestes"},
+                {"letra": "b", "texto": "a terra se movimentava ao redor do sol"},
+                {"letra": "c", "texto": "somente o sol poderia se movimentar"},
+                {"letra": "d", "texto": "todos os corpos celestes giravam em torno da Terra"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "rotacao_10",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "É correto afirmar que o dia sideral ocorre por conta da:",
+              "alternativas": [
+                {"letra": "a", "texto": "inclinação do eixo da Terra"},
+                {"letra": "b", "texto": "rotação da Terra"},
+                {"letra": "c", "texto": "mudança das estações do ano"},
+                {"letra": "d", "texto": "translação da Terra"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            }
+          ]
+        },
+        {
+          "id": "fases_lua",
+          "nome": "Periodicidade das Fases da Lua",
+          "perguntas": [
+            {
+              "id": "lua_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Quantas fases principais a lua possui?",
+              "alternativas": [
+                {"letra": "a", "texto": "2 fases"},
+                {"letra": "b", "texto": "4 fases"},
+                {"letra": "c", "texto": "5 fases"},
+                {"letra": "d", "texto": "8 fases"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "lua_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Observando uma imagem da lua completamente iluminada e redonda, é possível afirmar que está na fase de:",
+              "alternativas": [
+                {"letra": "a", "texto": "Lua crescente"},
+                {"letra": "b", "texto": "Lua cheia"},
+                {"letra": "c", "texto": "Lua minguante"},
+                {"letra": "d", "texto": "Lua nova"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "lua_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O fenômeno gerado pelo alinhamento da posição da lua, terra e sol chama-se:",
+              "alternativas": [
+                {"letra": "a", "texto": "Rotação"},
+                {"letra": "b", "texto": "Translação"},
+                {"letra": "c", "texto": "Eclipse"},
+                {"letra": "d", "texto": "Fases da Lua"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 10
+            },
+            {
+              "id": "lua_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Em média, quantos dias duram cada fase da lua?",
+              "alternativas": [
+                {"letra": "a", "texto": "3 e 4 dias"},
+                {"letra": "b", "texto": "7 e 8 dias"},
+                {"letra": "c", "texto": "15 e 16 dias"},
+                {"letra": "d", "texto": "30 e 31 dias"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "lua_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Em torno de aproximadamente um mês, a lua passa por um ciclo de diversas fases. Chamamos esse ciclo de",
+              "alternativas": [
+                {"letra": "a", "texto": "tempo de iluminação"},
+                {"letra": "b", "texto": "ciclo lunar"},
+                {"letra": "c", "texto": "rotação lunar"},
+                {"letra": "d", "texto": "ciclo de relação lua e sol"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "lua_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "As fases intermediárias da lua são:",
+              "alternativas": [
+                {"letra": "a", "texto": "Quarto Crescente; Crescente Gibosa; Minguante Gibosa; Quarto Minguante"},
+                {"letra": "b", "texto": "Lua Crescente; Crescente Gibosa; Minguante Gibosa; Quarto Minguante"},
+                {"letra": "c", "texto": "Quarto Crescente; Crescente Gibosa; Cheia Gibosa; Quarto Minguante"},
+                {"letra": "d", "texto": "Quarto Crescente; Cheia Gibosa; Minguante Gibosa; Crescente Minguante"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 15
+            }
+          ]
+        },
+        {
+          "id": "instrumentos_opticos",
+          "nome": "Instrumentos Ópticos",
+          "perguntas": [
+            {
+              "id": "optico_1",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "O sentido encarregado pela percepção visual é:",
+              "alternativas": [
+                {"letra": "a", "texto": "tato"},
+                {"letra": "b", "texto": "paladar"},
+                {"letra": "c", "texto": "visão"},
+                {"letra": "d", "texto": "audição"}
+              ],
+              "resposta_correta": "c",
+              "pontos": 10
+            },
+            {
+              "id": "optico_2",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Qual objeto permite visualizar microrganismos e estruturas invisíveis a olho nu?",
+              "alternativas": [
+                {"letra": "a", "texto": "Microscópio"},
+                {"letra": "b", "texto": "Câmera"},
+                {"letra": "c", "texto": "Lupa"},
+                {"letra": "d", "texto": "Óculos"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "optico_3",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Sobre o funcionamento do periscópio, assinale a alternativa correta.",
+              "alternativas": [
+                {"letra": "a", "texto": "Eles funcionam através da associação de dois espelhos, que refletem as imagens"},
+                {"letra": "b", "texto": "Seu funcionamento se dá pela associação de um espelho"},
+                {"letra": "c", "texto": "Para refletir a imagem, ele possui lentes microscópicas"},
+                {"letra": "d", "texto": "São colocadas duas lupas de ampliação para a observação das imagens"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "optico_4",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Os binóculos servem para:",
+              "alternativas": [
+                {"letra": "a", "texto": "visualizar células de uma planta"},
+                {"letra": "b", "texto": "encontrar astros no espaço"},
+                {"letra": "c", "texto": "reduzir imagens muito grandes"},
+                {"letra": "d", "texto": "observar cenas um pouco distantes, como pássaros em uma árvore"}
+              ],
+              "resposta_correta": "d",
+              "pontos": 10
+            },
+            {
+              "id": "optico_5",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Marque a alternativa que indica uma função das lentes.",
+              "alternativas": [
+                {"letra": "a", "texto": "Mudar a direção dos raios que incidem sobre elas"},
+                {"letra": "b", "texto": "Reduzir as escalas de visualização"},
+                {"letra": "c", "texto": "Melhorar problemas de saúde relacionadas a questões oculares"},
+                {"letra": "d", "texto": "Absorver os raios solares em sua totalidade"}
+              ],
+              "resposta_correta": "a",
+              "pontos": 10
+            },
+            {
+              "id": "optico_6",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Microscópios e lupas podem ser utilizados para visualizar:",
+              "alternativas": [
+                {"letra": "a", "texto": "células sanguíneas"},
+                {"letra": "b", "texto": "animais pequenos"},
+                {"letra": "c", "texto": "planetas do sistema solar"},
+                {"letra": "d", "texto": "crateras lunares"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            },
+            {
+              "id": "optico_7",
+              "tipo": "quiz_multipla_escolha",
+              "enunciado": "Para observar os planetas, podemos utilizar:",
+              "alternativas": [
+                {"letra": "a", "texto": "Binóculos"},
+                {"letra": "b", "texto": "Telescópios"},
+                {"letra": "c", "texto": "Microscópios"},
+                {"letra": "d", "texto": "Lupa"}
+              ],
+              "resposta_correta": "b",
+              "pontos": 10
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

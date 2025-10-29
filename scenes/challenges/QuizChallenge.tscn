@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 [gd_scene load_steps=4 format=3 uid="uid://w35o4d4qix21"]
+=======
+[gd_scene load_steps=3 format=3 uid="uid://w35o4d4qix21"]
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 
 [ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_adb7o"]
 [ext_resource type="Script" uid="uid://bpu5unsw6fect" path="res://scripts/challenges/QuizChallenge.gd" id="2_ytub7"]
 
+<<<<<<< HEAD
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ytub7"]
 
 [node name="ChallengeBase" instance=ExtResource("1_adb7o")]
@@ -16,6 +21,11 @@ self_modulate = Color(1, 1, 1, 0)
 [node name="ChallengeContentContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer" index="4"]
 theme_override_styles/panel = SubResource("StyleBoxTexture_ytub7")
 
+=======
+[node name="ChallengeBase" instance=ExtResource("1_adb7o")]
+script = ExtResource("2_ytub7")
+
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -23,6 +33,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+<<<<<<< HEAD
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="0"]
 layout_mode = 2
 theme_override_constants/margin_top = 75
@@ -34,11 +45,27 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="QuestionTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="1"]
+=======
+[node name="QuestionTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="0"]
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 size_flags_vertical = 0
 
+<<<<<<< HEAD
+=======
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="1"]
+layout_mode = 2
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_bottom = 40
+
+[node name="OptionButtonsContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/MarginContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 [node name="NextButton" type="Button" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="2"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -48,8 +75,11 @@ text = "Confirmar Resposta"
 [node name="FeedbackLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="3"]
 unique_name_in_owner = true
 layout_mode = 2
+<<<<<<< HEAD
 size_flags_horizontal = 4
 size_flags_vertical = 8
+=======
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 horizontal_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/NextButton" to="." method="_ir_para_proxima_pergunta"]

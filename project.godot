@@ -17,8 +17,14 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 GameManager="*res://scripts/game_management/GameManager.gd"
+<<<<<<< HEAD
 SceneManager="*res://scripts/game_management/SceneManager.gd"
 
 [display]
 
 window/stretch/mode="viewport"
+=======
+FlowManager="*res://scripts/game_management/FlowManager.gd"
+ChallengeDataManager="*res://scripts/game_management/ChallengeDataManager.gd"
+SceneManager="*res://scripts/game_management/SceneManager.gd"
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13

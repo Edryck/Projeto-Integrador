@@ -1,15 +1,25 @@
 {
+<<<<<<< HEAD
 	"fase_quiz_teste": {
 		"title": "Teste - Quiz",
 		"challenges": [
 			{ "type": "quiz", "id": "mat_1" },
 			{ "type": "quiz", "id": "mat_2" },
 			{ "type": "quiz", "id": "mat_3" }
+=======
+	"fase_propriedade_fisica_dos_materiais": {
+		"title": "Propriedades Físicas dos Materiais",
+		"challenges": [
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_1" },
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_2" },
+			{ "type": "quiz", "id": "quiz_prop_fisicas_mat_3" }
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		]
 	},
 	"fase_relate_teste": {
 		"title": "Fase teste de relacionar",
 		"challenges": [
+<<<<<<< HEAD
 			{ "type": "relate", "id": "relate_prop_fis_mat_1" },
 			{ "type": "relate", "id": "relate_prop_fis_mat_2" } 
 		]
@@ -30,6 +40,9 @@
 			{ "type": "relate", "id": "relate_prop_fis_mat_2" },
 			{ "type": "dragdrop", "id": "dd_prop_fisica_mat"},
 			{ "type": "quiz", "id": "mat_4" }
+=======
+			{ "type": "relate", "id": "relate_prop_fis_mat" }
+>>>>>>> 150a55f936c4293772a0d280049a81d8b0491a13
 		]
 	}
 }
