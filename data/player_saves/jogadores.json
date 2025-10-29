@@ -1,0 +1,21 @@
+{
+	"todos_jogadores": {
+		"Teste": {
+			"data_criacao": "2025-10-23T15:24:02",
+			"desafios_completados": [
+				"mat_1",
+				"mat_2",
+				"relate_prop_fis_mat_1",
+				"mat_3",
+				"relate_prop_fis_mat_2",
+				"dd_prop_fisica_mat",
+				"mat_4"
+			],
+			"fases_completadas": [],
+			"nome": "Teste",
+			"pontuacao": 905.0
+		}
+	},
+	"ultimo_jogador": "Teste",
+	"versao": "1.0"
+}

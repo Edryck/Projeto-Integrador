@@ -1,0 +1,366 @@
+{
+	"mat_1": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A energia utilizada nas casas dos brasileiros capaz de fazer funcionar um computador é considerada uma energia",
+		"options": ["mecânica", "química", "radiante", "elétrica"],
+		"correct_answer": "elétrica"
+	},
+	"mat_2": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A energia utilizada para lançar uma flecha com um arco, gerando a capacidade de um corpo em produzir trabalho é chamada de",
+		"options": ["química", "mecânica", "radiante", "térmica"],
+		"correct_answer": "mecânica"
+	},
+	"mat_3": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Em relação à energia elétrica, marque a opção CORRETA.",
+		"options": [
+			"É a mais utilizada pelas pessoas",
+			"É liberada em uma reação química",
+			"Aparece em forma de calor, raios ou luzes",
+			"Está relacionada com a temperatura e o calor"
+		],
+		"correct_answer": "É a mais utilizada pelas pessoas"
+	},
+	"mat_4": {
+		"title": "Propriedades Físicas dos Materiais", 
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual a diferença fundamental entre corpo e objeto na classificação da matéria?",
+		"options": [
+			"Corpo tem forma definida, objeto não",
+			"Objeto é a matéria com função específica, corpo é a matéria sem função definida",
+			"Corpo é natural, objeto é artificial",
+			"Objeto tem massa, corpo não"
+		],
+		"correct_answer": "Objeto é a matéria com função específica, corpo é a matéria sem função definida"
+	},
+	"hidro_1": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Na natureza, os estados físicos da água mudam com a variação da temperatura do ambiente. Os blocos que formam a água (que chamamos molécula) reagem à mudança de temperatura se transformando em:",
+		"options": [
+			"fusão, plasma ou líquido",
+			"gasoso, sólido ou fusão",
+			"líquido, gasoso ou plasma",
+			"sólido, líquido ou gasoso"
+		],
+		"correct_answer": "sólido, líquido ou gasoso"
+	},
+	"hidro_2": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Rafaela acabou esquecendo o gelo fora do congelador e ele derreteu. Isso aconteceu porque o gelo passou do estado:",
+		"options": [
+			"sólido para o gasoso",
+			"sólido para o líquido",
+			"gasoso para o líquido",
+			"líquido para o gasoso"
+		],
+		"correct_answer": "sólido para o líquido"
+	},
+	"hidro_3": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Complete: Quanto mais frio o ambiente, mais juntos os blocos de água estarão, nesse caso, teremos o estado _____ da água. A água em seu estado _____ não possui forma própria. O estado _____ ocorre quando uma substância no estado líquido é aquecida.",
+		"options": [
+			"líquido, fusão e gasoso",
+			"gasoso, sólido e líquido",
+			"sólido, líquido e gasoso",
+			"líquido, gasoso e sólido"
+		],
+		"correct_answer": "sólido, líquido e gasoso"
+	},
+	"hidro_4": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Luana preparou um suco de maracujá e colocou bastante gelo. Com o passar do tempo, o gelo derreteu. No processo de derretimento do gelo ocorreu a:",
+		"options": ["Condensação", "Solidificação", "Liquefação", "Fusão"],
+		"correct_answer": "Fusão"
+	},
+	"hidro_5": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Bruno colocou água numa vasilha e levou ao congelador. Duas horas depois, a água congelou completamente. A água passou do estado _____ para o estado _____.",
+		"options": [
+			"Sólido e líquido",
+			"Líquido e sólido",
+			"Gasoso e sólido",
+			"Gasoso e líquido"
+		],
+		"correct_answer": "Líquido e sólido"
+	},
+	"hidro_6": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Às vezes, o fenômeno da precipitação acontece na forma de pedaços de gelo que caem do céu, devastam telhas e podem machucar pessoas. Essa forma de precipitação é chamada de:",
+		"options": ["Granizo", "Chuva", "Neve", "Gêiser"],
+		"correct_answer": "Granizo"
+	},
+	"hidro_7": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual mudança de estado físico acontece quando as roupas estão secando no varal?",
+		"options": ["Vaporização", "Condensação", "Solidificação", "Fusão"],
+		"correct_answer": "Vaporização"
+	},
+	"consumo_1": {
+		"title": "Consumo Consciente",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Uma das ações para contribuir com a sustentabilidade da água é",
+		"options": [
+			"aumentar processos erosivos",
+			"cuidar da cobertura vegetal",
+			"desperdiçar água usada",
+			"utilizar filtros de água"
+		],
+		"correct_answer": "cuidar da cobertura vegetal"
+	},
+	"consumo_2": {
+		"title": "Consumo Consciente",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Dos itens abaixo, o único que apresenta uma prática de desperdício é",
+		"options": [
+			"escovar os dentes com um copo de água",
+			"reutilizar água do banho quando possível",
+			"lavar o carro com um balde de água",
+			"lavar o carro sempre com mangueira"
+		],
+		"correct_answer": "lavar o carro sempre com mangueira"
+	},
+	"consumo_3": {
+		"title": "Consumo Consciente",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Das ações abaixo, uma que proporciona a economia de água é",
+		"options": [
+			"deixar o chuveiro ligado frequentemente",
+			"reutilizar a água da máquina de lavar",
+			"escovar os dentes com a torneira ligada",
+			"regar estradas para evitar poeira"
+		],
+		"correct_answer": "reutilizar a água da máquina de lavar"
+	},
+	"consumo_4": {
+		"title": "Consumo Consciente",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Dona Maria utilizou o pote de margarina para guardar feijão. Esse processo é chamado de",
+		"options": ["economia", "reciclagem", "reutilização", "recusa"],
+		"correct_answer": "reutilização"
+	},
+	"recic_1": {
+		"title": "Reciclagem",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Em que data comemora-se o Dia Nacional da Educação Ambiental?",
+		"options": ["2 de março", "3 de abril", "2 de maio", "3 de junho"],
+		"correct_answer": "3 de junho"
+	},
+	"recic_2": {
+		"title": "Reciclagem",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual dos materiais listados abaixo não podemos descartar em lixões e aterros sanitários?",
+		"options": ["Pilhas", "Papéis", "Plásticos", "Latas"],
+		"correct_answer": "Pilhas"
+	},
+	"recic_3": {
+		"title": "Reciclagem",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual é o destino mais comum do lixo produzido nos hospitais?",
+		"options": ["Compostagem", "Reciclagem", "Lixões", "Incineração"],
+		"correct_answer": "Incineração"
+	},
+	"recic_4": {
+		"title": "Reciclagem",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O que devemos fazer com pilhas, baterias e outros lixos eletrônicos?",
+		"options": [
+			"Jogar no lixo comum para ser levado ao lixão",
+			"Deixar nos postos específicos que mandam para depósitos de reciclagem",
+			"Jogar no vaso e dar descarga",
+			"Levar para lugares onde fazem incineração desse material"
+		],
+		"correct_answer": "Deixar nos postos específicos que mandam para depósitos de reciclagem"
+	},
+	"recic_5": {
+		"title": "Reciclagem",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Marque a alternativa que encontramos materiais considerados recicláveis:",
+		"options": [
+			"Lâmpadas fluorescentes, espelhos e etiquetas adesivas",
+			"Cerâmica, grampos e fotografias",
+			"Plástico, isopor e caixa de leite",
+			"Agulhas de seringas, pilhas e baterias de celulares"
+		],
+		"correct_answer": "Plástico, isopor e caixa de leite"
+	},
+	"recic_6": {
+		"title": "Reciclagem",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Assinale a alternativa que mostra a correta identificação dos tipos de materiais recicláveis nas latas de lixo:",
+		"options": [
+			"Lata de lixo azul – plástico",
+			"Lata de lixo vermelha – metal",
+			"Lata de lixo amarela – papel e papelão",
+			"Lata de lixo verde – vidro"
+		],
+		"correct_answer": "Lata de lixo verde – vidro"
+	},
+	"nutri_1": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Quando ingerimos qualquer tipo de alimento, ele precisa ser transformado. Em que local do corpo humano isso acontece?",
+		"options": [
+			"No sistema digestório",
+			"No sistema respiratório",
+			"No fígado",
+			"No coração"
+		],
+		"correct_answer": "No sistema digestório"
+	},
+	"nutri_2": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "NÃO é um órgão que faz parte do sistema digestório:",
+		"options": ["a boca", "a faringe", "o estômago", "o rim"],
+		"correct_answer": "o rim"
+	},
+	"nutri_3": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Em qual parte do sistema digestório ocorre grande absorção de água e de sais minerais?",
+		"options": [
+			"No intestino delgado",
+			"No estômago",
+			"No intestino grosso",
+			"No esôfago"
+		],
+		"correct_answer": "No intestino delgado"
+	},
+	"nutri_4": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual órgão transforma o alimento em massa pastosa e inicia a digestão das proteínas?",
+		"options": ["Pâncreas", "Fígado", "Intestino", "Estômago"],
+		"correct_answer": "Estômago"
+	},
+	"nutri_5": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual a função da boca e dos dentes no sistema digestório?",
+		"options": [
+			"Checar os alimentos para ver se estão bons",
+			"Levar o alimento até o estômago",
+			"Eliminar o nutriente não necessário",
+			"Iniciar o processo de digestão"
+		],
+		"correct_answer": "Iniciar o processo de digestão"
+	},
+	"nutri_6": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O esôfago está situado:",
+		"options": [
+			"Entre a boca e o estômago",
+			"Entre o pâncreas e o estômago",
+			"Entre o intestino grosso e o intestino delgado",
+			"Entre o estômago e o intestino delgado"
+		],
+		"correct_answer": "Entre a boca e o estômago"
+	},
+	"nutri_7": {
+		"title": "Nutrição do Organismo",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Digerir é quebrar os alimentos em pedaços cada vez menores. Os dois tipos de digestão são:",
+		"options": [
+			"digestão simples e digestão composta",
+			"digestão mecânica e digestão química",
+			"digestão muscular e digestão química",
+			"digestão mecânica e digestão intestinal"
+		],
+		"correct_answer": "digestão mecânica e digestão química"
+	},
+	"habito_1": {
+		"title": "Hábitos Alimentares",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Uma alimentação saudável ajuda o nosso corpo a",
+		"options": [
+			"funcionar melhor",
+			"ganhar muito peso",
+			"não se desenvolver",
+			"perder peso em excesso"
+		],
+		"correct_answer": "funcionar melhor"
+	},
+	"habito_2": {
+		"title": "Hábitos Alimentares",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "NÃO é uma recomendação adequada quanto ao cuidado com os alimentos:",
+		"options": [
+			"Lavar bem verduras, legumes e frutas",
+			"Preferir alimentos com cheiros estranhos",
+			"Sempre verificar o prazo de validade",
+			"Proteger alimentos de insetos e animais"
+		],
+		"correct_answer": "Preferir alimentos com cheiros estranhos"
+	},
+	"habito_3": {
+		"title": "Hábitos Alimentares",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Em quantos grupos a pirâmide alimentar está dividida?",
+		"options": ["6 grupos", "8 grupos", "10 grupos", "9 grupos"],
+		"correct_answer": "8 grupos"
+	},
+	"const_1": {
+		"title": "Constelações e Mapas Celestes",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "As estrelas só são vistas em tamanhos pequenos devido",
+		"options": [
+			"à proximidade com a terra",
+			"à distância elevada da terra",
+			"ao brilho intenso das estrelas",
+			"à luz fraca das estrelas"
+		],
+		"correct_answer": "à distância elevada da terra"
+	},
+	"const_2": {
+		"title": "Constelações e Mapas Celestes",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A constelação do Cruzeiro do Sul é representada pela figura que lembra",
+		"options": [
+			"uma cruz, formada pela ligação imaginária de 05 estrelas",
+			"um cruzeiro no mar, formada pela ligação imaginária de 10 estrelas",
+			"uma espada, formada pela ligação imaginária de 20 estrelas",
+			"um animal crucificado, formada pela ligação imaginária de 25 estrelas"
+		],
+		"correct_answer": "uma cruz, formada pela ligação imaginária de 05 estrelas"
+	},
+	"const_3": {
+		"title": "Constelações e Mapas Celestes",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Abaixo estão algumas constelações que são visualizadas da terra, EXCETO:",
+		"options": ["Cruzeiro do sul", "Andrômeda", "Ursa maior", "Lunar"],
+		"correct_answer": "Lunar"
+	},
+	"rotacao_1": {
+		"title": "Movimento de Rotação da Terra",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O movimento que a Terra realiza em volta do seu próprio eixo, definindo a separação entre o dia e a noite é chamado de:",
+		"options": ["órbita", "rotatório", "translação", "rotação"],
+		"correct_answer": "rotação"
+	},
+	"lua_1": {
+		"title": "Periodicidade das Fases da Lua",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Quantas fases principais a lua possui?",
+		"options": ["2 fases", "4 fases", "5 fases", "8 fases"],
+		"correct_answer": "4 fases"
+	},
+	"optico_1": {
+		"title": "Instrumentos Ópticos",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O sentido encarregado pela percepção visual é:",
+		"options": ["tato", "paladar", "visão", "audição"],
+		"correct_answer": "visão"
+	}
+}

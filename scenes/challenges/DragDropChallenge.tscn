@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy4v7qjq1yrw0"]
+
+[ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_85mbx"]
+[ext_resource type="Script" uid="uid://dqynq2sji5ktj" path="res://scripts/challenges/DragDropChallenge.gd" id="2_sxn30"]
+
+[node name="ChallengeBase" instance=ExtResource("1_85mbx")]
+script = ExtResource("2_sxn30")
+
+[node name="MarginContainer" parent="MarginContainer/MarginContainer/BackGround" index="0"]
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
+visible = true
+modulate = Color(1, 1, 1, 0)
+
+[node name="HSeparator2" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer" index="3"]
+visible = true
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 15)
+size_flags_stretch_ratio = 0.75
+
+[node name="DraggableItemsContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="DropAreasContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 1
