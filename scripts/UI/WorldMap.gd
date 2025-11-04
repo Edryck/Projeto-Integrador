@@ -45,7 +45,7 @@ func configurar_interface():
 		print("Pontuação no mapa: ", GameManager.obter_pontuacao_jogador())
 
 func carregar_temas():
-	var container_temas = find_child("ThemeViewer", true, false)
+	var container_temas = find_child("Background1", true, false)
 	
 	if not container_temas:
 		printerr("Container de temas não encontrado!")
@@ -58,6 +58,23 @@ func carregar_temas():
 			temas.append(filho)
 	
 	print("Temas carregados: ", temas.size())
+	
+	# Conectar botões next/previous
+	var btn_prev = find_child("PreviousThemeButton", true, false)
+	var btn_next = find_child("NextThemeButton", true, false)
+	
+	if btn_prev:
+		if btn_prev.pressed.is_connected(_on_previous_theme_pressed):
+			btn_prev.pressed.disconnect(_on_previous_theme_pressed)
+		btn_prev.pressed.connect(_on_previous_theme_pressed)
+		print("Botão Previous conectado")
+	
+	if btn_next:
+		if btn_next.pressed.is_connected(_on_next_theme_pressed):
+			btn_next.pressed.disconnect(_on_next_theme_pressed)
+		btn_next.pressed.connect(_on_next_theme_pressed)
+		print("Botão Next conectado")
+	
 	mostrar_tema_atual()
 
 func mostrar_tema_atual():
@@ -65,20 +82,19 @@ func mostrar_tema_atual():
 	for i in range(temas.size()):
 		temas[i].visible = (i == tema_atual)
 	
-	# Atualizar título
-	var label_titulo = find_child("ThemeTitleLabel", true, false)
-	if label_titulo and tema_atual < temas.size():
-		label_titulo.text = temas[tema_atual].name.replace("Theme", "Tema ").replace("_", " ")
+	# Adicionar o modificaodr do titulo do tema
 
 func _on_previous_theme_pressed():
-	tema_atual = tema_atual - 1
+	tema_atual -= 1
 	if tema_atual < 0:
 		tema_atual = temas.size() - 1
 	mostrar_tema_atual()
 	print("Tema anterior: ", tema_atual)
 
 func _on_next_theme_pressed():
-	tema_atual = (tema_atual + 1) % temas.size()
+	tema_atual += 1
+	if tema_atual > 2:
+		tema_atual -= temas.size()
 	mostrar_tema_atual()
 	print("Próximo tema: ", tema_atual)
 
