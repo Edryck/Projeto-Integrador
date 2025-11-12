@@ -26,41 +26,9 @@ func _ready():
 	if area_desenho:
 		area_desenho.mouse_filter = Control.MOUSE_FILTER_PASS
 		print("Área de desenho configurada")
-	
-	iniciar_com_dados()
 
-func iniciar_com_dados():
-	var dados = SceneManager.obter_dados_desafio_atual()
-	if not dados.is_empty():
-		print("Dados disponíveis no SceneManager")
-		iniciar_desafio(dados)
-	else:
-		printerr("Nenhum dado de desafio recebido!")
-		# Dados de fallback
-		var dados_teste = {
-			"id": "relate_test",
-			"type": "relate",
-			"title": "Relacione os Pares",
-			"instructions": "Clique nos itens da esquerda e depois nos da direita para conectar",
-			"items_left_column": [
-				{"id": "item1", "text": "Item 1"},
-				{"id": "item2", "text": "Item 2"}
-			],
-			"items_right_column": [
-				{"id": "par1", "text": "Par 1"},
-				{"id": "par2", "text": "Par 2"}
-			],
-			"correct_connections": [
-				{"left_id": "item1", "right_id": "par1"},
-				{"left_id": "item2", "right_id": "par2"}
-			]
-		}
-		iniciar_desafio(dados_teste)
-
-func iniciar_desafio(dados: Dictionary):
-	print("RelateChallenge.iniciar_desafio()")
-	super.iniciar_desafio(dados)
-	
+func _setup_desafio_especifico(dados: Dictionary):
+	print("RelateChallenge._setup_desafio_especifico()")
 	carregar_itens(dados)
 	configurar_interface()
 
@@ -79,6 +47,11 @@ func carregar_itens(dados: Dictionary):
 func configurar_interface():
 	print("Configurando interface...")
 	
+	# Verificar se os containers existem (importante para evitar erro em cenas diferentes)
+	if not container_esquerda or not container_direita:
+		printerr("Containers não encontrados! Verifique se os nós LeftColumnContainer e RightColumnContainer existem na cena.")
+		return
+	
 	# Limpar containers
 	for filho in container_esquerda.get_children():
 		filho.queue_free()
@@ -91,7 +64,7 @@ func configurar_interface():
 	# Criar itens da esquerda
 	for item_data in itens_esquerda:
 		var botao = Button.new()
-		botao.custom_minimum_size = Vector2(150, 60)
+		botao.custom_minimum_size = Vector2(100, 100)
 		
 		# Configurar visual
 		if item_data.has("text"):
@@ -112,7 +85,7 @@ func configurar_interface():
 	# Criar itens da direita
 	for item_data in itens_direita:
 		var botao = Button.new()
-		botao.custom_minimum_size = Vector2(150, 60)
+		botao.custom_minimum_size = Vector2(100, 100)
 		
 		# Configurar visual
 		if item_data.has("text"):
@@ -327,18 +300,5 @@ func finalizar_relate():
 		"total_conexoes": conexoes_corretas.size(),
 		"precisao": int(float(conexoes_corretas_count) / conexoes_corretas.size() * 100) if conexoes_corretas.size() > 0 else 0
 	}
-	if pontuacao > 0:
-		GameManager.atualizar_pontuacao_jogador(pontuacao, {
-			"sucesso": sucesso,
-			"id": dados_desafio.get("id", "")
-		})
 	
-	# Verifica se tem mais desafios
-	if SceneManager.tem_mais_desafios():
-		print("Avançando para próximo desafio (sem RewardScreen)...")
-		SceneManager.avancar_para_proximo_desafio()
-		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
-	else:
-		# Último desafio - mostrar RewardScreen
-		finalizar_desafio(sucesso, dados_resultado)
+	finalizar_desafio(sucesso, dados_resultado)

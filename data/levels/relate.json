@@ -13,11 +13,11 @@
 			{"left_id": "pais_eua", "right_id": "capital_eua"}
 		]
 	},
-	"relate_prop_fis_mat_1": {
+	"relate_mat_1": {
 		"items_left_column": [
-			{"id": "jarro_barro", "image_path": "res://assets/sprites/jarro_barro.png"},
-			{"id": "botas_couro", "image_path": "res://assets/sprites/botas_couro.png"},
-			{"id": "chapeu_palha", "image_path": "res://assets/sprites/chapeu_palha.png"}
+			{"id": "jarro_barro", "image_path": "res://assets/images/jarro_barro.png"},
+			{"id": "botas_couro", "image_path": "res://assets/images/botas_couro.png"},
+			{"id": "chapeu_palha", "image_path": "res://assets/images/chapeu_palha.png"}
 		],
 		"items_right_column": [
 			{"id": "couro", "text": "Couro"},
@@ -30,7 +30,7 @@
 			{"left_id": "chapeu_palha", "right_id": "palha"}
 		]
 	},
-	"relate_prop_fis_mat_2": {
+	"relate_mat_2": {
 		"items_left_column": [
 			{"id": "pneu", "text": "Pneu"},
 			{"id": "banco", "text": "Banco"},

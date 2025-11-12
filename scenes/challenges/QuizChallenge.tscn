@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://w35o4d4qix21"]
+[gd_scene load_steps=6 format=3 uid="uid://w35o4d4qix21"]
 
 [ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_adb7o"]
 [ext_resource type="Script" uid="uid://bpu5unsw6fect" path="res://scripts/challenges/QuizChallenge.gd" id="2_ytub7"]
+[ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="3_8n0mu"]
+[ext_resource type="FontFile" uid="uid://0gtsrxp1nuwb" path="res://assets/fonts/Pixel Digivolve Italic.otf" id="4_3lek6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ytub7"]
 
@@ -38,11 +40,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_8n0mu")
+theme_override_fonts/italics_font = ExtResource("4_3lek6")
 
 [node name="NextButton" type="Button" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_8n0mu")
 text = "Confirmar Resposta"
 
 [node name="FeedbackLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="3"]
@@ -50,7 +55,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_8n0mu")
 horizontal_alignment = 1
 
-[connection signal="pressed" from="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/NextButton" to="." method="_ir_para_proxima_pergunta"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/NextButton" to="." method="_ir_para_proxima_pergunta"]

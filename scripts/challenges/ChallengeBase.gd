@@ -3,6 +3,8 @@ extends Control
 
 # Sinais que todos os desafios vão emitir
 signal desafio_concluido(sucesso: bool, pontuacao: int, dados: Dictionary)
+# Novo sinal para pedir a RewardScreen externamente
+signal requisitar_reward_screen(sucesso: bool, pontuacao: int, dados: Dictionary)
 signal desafio_iniciado()
 
 # Variáveis comuns a todos os desafios
@@ -20,115 +22,98 @@ var tempo_inicio: float = 0.0
 func _ready():
 	print("CHALLENGE BASE - Carregado")
 	configurar_ui_base()
+	# Conectar sinal de recompensa ao SceneManager automaticamente
+	if not requisitar_reward_screen.is_connected(_on_requisitar_reward_screen):
+		requisitar_reward_screen.connect(_on_requisitar_reward_screen)
+	var dados = SceneManager.obter_dados_desafio_atual()
+	if not dados.is_empty():
+		print("ChallengeBase: Dados disponíveis no SceneManager, iniciando...")
+		iniciar_desafio(dados)
+	else:
+		printerr("ChallengeBase: Nenhum dado de desafio recebido do SceneManager!")
 
+# Handler para quando o desafio pedir RewardScreen (apenas quando fase completa)
+func _on_requisitar_reward_screen(sucesso: bool, pontuacao: int, dados: Dictionary):
+	print("ChallengeBase: Recebido pedido de RewardScreen (fase completa)")
+	SceneManager.exibir_reward_screen(sucesso, pontuacao, dados)
+
+# Configura a interface base do desafio
 func configurar_ui_base():
 	print("Configurando UI base...")
-	
 	if menu_button:
 		if not menu_button.pressed.is_connected(_on_menu_pressionado):
 			menu_button.pressed.connect(_on_menu_pressionado)
 		print("Botão menu conectado")
 
+# Inicia o desafio com os dados fornecidos
 func iniciar_desafio(dados: Dictionary):
 	print("ChallengeBase.iniciar_desafio()")
-	
 	dados_desafio = dados
 	pontuacao = 0
 	tempo_inicio = Time.get_ticks_msec()
-	
-	# Configurar UI com os dados do desafio
+	# Preenche títulos e instruções
 	if mission_title_label and dados.has("title"):
 		mission_title_label.text = dados["title"]
 		print("   - Título definido: ", dados["title"])
-	
 	if instructions_label and dados.has("instructions"):
 		instructions_label.text = dados["instructions"]
 		print("   - Instruções definidas")
 	
-	desafio_iniciado.emit()
-	print("Desafio base configurado")
+	_setup_desafio_especifico(dados)
 
+# Cada script de desafio (Quiz, DragDrop) sobrescreve esta função.
+func _setup_desafio_especifico(dados: Dictionary):
+	print("ChallengeBase: _setup_desafio_especifico (Implementação base vazia)")
+	# Deixe vazio. Os filhos vão implementar.
+	pass
+
+# Finaliza o desafio, emitindo sinais para controladores externos (UI, reward...)
 func finalizar_desafio(sucesso: bool, dados_extras: Dictionary = {}):
 	var tempo_gasto = (Time.get_ticks_msec() - tempo_inicio) / 1000.0
-	
 	print("DESAFIO CONCLUÍDO:")
 	print("   - Sucesso: ", sucesso)
 	print("   - Pontuação: ", pontuacao)
 	print("   - Tempo: ", tempo_gasto, "s")
 	print("   - Dados: ", dados_extras)
-	
-	# Adicionar sucesso aos dados extras
 	dados_extras["sucesso"] = sucesso
 	dados_extras["id"] = dados_desafio.get("id", "")
 	
-	# Emitir sinal
+	# Atualizar pontuação do jogador ANTES de verificar se deve mostrar reward
+	if pontuacao > 0:
+		GameManager.atualizar_pontuacao_jogador(pontuacao, dados_extras)
+	
+	# Sinal padrão de conclusão (para persistência/progresso)
 	desafio_concluido.emit(sucesso, pontuacao, dados_extras)
 	
-	# Mostrar recompensa
-	mostrar_tela_recompensa(sucesso, pontuacao, dados_extras)
+	# Verificar se é o último desafio da fase - só então mostrar RewardScreen
+	# SceneManager vai decidir se deve mostrar reward ou avançar para próximo desafio
+	verificar_e_mostrar_reward_se_fase_completa(sucesso, pontuacao, dados_extras)
 
-func mostrar_tela_recompensa(sucesso: bool, pontuacao_desafio: int, dados: Dictionary):
-	print("Mostrando tela de recompensa...")
+# Verifica se deve mostrar RewardScreen (apenas quando fase completa)
+func verificar_e_mostrar_reward_se_fase_completa(sucesso: bool, pontuacao: int, dados: Dictionary):
+	# Verificar se após completar este desafio ainda há mais
+	# A lógica: se estamos no índice N e há N+1 desafios, ainda tem mais
+	# SceneManager tem acesso ao índice e array de desafios
+	var desafio_atual_idx = SceneManager.desafio_atual_index
+	var total_desafios = SceneManager.desafios_da_fase.size()
+	var ainda_tem_mais = (desafio_atual_idx + 1) < total_desafios
 	
-	# Atualizar pontuação do jogador ANTES de mostrar a tela
-	if pontuacao_desafio > 0:
-		GameManager.atualizar_pontuacao_jogador(pontuacao_desafio, dados)
+	print("Verificando se deve mostrar reward:")
+	print("   - Desafio atual: ", desafio_atual_idx + 1, " de ", total_desafios)
+	print("   - Ainda tem mais: ", ainda_tem_mais)
 	
-	# Carregar e mostrar tela de recompensa
-	var cena_recompensa = load("res://scenes/UI/RewardScreen.tscn")
-	if cena_recompensa:
-		var tela_recompensa = cena_recompensa.instantiate()
-		get_tree().root.add_child(tela_recompensa)
-		
-		# Chamar função de mostrar resultado
-		if tela_recompensa.has_method("mostrar_resultado"):
-			tela_recompensa.mostrar_resultado(sucesso, pontuacao_desafio, dados)
-		
-		# Aguardar o fechamento da tela (simplificado e mais robusto)
-		# Usar um timer para garantir que o usuário veja a tela
-		await get_tree().create_timer(0.5).timeout
-		
-		# Aguardar até que a tela seja removida
-		# O RewardScreen se remove quando o botão continuar é pressionado
-		while is_instance_valid(tela_recompensa) and tela_recompensa.is_inside_tree():
-			await get_tree().process_frame
-		
-		print("Tela de recompensa fechada")
-		
-		# Agora sim, continuar o fluxo
-		_continuar_apos_recompensa()
-	else:
-		printerr("RewardScreen não encontrada!")
-		_continuar_apos_recompensa()
-
-func _continuar_apos_recompensa():
-	print("Continuando após recompensa...")
-	
-	# Verificar se tem mais desafios
-	if SceneManager.tem_mais_desafios():
-		print("Avançando para próximo desafio...")
+	if ainda_tem_mais:
+		print("Ainda há mais desafios na fase - avançando sem mostrar reward")
+		# Avançar o índice para o próximo desafio
 		SceneManager.avancar_para_proximo_desafio()
-		
-		# Pequeno delay antes de mudar de cena
 		await get_tree().create_timer(0.3).timeout
-		
-		# Voltar para WorldMap que irá carregar o próximo desafio
 		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
 	else:
-		print("Fase completa! Registrando conclusão...")
-		
-		# Marcar fase como completada
-		var fase_id = SceneManager.get_id_fase_temp()
-		if fase_id:
-			GameManager.completar_fase(fase_id)
-		
-		# Limpar dados do SceneManager
-		SceneManager.limpar_dados()
-		
-		# Voltar para o mapa
-		await get_tree().create_timer(0.3).timeout
-		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
+		# Fase completa, agora mostra RewardScreen
+		print("Fase completa! Mostrando RewardScreen...")
+		requisitar_reward_screen.emit(sucesso, pontuacao, dados)
 
+# Deixe apenas atualizações visuais/menus aqui para o desafio
 func atualizar_progresso(atual: int, total: int):
 	if progress_bar:
 		var percentual = float(atual) / total * 100
@@ -138,22 +123,18 @@ func _on_menu_pressionado():
 	print("Botão Menu pressionado - Abrindo pause")
 	abrir_menu_pause()
 
+# Exemplo de menu de pausa (pode ser externalizado também)
 func abrir_menu_pause():
-	# Carregar menu de pause
 	var cena_pause = load("res://scenes/UI/PauseMenu.tscn")
 	if cena_pause:
 		var menu_pause = cena_pause.instantiate()
 		get_tree().root.add_child(menu_pause)
-		
-		# Conectar sinais do menu de pause usando Callable
 		if menu_pause.has_signal("retomado"):
 			menu_pause.retomado.connect(_on_pause_retomado)
 		if menu_pause.has_signal("reiniciar_desafio"):
 			menu_pause.reiniciar_desafio.connect(_on_pause_reiniciar)
 		if menu_pause.has_signal("sair_para_mapa"):
 			menu_pause.sair_para_mapa.connect(_on_pause_sair)
-		
-		# Pausar o jogo
 		get_tree().paused = true
 		print("Jogo pausado")
 	else:

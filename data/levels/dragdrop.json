@@ -15,7 +15,7 @@
 			{ "id": "posicao_4", "accepts": "marte" }
 		]
 	},
-	"dd_prop_fisica_mat": {
+	"dd_mat_1": {
 		"title": "Propriedade Física dos Materiais",
 		"instructions": "Arraste dois objetos produzidos a partir de materiais abaixo: ",
 		"draggable_items": [

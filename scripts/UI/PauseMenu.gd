@@ -31,20 +31,24 @@ func _on_reiniciar_pressionado():
 	get_tree().paused = false
 	
 	# Limpar dados do desafio atual mas manter a fase
-	var _fase_id = SceneManager.get_id_fase_temp()
-	var _fase_dados = SceneManager.dados_fase_temp.duplicate(true)
-	var _desafio_index = SceneManager.desafio_atual_index
-	
-	# Recarregar a cena atual
+	var fase_id = SceneManager.get_id_fase_temp()
 	var cena_atual = get_tree().current_scene.scene_file_path
 	
+	# Remover menu de pause
 	queue_free()
 	
-	# Aguardar um frame
+	# Aguardar um frame para garantir que o menu foi removido
 	await get_tree().process_frame
 	
-	# Recarregar a cena
-	get_tree().change_scene_to_file(cena_atual)
+	# Preparar novamente o desafio atual (resetar dados temporários)
+	var proximo_desafio = SceneManager.obter_proximo_desafio()
+	if not proximo_desafio.is_empty():
+		# Recarregar a cena do desafio
+		get_tree().change_scene_to_file(cena_atual)
+	else:
+		# Se não tem desafio, voltar para o mapa
+		printerr("Erro: Não há desafio para reiniciar!")
+		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
 
 func _on_sair_pressionado():
 	print("Saindo para o mapa...")

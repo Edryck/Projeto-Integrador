@@ -1,6 +1,9 @@
 # SceneManager.gd 
 extends Node
 
+# Caminhos
+const caminho_cena_recompensa = "res://scenes/UI/RewardScreen.tscn"
+
 # Dados temporários para passar entre cenas
 var dados_desafio_temp: Dictionary = {}
 var dados_fase_temp: Dictionary = {}
@@ -8,8 +11,20 @@ var desafios_da_fase: Array = []
 var desafio_atual_index: int = 0
 var id_fase_temp: String = ""
 
+# Novo: camada para modais/rewards, criada no _ready
+var overlay_layer: Control = null
+
 func _ready():
 	print("SCENE MANAGER - Inicializado")
+	# Procura ou cria OverlayLayer para modais e RewardScreen
+	overlay_layer = get_tree().root.get_node_or_null("OverlayLayer")
+	if not overlay_layer:
+		overlay_layer = Control.new()
+		overlay_layer.name = "OverlayLayer"
+		overlay_layer.z_index = 1000
+		get_tree().root.add_child(overlay_layer)
+	# Opcional: bloquear input quando overlay for mostrado
+	overlay_layer.mouse_filter = Control.MOUSE_FILTER_STOP
 
 # Getter para o ID da fase
 func get_id_fase_temp() -> String:
@@ -54,7 +69,6 @@ func avancar_para_proximo_desafio():
 		print("   - Próximo desafio: ", desafios_da_fase[desafio_atual_index].get("id", "?"))
 	else:
 		print("   - Não há mais desafios")
-		
 
 # Verificar se ainda tem desafios
 func tem_mais_desafios() -> bool:
@@ -142,3 +156,35 @@ func debug_print_estado():
 		print("   - ID: ", dados_desafio_temp.get("id", "?"))
 		print("   - Tipo: ", dados_desafio_temp.get("type", "?"))
 	print("===============================\n")
+
+# Centralizador: exibe a RewardScreen ao receber o sinal de qualquer desafio
+func exibir_reward_screen(sucesso: bool, pontuacao: int, dados: Dictionary) -> void:
+	print("SceneManager: Exibindo RewardScreen modal...")
+	
+	var cena_recompensa = load(caminho_cena_recompensa)
+	if cena_recompensa:
+		var instancia_cena = cena_recompensa.instantiate()
+		# Adiciona sobre a cena atual
+		get_tree().get_root().add_child(instancia_cena)
+		
+		# Configura sobre a tela de recompensa
+		instancia_cena.mostrar_resultado(sucesso, pontuacao, dados)
+		while is_instance_valid(instancia_cena) and instancia_cena.is_inside_tree():
+			await get_tree().process_frame
+		continuar_fluxo_apos_reward()
+	else:
+		# Se a cena não for encontrada, pula ela e continua o fluxo
+		printerr("Tela de Recompensa não foi encontrada!\n
+		Continuando fluxo.")
+		continuar_fluxo_apos_reward()
+
+# Centralizar o fluxo pós-recompensa (após RewardScreen ser fechada)
+# Esta função só é chamada quando a fase está completa (sem mais desafios)
+func continuar_fluxo_apos_reward():
+	print("Fase completa! Registrando conclusão...")
+	var fase_id = get_id_fase_temp()
+	if fase_id:
+		GameManager.completar_fase(fase_id)
+	limpar_dados()
+	await get_tree().create_timer(0.3).timeout
+	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")

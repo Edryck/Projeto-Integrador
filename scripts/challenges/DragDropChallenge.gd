@@ -18,35 +18,9 @@ var grid_zonas: GridContainer = null
 func _ready():
 	super._ready()
 	print("DRAG DROP CHALLENGE - Carregado")
-	iniciar_com_dados()
 
-func iniciar_com_dados():
-	var dados = SceneManager.obter_dados_desafio_atual()
-	if not dados.is_empty():
-		print("Dados disponíveis no SceneManager")
-		iniciar_desafio(dados)
-	else:
-		printerr("Nenhum dado recebido! Usando fallback")
-		var dados_teste = {
-			"id": "dd_teste",
-			"type": "dragdrop",
-			"title": "Arraste e Solte - Teste",
-			"instructions": "Arraste os itens para as posições corretas",
-			"draggable_items": [
-				{"id": "item1", "text": "Item 1"},
-				{"id": "item2", "text": "Item 2"}
-			],
-			"drop_zones": [
-				{"id": "zona1", "accepts": "item1"},
-				{"id": "zona2", "accepts": "item2"}
-			]
-		}
-		iniciar_desafio(dados_teste)
-
-func iniciar_desafio(dados: Dictionary):
-	print("DragDropChallenge.iniciar_desafio()")
-	super.iniciar_desafio(dados)
-	
+func _setup_desafio_especifico(dados: Dictionary):
+	print("DragDropChallenge._setup_desafio_especifico()")
 	carregar_dados_desafio(dados)
 	configurar_interface()
 
@@ -270,7 +244,7 @@ func _tentar_soltar_em_zona(item: Control, zona: Control):
 	
 	# Verificar se é o item correto
 	if item_id == zona_aceita:
-		print("   ✓ CORRETO! Colocando item na zona")
+		print("   CORRETO! Colocando item na zona")
 		_colocar_item_na_zona(item, zona)
 		
 		itens_colocados_corretamente += 1
@@ -286,11 +260,11 @@ func _tentar_soltar_em_zona(item: Control, zona: Control):
 		
 		# Verificar se completou
 		if itens_colocados_corretamente >= total_itens:
-			print("   🎉 TODOS OS ITENS COLOCADOS!")
+			print("   TODOS OS ITENS COLOCADOS!")
 			await get_tree().create_timer(1.0).timeout
 			finalizar_drag_drop()
 	else:
-		print("   ✗ INCORRETO! Item não pertence aqui")
+		print("   INCORRETO! Item não pertence aqui")
 		pontuacao = max(0, pontuacao - 5)
 		
 		# Feedback visual de erro
@@ -307,64 +281,50 @@ func _tentar_soltar_em_zona(item: Control, zona: Control):
 func _colocar_item_na_zona(item: Control, zona: Control):
 	print("   Colocando item na zona...")
 	
-	# Remover do root
-	if item.get_parent() == get_tree().root:
-		get_tree().root.remove_child(item)
+	# Remover do pai atual (root ou grid)
+	var pai_atual = item.get_parent()
+	if pai_atual:
+		pai_atual.remove_child(item)
 	
-	# Adicionar à zona
+	# Adicionar à zona como filho
 	zona.add_child(item)
 	
-	# Centralizar
-	item.position = (zona.size - item.size) / 2
+	# Ajustar posição relativa à zona (centralizar)
+	item.position = zona.size - item.size
+	item.z_index = 0  # Resetar z_index
 	
 	# Marcar zona como ocupada
 	zona.set_meta("ocupada", true)
 	
-	print("   ✓ Item colocado com sucesso!")
+	print("   ✓ Item colocado com sucesso na zona!")
 
 func _retornar_item_origem(item: Control):
 	print("   Retornando item para origem...")
 	
-	# Remover do root se estiver lá
-	if item.get_parent() == get_tree().root:
-		get_tree().root.remove_child(item)
+	# Remover do pai atual (pode ser root ou zona)
+	var pai_atual = item.get_parent()
+	if pai_atual:
+		pai_atual.remove_child(item)
 	
 	# Retornar ao pai original
 	var pai_original = item.get_meta("pai_original")
 	if pai_original and is_instance_valid(pai_original):
 		pai_original.add_child(item)
-		item.position = item.get_meta("posicao_original")
+		item.position = item.get_meta("posicao_original", Vector2.ZERO)
 		item.modulate = Color.WHITE
+		item.z_index = 0  # Resetar z_index
 		print("   ✓ Item retornou à origem")
 	else:
 		printerr("   ✗ ERRO: Pai original inválido!")
 
+# Ao finalizar, só notifica ChallengeBase, reward e cenas serão tratadas por um fluxo externo
 func finalizar_drag_drop():
-	print("\n🎯 DRAG & DROP FINALIZADO!")
-	print("   Itens corretos: ", itens_colocados_corretamente, "/", total_itens)
-	print("   Pontuação: ", pontuacao)
-	
+	print("DRAGDROP FINALIZADO!")
 	var sucesso = itens_colocados_corretamente == total_itens
 	var dados_resultado = {
-		"tipo": "dragdrop",
-		"itens_corretos": itens_colocados_corretamente,
+		"tipo": "drag_drop",
+		"acertos": itens_colocados_corretamente,
 		"total_itens": total_itens,
-		"precisao": int(float(itens_colocados_corretamente) / total_itens * 100) if total_itens > 0 else 0
+		"tempo_gasto": (Time.get_ticks_msec() - tempo_inicio) / 1000.0
 	}
-	
-	# Atualizar pontuação do jogador
-	if pontuacao > 0:
-		GameManager.atualizar_pontuacao_jogador(pontuacao, {
-			"sucesso": sucesso,
-			"id": dados_desafio.get("id", "")
-		})
-	
-	# Verificar se tem mais desafios
-	if SceneManager.tem_mais_desafios():
-		print("   → Avançando para próximo desafio")
-		SceneManager.avancar_para_proximo_desafio()
-		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
-	else:
-		print("   → Último desafio - mostrando RewardScreen")
-		finalizar_desafio(sucesso, dados_resultado)
+	finalizar_desafio(sucesso, dados_resultado)

@@ -22,3 +22,7 @@ SceneManager="*res://scripts/game_management/SceneManager.gd"
 [display]
 
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/custom_font="uid://ykfyqbu8t5q7"

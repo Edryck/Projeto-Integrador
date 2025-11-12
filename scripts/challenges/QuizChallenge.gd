@@ -24,37 +24,9 @@ func _ready():
 		botao_proximo.pressed.connect(_avancar_pergunta)
 		botao_proximo.visible = false
 		print("Botão próximo configurado")
-	
-	iniciar_com_dados()
 
-func iniciar_com_dados():
-	var dados = SceneManager.obter_dados_desafio_atual()
-	
-	if not dados.is_empty():
-		print("Dados disponíveis no SceneManager")
-		iniciar_desafio(dados)
-	else:
-		printerr("Nenhum dado de desafio recebido!")
-		# Dados de fallback
-		var dados_teste = {
-			"id": "quiz_teste",
-			"type": "quiz",
-			"title": "Quiz de Teste",
-			"instructions": "Responda a questão",
-			"questions": [
-				{
-					"question_text": "Qual é a capital do Brasil?",
-					"options": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
-					"correct_answer": "Brasília"
-				}
-			]
-		}
-		print("Usando dados de teste")
-		iniciar_desafio(dados_teste)
-
-func iniciar_desafio(dados: Dictionary):
-	print("QuizChallenge.iniciar_desafio()")
-	super.iniciar_desafio(dados)
+func _setup_desafio_especifico(dados: Dictionary):
+	print("QuizChallenge._setup_desafio_especifico()")
 	carregar_perguntas(dados)
 	mostrar_pergunta_atual()
 
@@ -193,6 +165,7 @@ func _avancar_pergunta():
 		pergunta_atual += 1
 		mostrar_pergunta_atual()
 
+# Ao finalizar quiz, apenas emite eventos — RewardScreen virá via gerenciador externo
 func finalizar_quiz():
 	print("QUIZ FINALIZADO!")
 	print("   - Acertos: ", acertos, "/", perguntas.size())
@@ -208,22 +181,6 @@ func finalizar_quiz():
 		"precisao": int(precisao * 100),
 		"tempo_gasto": (Time.get_ticks_msec() - tempo_inicio) / 1000.0
 	}
-	
-	# Atualiza a pontuação do jogador
-	if pontuacao > 0:
-		GameManager.atualizar_pontuacao_jogador(pontuacao, {
-			"sucesso": sucesso,
-			"id": dados_desafio.get("id", "")
-		})
 	print("Dados para recompensa: ", dados_resultado)
-	
-	# Verifica se tem mais desafios
-	if SceneManager.tem_mais_desafios():
-		print("Avançando para próximo desafio (sem RewardScreen)...")
-		SceneManager.avancar_para_proximo_desafio()
-		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
-	else:
-		# Última atividade da fase, agora mostrar RewardScreen
-		print("Último desafio da fase - mostrando RewardScreen")
-		finalizar_desafio(sucesso, dados_resultado)
+	# Apenas manda finalizar desafio
+	finalizar_desafio(sucesso, dados_resultado)

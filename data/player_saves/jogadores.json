@@ -1,19 +1,39 @@
 {
 	"todos_jogadores": {
 		"Teste": {
-			"data_criacao": "2025-10-23T15:24:02",
+			"data_criacao": "2025-11-01T11:27:56",
 			"desafios_completados": [
-				"mat_1",
-				"mat_2",
 				"relate_prop_fis_mat_1",
+				"mat_1",
 				"mat_3",
-				"relate_prop_fis_mat_2",
 				"dd_prop_fisica_mat",
+				"mat_2",
+				"relate_prop_fis_mat_2",
+				"habito_1",
+				"hidro_1",
+				"dd_mat_1",
+				"relate_mat_1",
+				"relate_mat_2",
+				"recic_2",
 				"mat_4"
 			],
-			"fases_completadas": [],
+			"fases_completadas": [
+				"fase_dd_teste",
+				"fase_quiz_teste",
+				"fase_relate_teste",
+				"fase_exemplo_completa",
+				"fase_habito",
+				"fase_mat"
+			],
 			"nome": "Teste",
-			"pontuacao": 905.0
+			"pontuacao": 2835.0
+		},
+		"tefasa": {
+			"data_criacao": "2025-11-12T13:01:59",
+			"desafios_completados": [],
+			"fases_completadas": [],
+			"nome": "tefasa",
+			"pontuacao": 0
 		}
 	},
 	"ultimo_jogador": "Teste",

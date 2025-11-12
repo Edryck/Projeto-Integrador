@@ -10,26 +10,86 @@
 	"fase_relate_teste": {
 		"title": "Fase teste de relacionar",
 		"challenges": [
-			{ "type": "relate", "id": "relate_prop_fis_mat_1" },
-			{ "type": "relate", "id": "relate_prop_fis_mat_2" } 
+			{ "type": "relate", "id": "relate_mat_1" },
+			{ "type": "relate", "id": "relate_mat_2" } 
 		]
 	},
 	"fase_dd_teste": {
 		"title": "Fase teste de Arrastar e Soltar",
 		"challenges": [
-			{ "type": "dragdrop", "id": "dd_prop_fisica_mat" }
+			{ "type": "dragdrop", "id": "dd_mat_1" }
 		]
 	},
-	"fase_exemplo_completa": {
+	"fase_mat": {
 		"title": "Propriedades Físicas dos Materiais",
 		"challenges": [
 			{ "type": "quiz", "id": "mat_1" },
 			{ "type": "quiz", "id": "mat_2" },
-			{ "type": "relate", "id": "relate_prop_fis_mat_1" },
+			{ "type": "relate", "id": "relate_mat_1" },
 			{ "type": "quiz", "id": "mat_3" },
-			{ "type": "relate", "id": "relate_prop_fis_mat_2" },
-			{ "type": "dragdrop", "id": "dd_prop_fisica_mat"},
+			{ "type": "relate", "id": "relate_mat_2" },
+			{ "type": "dragdrop", "id": "dd_mat_1"},
 			{ "type": "quiz", "id": "mat_4" }
+		]
+	},
+	"fase_hidro": {
+		"title": "Ciclo hidrológico",
+		"challenges": [
+			{ "type": "quiz", "id": "hidro_1"},
+			{ "type": "quiz", "id": "hidro_2"},
+			{ "type": "quiz", "id": "hidro_3"},
+			{ "type": "quiz", "id": "hidro_4"},
+			{ "type": "quiz", "id": "hidro_5"},
+			{ "type": "quiz", "id": "hidro_6"},
+			{ "type": "quiz", "id": "hidro_7"},
+		]
+	},
+	"fase_consumo": {
+		"title": "Consumo consciente",
+		"challenges": [
+			{ "type": "quiz", "id": "consumo_1"},
+			{ "type": "quiz", "id": "consumo_2"},
+			{ "type": "quiz", "id": "consumo_3"},
+			{ "type": "quiz", "id": "consumo_4"}
+		]
+	},
+	"fase_recic": {
+		"title": "Reciclagem",
+		"challenges": [
+			{ "type": "quiz", "id": "recic_1"},
+			{ "type": "quiz", "id": "recic_2"},
+			{ "type": "quiz", "id": "recic_3"},
+			{ "type": "quiz", "id": "recic_4"},
+			{ "type": "quiz", "id": "recic_5"},
+			{ "type": "quiz", "id": "recic_6"}
+		]
+	},
+	"fase_nutri": {
+		"title": "Nutrição do Organismo",
+		"challenges": [
+			{ "type": "quiz", "id": "nutri_1"},
+			{ "type": "quiz", "id": "nutri_2"},
+			{ "type": "quiz", "id": "nutri_3"},
+			{ "type": "quiz", "id": "nutri_4"},
+			{ "type": "quiz", "id": "nutri_5"},
+			{ "type": "quiz", "id": "nutri_6"},
+			{ "type": "quiz", "id": "nutri_7"}
+		]
+	},
+	"fase_habito": {
+		"title": "Nutrição do Organismo",
+		"challenges": [
+			{ "type": "quiz", "id": "habito_1"},
+			{ "type": "quiz", "id": "habito_2"},
+			{ "type": "quiz", "id": "habito_3"}
+		]
+	},
+	"fase_const": {
+		"title": "Constelações e mapas celestes",
+		"challenges": [
+			{ "type": "quiz", "id": "const_1"},
+			{ "type": "quiz", "id": "const_2"},
+			{ "type": "quiz", "id": "const_3"}
 		]
 	}
 }

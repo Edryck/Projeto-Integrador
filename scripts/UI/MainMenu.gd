@@ -11,9 +11,6 @@ func _on_botao_jogar_pressionado():
 func _on_botao_opcoes_pressionado():
 	print("Opções (não implementado)")
 
-func _on_botao_creditos_pressionado():
-	print("Créditos (não implementado)")
-
 func _on_botao_sair_pressionado():
 	print("Saindo do jogo...")
 	get_tree().quit()

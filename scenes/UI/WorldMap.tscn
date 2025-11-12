@@ -1,12 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6pmrtlwqyj41"]
+[gd_scene load_steps=16 format=3 uid="uid://b6pmrtlwqyj41"]
 
 [ext_resource type="Script" uid="uid://b1e72i6g84lb8" path="res://scripts/UI/WorldMap.gd" id="1_41tqo"]
+[ext_resource type="Texture2D" uid="uid://hgwymituomox" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="2_8iyyc"]
 [ext_resource type="Texture2D" uid="uid://d223ecvdflouy" path="res://assets/backgrounds/Background.png" id="2_n50l1"]
+[ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_sg503"]
 [ext_resource type="Texture2D" uid="uid://dar0pgpj4hcvx" path="res://assets/backgrounds/Tema 1.png" id="3_ofp3r"]
 [ext_resource type="Texture2D" uid="uid://blko503yh804n" path="res://assets/backgrounds/Tema 2.png" id="4_44mrp"]
+[ext_resource type="Theme" uid="uid://dyuiinxgr32wi" path="res://assets/UI/fase_mat.tres" id="5_8flrr"]
 [ext_resource type="Texture2D" uid="uid://lr5xdul1c1ua" path="res://assets/backgrounds/Tema 3.png" id="5_ofp3r"]
+[ext_resource type="Theme" uid="uid://cbqtyk8oorwgv" path="res://assets/UI/fase_rec.tres" id="5_saod2"]
+[ext_resource type="Theme" uid="uid://ur3ngekctn03" path="res://assets/UI/fase_hid.tres" id="6_8iyyc"]
 [ext_resource type="Texture2D" uid="uid://dv1rtgrw43iar" path="res://assets/sprites/previous.png" id="6_ljyde"]
 [ext_resource type="Texture2D" uid="uid://c3bpsxm3egipa" path="res://assets/sprites/next.png" id="7_sg503"]
+[ext_resource type="Theme" uid="uid://bpwut8wetnkp3" path="res://assets/UI/fase_con.tres" id="8_a7lib"]
+[ext_resource type="Texture2D" uid="uid://ecne23nphxyh" path="res://assets/sprites/student_hud.png" id="14_a7lib"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nnpuy"]
+texture = ExtResource("14_a7lib")
 
 [node name="WorldMap" type="Control"]
 layout_mode = 3
@@ -24,31 +34,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="StudentHUD" type="PanelContainer" parent="."]
-layout_mode = 1
-offset_right = 237.0
-offset_bottom = 73.0
-
-[node name="MarginContainer" type="MarginContainer" parent="StudentHUD"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="StudentHUD/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="StudentNameLabel" type="Label" parent="StudentHUD/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="ScoreLabel" type="Label" parent="StudentHUD/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
+texture = ExtResource("2_8iyyc")
+expand_mode = 1
 
 [node name="ThemeTitleLabel" type="Label" parent="."]
 layout_mode = 1
@@ -62,6 +49,7 @@ offset_top = -0.0480003
 offset_right = 20.0
 offset_bottom = 0.271999
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_sg503")
 
 [node name="ThemeViewer" type="Control" parent="."]
 layout_mode = 1
@@ -71,7 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="ThemeViewer"]
+[node name="Background1" type="TextureRect" parent="ThemeViewer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -81,7 +69,7 @@ offset_right = -194.0
 texture = ExtResource("2_n50l1")
 expand_mode = 1
 
-[node name="Theme1" type="Control" parent="ThemeViewer/Background"]
+[node name="Theme1" type="Control" parent="ThemeViewer/Background1"]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -96,7 +84,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background/Theme1"]
+[node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,51 +95,84 @@ grow_vertical = 2
 texture = ExtResource("3_ofp3r")
 expand_mode = 1
 
-[node name="fase_quiz_teste" type="Button" parent="ThemeViewer/Background/Theme1"]
+[node name="fase_quiz_teste" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
 anchor_bottom = 0.016
-offset_left = 87.0
-offset_top = 121.0
-offset_right = 118.0
-offset_bottom = 152.0
+offset_left = 69.0
+offset_top = 59.0
+offset_right = 102.0
+offset_bottom = 90.0
 text = "quiz"
 
-[node name="fase_dd_teste" type="Button" parent="ThemeViewer/Background/Theme1"]
+[node name="fase_dd_teste" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
 anchor_bottom = 0.016
-offset_left = 294.0
-offset_top = 223.0
-offset_right = 347.136
-offset_bottom = 254.0
+offset_left = 367.0
+offset_top = 55.0
+offset_right = 401.0
+offset_bottom = 86.0
 text = "dd"
 
-[node name="fase_relate_teste" type="Button" parent="ThemeViewer/Background/Theme1"]
+[node name="fase_relate_teste" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
 anchor_bottom = 0.016
-offset_left = 382.0
-offset_top = 100.0
-offset_right = 413.0
-offset_bottom = 131.0
-text = "relate"
+offset_left = 215.0
+offset_top = 56.0
+offset_right = 247.0
+offset_bottom = 87.0
+text = "rel"
 
-[node name="fase_exemplo_completa" type="Button" parent="ThemeViewer/Background/Theme1"]
+[node name="fase_mat" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
 anchor_bottom = 0.016
-offset_left = 162.0
-offset_top = 332.0
-offset_right = 193.0
-offset_bottom = 363.0
-text = "pfm"
+offset_left = 305.0
+offset_top = 142.0
+offset_right = 336.0
+offset_bottom = 173.0
+theme = ExtResource("5_8flrr")
 
-[node name="Theme2" type="Control" parent="ThemeViewer/Background"]
+[node name="fase_hidro" type="Button" parent="ThemeViewer/Background1/Theme1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 104.0
+offset_top = 233.0
+offset_right = 136.0
+offset_bottom = 264.0
+theme = ExtResource("6_8iyyc")
+
+[node name="fase_recic" type="Button" parent="ThemeViewer/Background1/Theme1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 368.0
+offset_top = 316.0
+offset_right = 400.0
+offset_bottom = 347.0
+theme = ExtResource("5_saod2")
+
+[node name="fase_consumo" type="Button" parent="ThemeViewer/Background1/Theme1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 238.0
+offset_top = 411.0
+offset_right = 270.0
+offset_bottom = 442.0
+theme = ExtResource("8_a7lib")
+
+[node name="Theme2" type="Control" parent="ThemeViewer/Background1"]
 visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
@@ -167,7 +188,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background/Theme2"]
+[node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background1/Theme2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,17 +199,34 @@ grow_vertical = 2
 texture = ExtResource("4_44mrp")
 expand_mode = 1
 
-[node name="PhaseButton" type="Button" parent="ThemeViewer/Background/Theme2"]
+[node name="fase_nutri" type="Button" parent="ThemeViewer/Background1/Theme2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.016
-anchor_bottom = 0.016
-offset_left = 87.0
-offset_top = 121.0
-offset_right = 118.0
-offset_bottom = 152.0
+anchor_left = 0.208
+anchor_top = 0.332
+anchor_right = 0.271
+anchor_bottom = 0.41
+offset_left = 135.0
+offset_top = 91.0
+offset_right = 142.5
+offset_bottom = 91.0
+text = "nut
+"
 
-[node name="Theme3" type="Control" parent="ThemeViewer/Background"]
+[node name="fase_habito" type="Button" parent="ThemeViewer/Background1/Theme2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.485
+anchor_top = 0.518
+anchor_right = 0.552
+anchor_bottom = 0.589
+offset_left = -140.5
+offset_top = -91.0
+offset_right = -135.0
+offset_bottom = -87.5
+text = "hab"
+
+[node name="Theme3" type="Control" parent="ThemeViewer/Background1"]
 visible = false
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
@@ -204,7 +242,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background/Theme3"]
+[node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background1/Theme3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,54 +253,93 @@ grow_vertical = 2
 texture = ExtResource("5_ofp3r")
 expand_mode = 1
 
-[node name="PhaseButton" type="Button" parent="ThemeViewer/Background/Theme3"]
+[node name="fase_const" type="Button" parent="ThemeViewer/Background1/Theme3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
 anchor_bottom = 0.016
-offset_left = 87.0
-offset_top = 121.0
-offset_right = 118.0
-offset_bottom = 152.0
+offset_left = 109.0
+offset_top = 165.0
+offset_right = 140.0
+offset_bottom = 196.0
+text = "con"
 
-[node name="PreviousThemeButton" type="TextureButton" parent="ThemeViewer/Background"]
+[node name="PreviousThemeButton" type="TextureButton" parent="ThemeViewer/Background1"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 0.053
-anchor_bottom = 0.5
-offset_left = 62.0
-offset_top = -22.0
-offset_right = 62.144
-offset_bottom = 18.0
+anchor_left = 0.082
+anchor_top = 0.466
+anchor_right = 0.136
+anchor_bottom = 0.528
+offset_left = 0.335999
+offset_top = 0.0319824
+offset_right = -0.272003
+offset_bottom = -0.144012
 grow_vertical = 2
 texture_normal = ExtResource("6_ljyde")
 ignore_texture_size = true
 stretch_mode = 6
 
-[node name="NextThemeButton" type="TextureButton" parent="ThemeViewer/Background"]
+[node name="NextThemeButton" type="TextureButton" parent="ThemeViewer/Background1"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -20.0
-offset_right = -70.0
-offset_bottom = 20.0
+anchors_preset = -1
+anchor_left = 0.854
+anchor_top = 0.469
+anchor_right = 0.907
+anchor_bottom = 0.531
+offset_left = -0.208008
+offset_top = 0.0879822
+offset_right = -0.0640259
+offset_bottom = -0.0880127
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("7_sg503")
 ignore_texture_size = true
 stretch_mode = 5
 
-[connection signal="gui_input" from="StudentHUD/MarginContainer/VBoxContainer/StudentNameLabel" to="." method="_on_student_name_label_gui_input"]
-[connection signal="gui_input" from="StudentHUD/MarginContainer/VBoxContainer/ScoreLabel" to="." method="_on_score_label_gui_input"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(275, 80)
+layout_mode = 1
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="StudentHUD" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nnpuy")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StudentHUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StudentHUD/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="StudentNameLabel" type="Label" parent="MarginContainer/StudentHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_sg503")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/StudentHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_sg503")
+
 [connection signal="gui_input" from="ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
-[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_quiz_teste" to="." method="_on_botao_fase_pressionado"]
-[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_dd_teste" to="." method="_on_botao_fase_pressionado"]
-[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_relate_teste" to="." method="_on_botao_fase_pressionado"]
-[connection signal="pressed" from="ThemeViewer/Background/Theme1/fase_exemplo_completa" to="." method="_on_botao_fase_pressionado"]
-[connection signal="pressed" from="ThemeViewer/Background/PreviousThemeButton" to="." method="_on_previous_theme_pressed"]
-[connection signal="pressed" from="ThemeViewer/Background/NextThemeButton" to="." method="_on_next_theme_pressed"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_quiz_teste" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_dd_teste" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_relate_teste" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_mat" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_hidro" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_recic" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_consumo" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme2/fase_nutri" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme2/fase_habito" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/PreviousThemeButton" to="." method="_on_previous_theme_pressed"]
+[connection signal="pressed" from="ThemeViewer/Background1/NextThemeButton" to="." method="_on_next_theme_pressed"]
+[connection signal="gui_input" from="MarginContainer/StudentHUD/MarginContainer/VBoxContainer/StudentNameLabel" to="." method="_on_student_name_label_gui_input"]
+[connection signal="gui_input" from="MarginContainer/StudentHUD/MarginContainer/VBoxContainer/ScoreLabel" to="." method="_on_score_label_gui_input"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0i32ubyxoeoh"]
+[gd_scene load_steps=4 format=3 uid="uid://0i32ubyxoeoh"]
 
 [ext_resource type="Script" uid="uid://dhtlsd7fu4p0h" path="res://scripts/UI/RewardScreen.gd" id="1_fcgys"]
 [ext_resource type="Texture2D" uid="uid://ceql2m6pqbnrk" path="res://assets/sprites/star.png" id="2_3iio6"]
+[ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="3_ppp8n"]
 
 [node name="RewardScreen" type="Control"]
 layout_mode = 3
@@ -74,8 +75,8 @@ expand_mode = 3
 
 [node name="TitleLabel" type="Label" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ppp8n")
 theme_override_font_sizes/font_size = 32
-text = "Parabéns!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -85,15 +86,15 @@ layout_mode = 2
 
 [node name="MessageLabel" type="Label" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ppp8n")
 theme_override_font_sizes/font_size = 18
-text = "Você completou o desafio!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ppp8n")
 theme_override_font_sizes/font_size = 24
-text = "Pontuação: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -106,6 +107,7 @@ custom_minimum_size = Vector2(250, 42)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_ppp8n")
 text = "Continuar"
 
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_botao_continuar_pressionado"]
