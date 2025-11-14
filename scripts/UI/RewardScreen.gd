@@ -158,3 +158,9 @@ func _on_botao_continuar_pressionado():
 func _input(event):
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 		_on_botao_continuar_pressionado()
+
+func _on_continue_button_pressed() -> void:
+	$confirm.play()
+
+func _on_continue_button_mouse_entered() -> void:
+	$hover.play()
