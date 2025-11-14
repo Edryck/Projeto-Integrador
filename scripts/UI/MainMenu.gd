@@ -15,6 +15,20 @@ func _on_botao_sair_pressionado():
 	print("Saindo do jogo...")
 	get_tree().quit()
 
-
 func _on_play_button_pressed():
-	$ClickSound.play()
+	$Confirm.play()
+
+func _on_play_button_mouse_entered() -> void:
+	$hover.play()
+
+func _on_options_button_pressed() -> void:
+	$Confirm.play()
+
+func _on_options_button_mouse_entered() -> void:
+	$hover.play()
+
+func _on_quit_button_pressed() -> void:
+	$Confirm.play()
+
+func _on_quit_button_mouse_entered() -> void:
+	$hover.play()

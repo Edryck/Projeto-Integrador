@@ -64,3 +64,21 @@ func _input(event):
 	# Fechar com ESC
 	if event.is_action_pressed("ui_cancel"):
 		_on_retomar_pressionado()
+
+func _on_resume_button_pressed() -> void:
+	$confirm.play()
+
+func _on_resume_button_mouse_entered() -> void:
+	$hover.play()
+
+func _on_restart_button_pressed() -> void:
+	$confirm.play()
+
+func _on_restart_button_mouse_entered() -> void:
+	$hover.play()
+
+func _on_quit_to_map_button_pressed() -> void:
+	$confirm.play()
+
+func _on_quit_to_map_button_mouse_entered() -> void:
+	$hover.play()

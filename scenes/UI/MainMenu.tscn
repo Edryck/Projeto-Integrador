@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwtpjkr3xakir"]
+[gd_scene load_steps=7 format=3 uid="uid://bwtpjkr3xakir"]
 
 [ext_resource type="Theme" uid="uid://3nwpa37w67em" path="res://assets/UI/MenuInicialTema.tres" id="1_3h7gc"]
 [ext_resource type="Script" uid="uid://bpyic1w158pkn" path="res://scripts/UI/MainMenu.gd" id="1_11hie"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_58fj5"]
 [ext_resource type="AudioStream" uid="uid://ctdnqcf3jqb0m" path="res://assets/sounds/select-button-ui-395763.wav" id="4_4vh8y"]
+[ext_resource type="AudioStream" uid="uid://c1s2mmiart6hm" path="res://assets/sounds/button-confirmation.ogg" id="5_b1p1q"]
 
 [sub_resource type="GDScript" id="GDScript_4vh8y"]
 script/source = "extends Node
@@ -105,7 +106,19 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_58fj5")
 text = "Sair"
 
-[connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/PlayButton" to="." method="_on_botao_jogar_pressionado"]
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4vh8y")
+
+[node name="Confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b1p1q")
+
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/MenuOptions/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/PlayButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/PlayButton" to="." method="_on_botao_jogar_pressionado"]
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/MenuOptions/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/OptionsButton" to="." method="_on_botao_opcoes_pressionado"]
+[connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/MenuOptions/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/QuitButton" to="." method="_on_botao_sair_pressionado"]
+[connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/QuitButton" to="." method="_on_quit_button_pressed"]

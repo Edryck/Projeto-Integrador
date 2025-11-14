@@ -154,3 +154,7 @@ func _on_pause_sair():
 	get_tree().paused = false
 	SceneManager.limpar_dados()
 	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
+
+
+func _on_menu_button_pressed() -> void:
+	$confirm.play()

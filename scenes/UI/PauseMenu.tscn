@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckjr4nvparyny"]
+[gd_scene load_steps=5 format=3 uid="uid://ckjr4nvparyny"]
 
 [ext_resource type="Script" uid="uid://cmsro3yf5sr10" path="res://scripts/UI/PauseMenu.gd" id="1_fsae6"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_6q0ex"]
+[ext_resource type="AudioStream" uid="uid://c1s2mmiart6hm" path="res://assets/sounds/button-confirmation.ogg" id="3_avwb0"]
+[ext_resource type="AudioStream" uid="uid://ctdnqcf3jqb0m" path="res://assets/sounds/select-button-ui-395763.wav" id="4_73e60"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -64,6 +66,18 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
 text = "Sair para o mapa"
 
+[node name="confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_avwb0")
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_73e60")
+
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
+[connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/ResumeButton" to="." method="_on_retomar_pressionado"]
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_mouse_entered"]
+[connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/RestartButton" to="." method="_on_reiniciar_pressionado"]
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/QuitToMapButton" to="." method="_on_quit_to_map_button_mouse_entered"]
 [connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/QuitToMapButton" to="." method="_on_sair_pressionado"]
+[connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/QuitToMapButton" to="." method="_on_quit_to_map_button_pressed"]
