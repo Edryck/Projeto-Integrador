@@ -14,3 +14,7 @@ func _on_botao_opcoes_pressionado():
 func _on_botao_sair_pressionado():
 	print("Saindo do jogo...")
 	get_tree().quit()
+
+
+func _on_play_button_pressed():
+	$ClickSound.play()

@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 GameManager="*res://scripts/game_management/GameManager.gd"
 SceneManager="*res://scripts/game_management/SceneManager.gd"
+BgMusic="*res://scenes/components/bg_music.tscn"
 
 [display]
 
