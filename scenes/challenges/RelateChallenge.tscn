@@ -1,13 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://brlnwi3s2b6nn"]
+[gd_scene load_steps=6 format=3 uid="uid://brlnwi3s2b6nn"]
 
 [ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_0h33l"]
 [ext_resource type="Script" uid="uid://dbdovlk6tpxp2" path="res://scripts/challenges/RelateChallenge.gd" id="2_tre25"]
+[ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="3_0jh17"]
 [ext_resource type="Script" uid="uid://c8w54mexydi4n" path="res://scripts/components/DrawingCanvas.gd" id="3_t7jbx"]
+[ext_resource type="FontFile" uid="uid://0gtsrxp1nuwb" path="res://assets/fonts/Pixel Digivolve Italic.otf" id="4_t2p6t"]
 
 [node name="ChallengeBase" instance=ExtResource("1_0h33l")]
 script = ExtResource("2_tre25")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+[node name="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
+visible = true
+modulate = Color(1, 1, 1, 0)
+
+[node name="QuestionTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.4, 0.113725, 0.105882, 1)
+theme_override_fonts/normal_font = ExtResource("3_0jh17")
+theme_override_fonts/italics_font = ExtResource("4_t2p6t")
+horizontal_alignment = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="1"]
 layout_mode = 2
 
 [node name="LeftColumnContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/HBoxContainer" index="0"]

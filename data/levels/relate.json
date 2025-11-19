@@ -1,5 +1,8 @@
 {
 	"relate_test": {
+		"title": "Capitais da América",
+		"instructions": "Clique em um país à esquerda e depois em sua capital à direita para conectar.",
+		"question": "Conecte os Países às suas Capitais:",
 		"items_left_column": [
 			{"id": "pais_brasil", "text": "Brasil"},
 			{"id": "pais_eua", "text": "Estados Unidos"}
@@ -14,6 +17,9 @@
 		]
 	},
 	"relate_mat_1": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Clique em um item à esquerda e depois em seu correspondente à direita para conectar.",
+		"question": "Relacione as imagens marcando o tipo de material utilizado em sua produção.",
 		"items_left_column": [
 			{"id": "jarro_barro", "image_path": "res://assets/images/jarro_barro.png"},
 			{"id": "botas_couro", "image_path": "res://assets/images/botas_couro.png"},
@@ -31,22 +37,22 @@
 		]
 	},
 	"relate_mat_2": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Clique em um item à esquerda e depois em seu correspondente à direita para conectar.",
+		"question": "Cada parte de um carro é realizada com diferentes tipos de materiais. Relacione a coluna com os materiais compostos na fabricação das partes de um carro.",
 		"items_left_column": [
 			{"id": "pneu", "text": "Pneu"},
 			{"id": "banco", "text": "Banco"},
-			{"id": "para-brisa", "text": "Para-brisa"},
 			{"id": "capo", "text": "Capô"}
 		],
 		"items_right_column": [
 			{"id": "couro", "text": "Couro"},
 			{"id": "borracha", "text": "Borracha"},
-			{"id": "vidro", "text": "Vidro"},
 			{"id": "aco", "text": "Aço"}
 		],
 		"correct_connections": [
 			{"left_id": "pneu", "right_id": "borracha"},
 			{"left_id": "banco", "right_id": "couro"},
-			{"left_id": "para-brisa", "right_id": "vidro"},
 			{"left_id": "capo", "right_id": "aco"}
 		]
 	}

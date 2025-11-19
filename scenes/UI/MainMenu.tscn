@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwtpjkr3xakir"]
+[gd_scene load_steps=7 format=3 uid="uid://bwtpjkr3xakir"]
 
 [ext_resource type="Theme" uid="uid://3nwpa37w67em" path="res://assets/UI/MenuInicialTema.tres" id="1_3h7gc"]
 [ext_resource type="Script" uid="uid://bpyic1w158pkn" path="res://scripts/UI/MainMenu.gd" id="1_11hie"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_58fj5"]
-[ext_resource type="Texture2D" uid="uid://hgwymituomox" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="3_4vh8y"]
+[ext_resource type="Texture2D" uid="uid://belp6i61qr8ex" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="3_4vh8y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4vh8y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b1p1q"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -52,18 +56,21 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_58fj5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4vh8y")
 text = "Jogar"
 
 [node name="OptionsButton" type="Button" parent="TextureRect/MarginContainer/MenuOptions"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_58fj5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b1p1q")
 text = "Opções"
 
 [node name="QuitButton" type="Button" parent="TextureRect/MarginContainer/MenuOptions"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_58fj5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b1p1q")
 text = "Sair"
 
 [connection signal="pressed" from="TextureRect/MarginContainer/MenuOptions/PlayButton" to="." method="_on_botao_jogar_pressionado"]

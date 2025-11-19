@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://c87eplpgowiob"]
+[gd_scene load_steps=8 format=3 uid="uid://c87eplpgowiob"]
 
 [ext_resource type="Script" uid="uid://dbo8epnxmbjta" path="res://scripts/UI/StudentSelection.gd" id="1_vqok5"]
-[ext_resource type="Theme" path="res://assets/UI/StudentSelectionTema.tres" id="1_wy60f"]
 [ext_resource type="Texture2D" uid="uid://d223ecvdflouy" path="res://assets/backgrounds/Background.png" id="2_wmhnq"]
-[ext_resource type="Texture2D" uid="uid://hgwymituomox" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="3_70wms"]
+[ext_resource type="Texture2D" uid="uid://belp6i61qr8ex" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="3_70wms"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="3_84o3k"]
 [ext_resource type="Theme" uid="uid://3nwpa37w67em" path="res://assets/UI/MenuInicialTema.tres" id="3_mtaqb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wy60f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70wms"]
 
 [node name="StudentSelection" type="Control"]
 self_modulate = Color(0.6, 0.345098, 0.164706, 1)
@@ -15,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_wy60f")
+theme = ExtResource("3_mtaqb")
 script = ExtResource("1_vqok5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -107,15 +110,18 @@ theme = ExtResource("3_mtaqb")
 theme_override_colors/font_placeholder_color = Color(0.776471, 0.592157, 0.380392, 1)
 theme_override_colors/font_color = Color(0.262745, 0.156863, 0.0941176, 1)
 theme_override_fonts/font = ExtResource("3_84o3k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wy60f")
 placeholder_text = "Digite seu nome aqui"
 alignment = 1
 
 [node name="CreateStudentButton" type="Button" parent="TextureRect/MarginContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_mtaqb")
 theme_override_fonts/font = ExtResource("3_84o3k")
-text = "Criar e Entrar"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_70wms")
+text = "Criar"
 
 [node name="HSeparator3" type="HSeparator" parent="TextureRect/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)

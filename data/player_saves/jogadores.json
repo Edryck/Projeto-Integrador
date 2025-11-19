@@ -26,14 +26,14 @@
 				"fase_mat"
 			],
 			"nome": "Teste",
-			"pontuacao": 2835.0
+			"pontuacao": 6405.0
 		},
 		"tefasa": {
 			"data_criacao": "2025-11-12T13:01:59",
 			"desafios_completados": [],
 			"fases_completadas": [],
 			"nome": "tefasa",
-			"pontuacao": 0
+			"pontuacao": 0.0
 		}
 	},
 	"ultimo_jogador": "Teste",

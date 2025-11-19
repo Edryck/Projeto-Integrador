@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmddvkgf3ld0d"
+path="res://.godot/imported/Musica fase.mp3-c9c62686a2968873629599d73eb6c85b.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Musica fase.mp3"
+dest_files=["res://.godot/imported/Musica fase.mp3-c9c62686a2968873629599d73eb6c85b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

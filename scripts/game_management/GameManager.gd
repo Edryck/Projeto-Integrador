@@ -4,6 +4,14 @@ extends Node
 # Singleton do GameManager
 static var instance = null
 
+# Cache para armazenar o conteúdo dos desafios depois de carregá-los pela primeira vez
+var cache_conteudo_desafios: Dictionary = {}
+const CAMINHOS_CONTEUDO: Dictionary = {
+	"quiz": "res://data/levels/quiz.json",      # Seu arquivo de quiz
+	"relate": "res://data/levels/relate.json",  # Crie este arquivo para desafios 'relate'
+	"dragdrop": "res://data/levels/dragdrop.json", # Crie este arquivo para desafios 'dragdrop'
+}
+
 # Dados atuais do jogador, mantidos sempre em memória enquanto a sessão durar
 var jogador_atual: Dictionary = {
 	"nome": "",
@@ -172,3 +180,36 @@ func obter_pontuacao_jogador() -> int:
 	if jogador_atual.has("pontuacao"):
 		return int(jogador_atual["pontuacao"])
 	return 0
+
+# Retorna o dicionário completo do desafio (perguntas, opções, etc.) pelo ID
+func obter_conteudo_desafio(id_desafio: String, tipo_desafio: String) -> Dictionary:
+	# Verifica se o tipo de desafio é suportado
+	if not CAMINHOS_CONTEUDO.has(tipo_desafio):
+		printerr("GameManager: Tipo de desafio desconhecido e sem mapeamento de arquivo: ", tipo_desafio)
+		return {}
+	
+	# Checa se o conteúdo desse TIPO já foi carregado no cache
+	if not cache_conteudo_desafios.has(tipo_desafio):
+		var caminho_arquivo = CAMINHOS_CONTEUDO[tipo_desafio]
+		var dados_do_arquivo = {}
+		
+		var arquivo = FileAccess.open(caminho_arquivo, FileAccess.READ)
+		if arquivo:
+			var conteudo = arquivo.get_as_text()
+			var json = JSON.new()
+			if json.parse(conteudo) == OK:
+				dados_do_arquivo = json.get_data()
+			arquivo.close()
+		
+		# Armazena o conteúdo do arquivo inteiro (quiz.json, relate.json, etc.) no cache
+		cache_conteudo_desafios[tipo_desafio] = dados_do_arquivo
+		print("Conteúdo de '", tipo_desafio, "' carregado no cache. Total de desafios: ", dados_do_arquivo.size())
+	
+	# 3. Buscar o ID específico dentro do cache (já carregado)
+	if cache_conteudo_desafios[tipo_desafio].has(id_desafio):
+		var dados = cache_conteudo_desafios[tipo_desafio][id_desafio].duplicate(true)
+		print("Conteúdo do desafio encontrado: ", id_desafio, " (Tipo: ", tipo_desafio, ")")
+		return dados
+	else:
+		printerr("AVISO: Conteúdo do desafio com ID '", id_desafio, "' não encontrado no arquivo '", tipo_desafio, "'.")
+		return {}

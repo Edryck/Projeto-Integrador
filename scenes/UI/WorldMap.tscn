@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6pmrtlwqyj41"]
+[gd_scene load_steps=17 format=3 uid="uid://b6pmrtlwqyj41"]
 
 [ext_resource type="Script" uid="uid://b1e72i6g84lb8" path="res://scripts/UI/WorldMap.gd" id="1_41tqo"]
-[ext_resource type="Texture2D" uid="uid://hgwymituomox" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="2_8iyyc"]
+[ext_resource type="Texture2D" uid="uid://belp6i61qr8ex" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="2_8iyyc"]
 [ext_resource type="Texture2D" uid="uid://d223ecvdflouy" path="res://assets/backgrounds/Background.png" id="2_n50l1"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_sg503"]
 [ext_resource type="Texture2D" uid="uid://dar0pgpj4hcvx" path="res://assets/backgrounds/Tema 1.png" id="3_ofp3r"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://c3bpsxm3egipa" path="res://assets/sprites/next.png" id="7_sg503"]
 [ext_resource type="Theme" uid="uid://bpwut8wetnkp3" path="res://assets/UI/fase_con.tres" id="8_a7lib"]
 [ext_resource type="Texture2D" uid="uid://ecne23nphxyh" path="res://assets/sprites/student_hud.png" id="14_a7lib"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7lib"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nnpuy"]
 texture = ExtResource("14_a7lib")
@@ -104,6 +106,7 @@ offset_left = 69.0
 offset_top = 59.0
 offset_right = 102.0
 offset_bottom = 90.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 text = "quiz"
 
 [node name="fase_dd_teste" type="Button" parent="ThemeViewer/Background1/Theme1"]
@@ -115,6 +118,7 @@ offset_left = 367.0
 offset_top = 55.0
 offset_right = 401.0
 offset_bottom = 86.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 text = "dd"
 
 [node name="fase_relate_teste" type="Button" parent="ThemeViewer/Background1/Theme1"]
@@ -126,6 +130,7 @@ offset_left = 215.0
 offset_top = 56.0
 offset_right = 247.0
 offset_bottom = 87.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 text = "rel"
 
 [node name="fase_mat" type="Button" parent="ThemeViewer/Background1/Theme1"]
@@ -135,9 +140,10 @@ anchor_right = 0.016
 anchor_bottom = 0.016
 offset_left = 305.0
 offset_top = 142.0
-offset_right = 336.0
-offset_bottom = 173.0
+offset_right = 347.0
+offset_bottom = 184.0
 theme = ExtResource("5_8flrr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 
 [node name="fase_hidro" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
@@ -146,9 +152,10 @@ anchor_right = 0.016
 anchor_bottom = 0.016
 offset_left = 104.0
 offset_top = 233.0
-offset_right = 136.0
-offset_bottom = 264.0
+offset_right = 146.0
+offset_bottom = 275.0
 theme = ExtResource("6_8iyyc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 
 [node name="fase_recic" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
@@ -157,9 +164,10 @@ anchor_right = 0.016
 anchor_bottom = 0.016
 offset_left = 368.0
 offset_top = 316.0
-offset_right = 400.0
-offset_bottom = 347.0
+offset_right = 410.0
+offset_bottom = 358.0
 theme = ExtResource("5_saod2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 
 [node name="fase_consumo" type="Button" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
@@ -168,9 +176,10 @@ anchor_right = 0.016
 anchor_bottom = 0.016
 offset_left = 238.0
 offset_top = 411.0
-offset_right = 270.0
-offset_bottom = 442.0
+offset_right = 280.0
+offset_bottom = 453.0
 theme = ExtResource("8_a7lib")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 
 [node name="Theme2" type="Control" parent="ThemeViewer/Background1"]
 visible = false
@@ -202,16 +211,12 @@ expand_mode = 1
 [node name="fase_nutri" type="Button" parent="ThemeViewer/Background1/Theme2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.208
-anchor_top = 0.332
-anchor_right = 0.271
-anchor_bottom = 0.41
-offset_left = 135.0
-offset_top = 91.0
-offset_right = 142.5
-offset_bottom = 91.0
-text = "nut
-"
+anchor_left = 0.468
+anchor_top = 0.226
+anchor_right = 0.568
+anchor_bottom = 0.326
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
+text = "nutri"
 
 [node name="fase_habito" type="Button" parent="ThemeViewer/Background1/Theme2"]
 layout_mode = 1
@@ -222,8 +227,9 @@ anchor_right = 0.552
 anchor_bottom = 0.589
 offset_left = -140.5
 offset_top = -91.0
-offset_right = -135.0
-offset_bottom = -87.5
+offset_right = -124.0
+offset_bottom = -76.5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 text = "hab"
 
 [node name="Theme3" type="Control" parent="ThemeViewer/Background1"]
@@ -260,8 +266,9 @@ anchor_right = 0.016
 anchor_bottom = 0.016
 offset_left = 109.0
 offset_top = 165.0
-offset_right = 140.0
-offset_bottom = 196.0
+offset_right = 151.0
+offset_bottom = 207.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 text = "con"
 
 [node name="PreviousThemeButton" type="TextureButton" parent="ThemeViewer/Background1"]
@@ -322,11 +329,13 @@ size_flags_vertical = 4
 [node name="StudentNameLabel" type="Label" parent="MarginContainer/StudentHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 theme_override_fonts/font = ExtResource("2_sg503")
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/StudentHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 theme_override_fonts/font = ExtResource("2_sg503")
 
 [connection signal="gui_input" from="ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]

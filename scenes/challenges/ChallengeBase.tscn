@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm5575sipopee"]
+[gd_scene load_steps=8 format=3 uid="uid://cm5575sipopee"]
 
 [ext_resource type="Script" uid="uid://nmgb7i4wgbro" path="res://scripts/challenges/ChallengeBase.gd" id="1_xetyg"]
 [ext_resource type="Texture2D" uid="uid://d223ecvdflouy" path="res://assets/backgrounds/Background.png" id="2_8jpql"]
+[ext_resource type="Texture2D" uid="uid://belp6i61qr8ex" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="2_mx6n8"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="3_ywjqw"]
+[ext_resource type="Theme" uid="uid://3nwpa37w67em" path="res://assets/UI/MenuInicialTema.tres" id="5_dyipe"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ro30q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywjqw"]
 
 [node name="ChallengeBase" type="Control"]
 layout_mode = 3
@@ -14,6 +18,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xetyg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mx6n8")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -62,6 +76,7 @@ alignment = 1
 [node name="MissionTitleLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 theme_override_fonts/font = ExtResource("3_ywjqw")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -74,6 +89,7 @@ layout_mode = 2
 [node name="InstructionsLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 theme_override_fonts/font = ExtResource("3_ywjqw")
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -96,10 +112,13 @@ theme_override_fonts/font = ExtResource("3_ywjqw")
 
 [node name="MenuButton" type="Button" parent="MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme = ExtResource("5_dyipe")
 theme_override_fonts/font = ExtResource("3_ywjqw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ywjqw")
 text = "Menu"
 
 [connection signal="pressed" from="MarginContainer/MenuButton" to="." method="_on_menu_pressionado"]

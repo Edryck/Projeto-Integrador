@@ -60,6 +60,46 @@ func obter_proximo_desafio() -> Dictionary:
 	
 	return desafio
 
+func carregar_proximo_desafio():
+	var desafio = obter_proximo_desafio() # Retorna { "type": "quiz", "id": "mat_1" }
+	
+	if desafio.is_empty():
+		printerr("SceneManager: Tentativa de carregar desafio, mas a lista está vazia.")
+		return
+	
+	var id_desafio = desafio.get("id", "")
+	var tipo_desafio = desafio.get("type", "")
+	var dados_completos = GameManager.instance.obter_conteudo_desafio(id_desafio, tipo_desafio) 
+	
+	if dados_completos.is_empty():
+		printerr("SceneManager: Conteúdo do desafio (", id_desafio, ") não encontrado!")
+		return
+	
+	dados_completos["id"] = id_desafio
+	dados_completos["type"] = tipo_desafio
+	
+	preparar_desafio_especifico(dados_completos)
+	
+	var caminho_cena = ""
+	# Mapear o tipo de desafio para o arquivo .tscn correspondente
+	match tipo_desafio:
+		"quiz":
+			caminho_cena = "res://scenes/challenges/QuizChallenge.tscn"
+		"relate":
+			caminho_cena = "res://scenes/challenges/RelateChallenge.tscn"
+		"dragdrop":
+			caminho_cena = "res://scenes/challenges/DragDropChallenge.tscn"
+		# Adicione outros tipos aqui
+		_:
+			printerr("SceneManager: Tipo de desafio desconhecido: ", tipo_desafio)
+			return
+
+	# Preparar os dados para que a próxima cena possa usá-los (usando obter_dados_desafio_atual)
+	preparar_desafio_especifico(dados_completos)
+	
+	print("SceneManager: Carregando próximo desafio (", tipo_desafio, ") em ", caminho_cena)
+	get_tree().change_scene_to_file(caminho_cena)
+
 # Avançar para o próximo desafio (incrementar índice)
 func avancar_para_proximo_desafio():
 	desafio_atual_index += 1

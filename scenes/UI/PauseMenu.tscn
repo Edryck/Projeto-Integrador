@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckjr4nvparyny"]
+[gd_scene load_steps=4 format=3 uid="uid://ckjr4nvparyny"]
 
 [ext_resource type="Script" uid="uid://cmsro3yf5sr10" path="res://scripts/UI/PauseMenu.gd" id="1_fsae6"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_6q0ex"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6q0ex"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -52,16 +54,19 @@ theme_override_constants/separation = 50
 [node name="ResumeButton" type="Button" parent="TextureRect/MarginContainer/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6q0ex")
 text = "Continuar"
 
 [node name="RestartButton" type="Button" parent="TextureRect/MarginContainer/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6q0ex")
 text = "Recomeçar Fase"
 
 [node name="QuitToMapButton" type="Button" parent="TextureRect/MarginContainer/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6q0ex")
 text = "Sair para o mapa"
 
 [connection signal="pressed" from="TextureRect/MarginContainer/TextureRect/VBoxContainer/ResumeButton" to="." method="_on_retomar_pressionado"]

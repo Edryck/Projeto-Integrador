@@ -19,9 +19,9 @@ func _ready():
 	super._ready()
 	print("DRAG DROP CHALLENGE - Carregado")
 
-func _setup_desafio_especifico(dados: Dictionary):
+func _setup_desafio_especifico():
 	print("DragDropChallenge._setup_desafio_especifico()")
-	carregar_dados_desafio(dados)
+	carregar_dados_desafio(dados_desafio)
 	configurar_interface()
 
 func carregar_dados_desafio(dados: Dictionary):

@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c4dqohwxcfs4r"]
+
+[ext_resource type="Texture2D" uid="uid://b811k75haxpud" path="res://assets/sprites/opcao_incorreta.png" id="1_gfbsg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfbsg"]
+texture = ExtResource("1_gfbsg")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ag3b3"]
+texture = ExtResource("1_gfbsg")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_gfbsg")
+Button/styles/normal = SubResource("StyleBoxTexture_ag3b3")

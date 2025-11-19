@@ -1067,17 +1067,12 @@ cache/0/24/0/underline_position = 2.40625
 cache/0/24/0/underline_thickness = 1.20313
 cache/0/24/0/scale = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpmr8"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0vdk8"]
+texture = ExtResource("1_648gs")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds2cu"]
 content_margin_left = 4.0
@@ -1129,13 +1124,13 @@ texture_margin_right = 5.0
 texture_margin_bottom = 10.0
 
 [resource]
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.435294, 0.113725, 0.105882, 1)
+Button/colors/font_hover_color = Color(0.435294, 0.113725, 0.105882, 1)
+Button/colors/font_hover_pressed_color = Color(0.435294, 0.113725, 0.105882, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.435294, 0.113725, 0.105882, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/colors/icon_focus_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -1148,9 +1143,10 @@ Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/fonts/font = SubResource("FontFile_wakoy")
-Button/styles/disabled = SubResource("StyleBoxFlat_jpmr8")
+Button/styles/disabled = SubResource("StyleBoxTexture_0vdk8")
 Button/styles/focus = SubResource("StyleBoxFlat_ds2cu")
 Button/styles/hover = SubResource("StyleBoxTexture_jj8is")
 Button/styles/normal = SubResource("StyleBoxTexture_8nihv")
 Button/styles/pressed = SubResource("StyleBoxTexture_8bcxc")
+Label/colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 LineEdit/styles/normal = SubResource("StyleBoxTexture_wakoy")

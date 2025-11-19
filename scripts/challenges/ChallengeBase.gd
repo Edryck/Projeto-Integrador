@@ -54,15 +54,18 @@ func iniciar_desafio(dados: Dictionary):
 	# Preenche títulos e instruções
 	if mission_title_label and dados.has("title"):
 		mission_title_label.text = dados["title"]
+		mission_title_label.add_theme_color_override("color_font", Color8(111, 27, 29))
 		print("   - Título definido: ", dados["title"])
 	if instructions_label and dados.has("instructions"):
 		instructions_label.text = dados["instructions"]
+		instructions_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+		instructions_label.add_theme_color_override("color_font", Color8(111, 27, 29))
 		print("   - Instruções definidas")
 	
-	_setup_desafio_especifico(dados)
+	_setup_desafio_especifico()
 
 # Cada script de desafio (Quiz, DragDrop) sobrescreve esta função.
-func _setup_desafio_especifico(dados: Dictionary):
+func _setup_desafio_especifico():
 	print("ChallengeBase: _setup_desafio_especifico (Implementação base vazia)")
 	# Deixe vazio. Os filhos vão implementar.
 	pass
@@ -106,8 +109,7 @@ func verificar_e_mostrar_reward_se_fase_completa(sucesso: bool, pontuacao: int, 
 		print("Ainda há mais desafios na fase - avançando sem mostrar reward")
 		# Avançar o índice para o próximo desafio
 		SceneManager.avancar_para_proximo_desafio()
-		await get_tree().create_timer(0.3).timeout
-		get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
+		SceneManager.carregar_proximo_desafio()
 	else:
 		# Fase completa, agora mostra RewardScreen
 		print("Fase completa! Mostrando RewardScreen...")
@@ -154,3 +156,7 @@ func _on_pause_sair():
 	get_tree().paused = false
 	SceneManager.limpar_dados()
 	get_tree().change_scene_to_file("res://scenes/UI/WorldMap.tscn")
+
+
+func _on_menu_button_pressed() -> void:
+	$confirm.play()

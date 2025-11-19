@@ -40,6 +40,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.435294, 0.113725, 0.105882, 1)
 theme_override_fonts/normal_font = ExtResource("3_8n0mu")
 theme_override_fonts/italics_font = ExtResource("4_3lek6")
 

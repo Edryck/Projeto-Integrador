@@ -29,6 +29,7 @@ func criar_botao_voltar():
 	botao_voltar.text = " < Menu Principal"
 	botao_voltar.custom_minimum_size = Vector2(75, 40)
 	botao_voltar.position = Vector2(10, 10)
+	botao_voltar.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	
 	# Aplica a fonte no texto
 	var fonte = preload("res://assets/fonts/Pixel Digivolve.otf")
@@ -69,6 +70,7 @@ func carregar_lista_jogadores():
 			var botao = Button.new()
 			botao.text = nome
 			botao.custom_minimum_size = Vector2(250, 50)
+			botao.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 			
 			# Aplica o theme
 			var tema = preload("res://assets/UI/MenuInicialTema.tres")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bert5llxw5c6w"
+path="res://.godot/imported/Resposta errada.mp3-f3d6c37f959455e48eb83cf5f53f3969.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Resposta errada.mp3"
+dest_files=["res://.godot/imported/Resposta errada.mp3-f3d6c37f959455e48eb83cf5f53f3969.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

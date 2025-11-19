@@ -7,6 +7,12 @@ extends "res://scripts/challenges/ChallengeBase.gd"
 @onready var label_feedback: Label = find_child("FeedbackLabel", true, false)
 @onready var botao_proximo: Button = find_child("NextButton", true, false)
 
+# Temas e fonte
+var fonte = preload("res://assets/fonts/Pixel Digivolve.otf")
+var tema_opcao_correta = preload("res://assets/UI/tema_opcao_correta.tres")
+var tema_opcao_incorreta = preload("res://assets/UI/tema_opcao_incorreta.tres")
+var tema = preload("res://assets/UI/MenuInicialTema.tres")
+
 # Variáveis do quiz
 var perguntas: Array = []
 var pergunta_atual: int = 0
@@ -25,13 +31,16 @@ func _ready():
 		botao_proximo.visible = false
 		print("Botão próximo configurado")
 
-func _setup_desafio_especifico(dados: Dictionary):
+func _setup_desafio_especifico():
 	print("QuizChallenge._setup_desafio_especifico()")
-	carregar_perguntas(dados)
+	carregar_perguntas(dados_desafio)
 	mostrar_pergunta_atual()
 
 func carregar_perguntas(dados: Dictionary):
 	print("Carregando perguntas...")
+	
+	print("Dicionário de dados recebido: ", dados)
+	
 	perguntas.clear()
 	acertos = 0
 	pergunta_atual = 0
@@ -41,7 +50,8 @@ func carregar_perguntas(dados: Dictionary):
 		print("Questões carregadas: ", perguntas.size())
 	elif dados.has("question"):
 		perguntas = [{
-			"question_text": dados.get("question", "Pergunta não encontrada"),
+			"question": dados.get("question", "Pergunta não encontrada"), 
+			"instructions": dados.get("instructions", "Leia e selecione."), 
 			"options": dados.get("options", ["Opção A", "Opção B"]),
 			"correct_answer": dados.get("correct_answer", "Opção A")
 		}]
@@ -68,6 +78,7 @@ func mostrar_pergunta_atual():
 	
 	# Mostrar pergunta
 	if label_pergunta:
+		# Altera a cor do texto da pergunta
 		label_pergunta.text = "%s" % [
 			texto_pergunta
 		]
@@ -85,8 +96,21 @@ func mostrar_pergunta_atual():
 	for i in range(opcoes.size()):
 		var botao = Button.new()
 		botao.text = opcoes[i]
-		botao.custom_minimum_size = Vector2(200, 60)
-		botao.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # Expandir horizontalment
+		botao.custom_minimum_size = Vector2(200, 90)
+		botao.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # Expandir horizontalmente
+		botao.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+		botao.add_theme_font_override("font", fonte)
+		botao.theme = tema
+		# Solução para o problema do texto do botão ultrapassar o tamanho
+		botao.text = ""
+		var label_do_botao = Label.new()
+		label_do_botao.text = opcoes[i] 
+		label_do_botao.autowrap_mode = TextServer.AUTOWRAP_WORD
+		label_do_botao.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		label_do_botao.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label_do_botao.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		botao.add_child(label_do_botao)
+		
 		# Conectar sinal - importante: bind para passar o índice
 		botao.pressed.connect(_on_opcao_selecionada.bind(i))
 		container_opcoes.add_child(botao)
@@ -121,6 +145,9 @@ func _on_opcao_selecionada(indice_opcao: int):
 	print("   - Resposta selecionada: '", resposta_selecionada, "'")
 	print("   - Resposta correta: '", resposta_correta, "'")
 	
+	var botoes = container_opcoes.get_children()
+	var botao_selecionado = botoes[indice_opcao]
+	
 	# Desabilitar todos os botões
 	for botao in container_opcoes.get_children():
 		if botao is Button:
@@ -134,11 +161,21 @@ func _on_opcao_selecionada(indice_opcao: int):
 		pontuacao += 10
 		print("Resposta CORRETA! +10 pontos")
 		
+		botao_selecionado.theme = tema_opcao_correta
+		
 		if label_feedback:
 			label_feedback.text = "✓ Correto! +10 pontos"
 			label_feedback.modulate = Color.GREEN
 	else:
 		print("Resposta INCORRETA")
+		
+		botao_selecionado.theme = tema_opcao_incorreta
+		
+		var indice_correto = pergunta["options"].find(pergunta["correct_answer"])
+		if indice_correto != indice_opcao:
+			var botao_correto = botoes[indice_correto]
+			botao_correto.theme = tema_opcao_correta
+		
 		if label_feedback:
 			label_feedback.text = "✗ Incorreto!\nResposta correta: " + resposta_correta
 			label_feedback.modulate = Color.RED
@@ -146,7 +183,7 @@ func _on_opcao_selecionada(indice_opcao: int):
 	# Mostrar botão próximo
 	if botao_proximo:
 		# Trocar texto se for a última pergunta
-		if pergunta_atual >= perguntas.size() - 1:
+		if pergunta_atual == perguntas.size() - 1:
 			botao_proximo.text = "Finalizar Quiz"
 		else:
 			botao_proximo.text = "Próxima Pergunta"

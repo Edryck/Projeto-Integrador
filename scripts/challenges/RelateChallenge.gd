@@ -27,9 +27,15 @@ func _ready():
 		area_desenho.mouse_filter = Control.MOUSE_FILTER_PASS
 		print("Área de desenho configurada")
 
-func _setup_desafio_especifico(dados: Dictionary):
+func _setup_desafio_especifico():
 	print("RelateChallenge._setup_desafio_especifico()")
-	carregar_itens(dados)
+	
+	var label_principal: RichTextLabel = find_child("QuestionTextLabel", true, false) 
+	
+	if label_principal and dados_desafio.has("question"):
+		label_principal.text = dados_desafio["question"]
+	
+	carregar_itens(dados_desafio)
 	configurar_interface()
 
 func carregar_itens(dados: Dictionary):
@@ -64,7 +70,7 @@ func configurar_interface():
 	# Criar itens da esquerda
 	for item_data in itens_esquerda:
 		var botao = Button.new()
-		botao.custom_minimum_size = Vector2(100, 100)
+		botao.custom_minimum_size = Vector2(80, 80)
 		
 		# Configurar visual
 		if item_data.has("text"):
@@ -85,7 +91,7 @@ func configurar_interface():
 	# Criar itens da direita
 	for item_data in itens_direita:
 		var botao = Button.new()
-		botao.custom_minimum_size = Vector2(100, 100)
+		botao.custom_minimum_size = Vector2(80, 80)
 		
 		# Configurar visual
 		if item_data.has("text"):
@@ -255,8 +261,8 @@ func _desenhar_linhas():
 		var botao_destino = _obter_botao_por_id(id_destino)
 		
 		if botao_origem and botao_destino:
-			var inicio_global = botao_origem.global_position + botao_origem.size / 2
-			var fim_global = botao_destino.global_position + botao_destino.size / 2
+			var inicio_global = botao_origem.global_position + Vector2(botao_origem.size.x, botao_origem.size.y / 2)
+			var fim_global = botao_destino.global_position + Vector2(0, botao_destino.size.y / 2)
 			
 			var inicio_local = inicio_global - area_global_pos
 			var fim_local = fim_global - area_global_pos

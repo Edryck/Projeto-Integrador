@@ -20,11 +20,17 @@ func _ready():
 		iniciar_proximo_desafio()
 
 func criar_botao_voltar():
+	var fonte = load("res://assets/fonts/Pixel Digivolve.otf")
+	var tema = load("res://assets/UI/MenuInicialTema.tres")
+	
 	# Criar botão no canto superior esquerdo
 	var botao_voltar = Button.new()
 	botao_voltar.text = " < Voltar"
 	botao_voltar.custom_minimum_size = Vector2(75, 40)
-	botao_voltar.position = Vector2(10, 80)  # Abaixo do HUD do jogador
+	botao_voltar.position = Vector2(10, 90)  # Abaixo do HUD do jogador
+	botao_voltar.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	botao_voltar.add_theme_font_override("font", fonte)
+	botao_voltar.theme = tema
 	botao_voltar.pressed.connect(_on_botao_voltar_pressionado)
 	add_child(botao_voltar)
 	print("Botão voltar adicionado ao WorldMap")

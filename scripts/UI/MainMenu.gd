@@ -14,3 +14,21 @@ func _on_botao_opcoes_pressionado():
 func _on_botao_sair_pressionado():
 	print("Saindo do jogo...")
 	get_tree().quit()
+
+func _on_play_button_pressed():
+	$Confirm.play()
+
+func _on_play_button_mouse_entered() -> void:
+	$hover.play()
+
+func _on_options_button_pressed() -> void:
+	$Confirm.play()
+
+func _on_options_button_mouse_entered() -> void:
+	$hover.play()
+
+func _on_quit_button_pressed() -> void:
+	$Confirm.play()
+
+func _on_quit_button_mouse_entered() -> void:
+	$hover.play()
