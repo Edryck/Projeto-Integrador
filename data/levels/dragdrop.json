@@ -28,5 +28,53 @@
 			{ "id": "mineral", "accepts": "sal" },
 			{ "id": "animal", "accepts": "mel" }
 		]
+	},
+	"dd_hidro_1": {
+		"title": "Ciclo Hidrológico",
+		"instructions": "Arraste os três objetos para os seus respectivos estados abaixo: ",
+		"draggable_items": [
+			{ "id": "agua", "image_path": "res://assets/images/copo_agua.png" },
+			{ "id": "gelo", "image_path": "res://assets/images/cubo_gelo.png" },
+			{ "id": "vapor", "image_path": "res://assets/images/agua_fervendo.png" },
+		],
+		"drop_zones": [
+			{ "id": "Estado Gasoso", "accepts": "vapor" },
+			{ "id": "Estado Sólido", "accepts": "gelo" },
+			{ "id": "Estado Líquido", "accepts": "agua" }
+		]
+	},
+	"dd_5rs_1": {
+		"title": "Os 5 R's da Sustentabilidade",
+		"instructions": "Arraste cada ação ou definição para o princípio dos 5 R's correspondente.",
+		"draggable_items": [
+			{ "id": "item_repensar", "text": "Refletir sobre hábitos e necessidade de compra." },
+			{ "id": "item_recusar", "text": "Dizer não a produtos desnecessários ou nocivos." },
+			{ "id": "item_reduzir", "text": "Diminuir o consumo e evitar desperdícios." },
+			{ "id": "item_reutilizar", "text": "Dar nova utilidade a objetos e embalagens." },
+			{ "id": "item_reciclar", "text": "Transformar material usado em novos produtos." }
+		],
+		"drop_zones": [
+			{ "id": "base_repensar", "accepts": "item_repensar" },
+			{ "id": "base_recusar", "accepts": "item_recusar" },
+			{ "id": "base_reduzir", "accepts": "item_reduzir" },
+			{ "id": "base_reutilizar", "accepts": "item_reutilizar" },
+			{ "id": "base_reciclar", "accepts": "item_reciclar" }
+		]
+	},
+	"dd_recic_1": {
+		"title": "Reciclagem",
+		"instructions": "Analise as imagens e arraste corretamente os tipos de lixo às respectivas lixeiras. ",
+		"draggable_items": [
+			{ "id": "papelao", "image_path": "res://assets/images/papelao.png" },
+			{ "id": "garrafa", "image_path": "res://assets/images/garrafa_pet.png" },
+			{ "id": "lata", "image_path": "res://assets/images/lata.png" },
+			{ "id": "pote", "image_path": "res://assets/images/pote.png" }
+		],
+		"drop_zones": [
+			{ "id": "res://assets/images/lixeira_amarela.png", "accepts": "lata" },
+			{ "id": "res://assets/images/lixeira_azul.png", "accepts": "papelao" },
+			{ "id": "res://assets/images/lixeira_vermelha.png", "accepts": "garrafa" },
+			{ "id": "res://assets/images/lixeira_verde.png", "accepts": "pote" }
+		]
 	}
 }

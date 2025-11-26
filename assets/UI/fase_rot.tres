@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b7ehht40qc600"]
+
+[ext_resource type="Texture2D" uid="uid://dcex4xtgp0rjh" path="res://assets/sprites/botao_rot_hover.png" id="1_rb8r7"]
+[ext_resource type="Texture2D" uid="uid://b3xsvh6tggnb7" path="res://assets/sprites/botao_rot.png" id="2_5c53r"]
+[ext_resource type="Texture2D" uid="uid://bby8h4eukff72" path="res://assets/sprites/botao_rot_pressed.png" id="3_jiuad"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w8dwl"]
+texture = ExtResource("1_rb8r7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xuq85"]
+texture = ExtResource("2_5c53r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw5a8"]
+texture = ExtResource("3_jiuad")
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxTexture_w8dwl")
+Button/styles/normal = SubResource("StyleBoxTexture_xuq85")
+Button/styles/pressed = SubResource("StyleBoxTexture_hw5a8")

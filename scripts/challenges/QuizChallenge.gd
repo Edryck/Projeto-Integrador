@@ -94,6 +94,7 @@ func mostrar_pergunta_atual():
 	
 	# Criar novos botões de opção
 	for i in range(opcoes.size()):
+		var conteudo_opcao = opcoes[i]
 		var botao = Button.new()
 		botao.text = opcoes[i]
 		botao.custom_minimum_size = Vector2(200, 90)
@@ -103,13 +104,44 @@ func mostrar_pergunta_atual():
 		botao.theme = tema
 		# Solução para o problema do texto do botão ultrapassar o tamanho
 		botao.text = ""
-		var label_do_botao = Label.new()
-		label_do_botao.text = opcoes[i] 
-		label_do_botao.autowrap_mode = TextServer.AUTOWRAP_WORD
-		label_do_botao.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		label_do_botao.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label_do_botao.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		botao.add_child(label_do_botao)
+		var is_imagem = str(conteudo_opcao).begins_with("res://") or str(conteudo_opcao).ends_with(".png") or str(conteudo_opcao).ends_with(".jpg")
+		
+		if is_imagem:
+			# LÓGICA DE IMAGEM
+			var texture_rect = TextureRect.new()
+			var texture = load(conteudo_opcao)
+			if texture:
+				texture_rect.texture = texture
+				texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+				texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+				texture_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+				
+				# Adiciona margem para a imagem não colar na borda do botão
+				texture_rect.offset_left = 10
+				texture_rect.offset_top = 10
+				texture_rect.offset_right = -10
+				texture_rect.offset_bottom = -10
+				
+				# Importante: Ignorar mouse na imagem para o clique ir para o botão
+				texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE 
+				botao.add_child(texture_rect)
+			else:
+				# Fallback se a imagem não carregar
+				botao.text = "Erro img"
+		else:
+			var label_do_botao = Label.new()
+			label_do_botao.text = str(conteudo_opcao)
+			label_do_botao.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			label_do_botao.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+			label_do_botao.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			label_do_botao.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+			label_do_botao.mouse_filter = Control.MOUSE_FILTER_IGNORE # Clique passa para o botão
+			
+			# Margem para texto não colar na borda
+			label_do_botao.offset_left = 10
+			label_do_botao.offset_right = -10
+			
+			botao.add_child(label_do_botao)
 		
 		# Conectar sinal - importante: bind para passar o índice
 		botao.pressed.connect(_on_opcao_selecionada.bind(i))

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo2afqwivd558"
-path="res://.godot/imported/Verde.png-f1f1a0aac7493556055c1b0970f141fc.ctex"
+uid="uid://200nv6sot7oa"
+path="res://.godot/imported/nutricao_icone.png-0a0ffbc0a72143aa143db0e2055ca8fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Verde.png"
-dest_files=["res://.godot/imported/Verde.png-f1f1a0aac7493556055c1b0970f141fc.ctex"]
+source_file="res://assets/sprites/nutricao_icone.png"
+dest_files=["res://.godot/imported/nutricao_icone.png-0a0ffbc0a72143aa143db0e2055ca8fa.ctex"]
 
 [params]
 

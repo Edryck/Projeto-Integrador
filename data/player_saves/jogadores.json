@@ -15,7 +15,23 @@
 				"relate_mat_1",
 				"relate_mat_2",
 				"recic_2",
-				"mat_4"
+				"mat_4",
+				"consumo_1",
+				"consumo_3",
+				"const_1",
+				"relate_const_1",
+				"relate_const_2",
+				"relate_consumo_1",
+				"consumo_4",
+				"dd_5rs_1",
+				"recic_3",
+				"recic_4",
+				"recic_6",
+				"recic_1",
+				"recic_5",
+				"hidro_4",
+				"dd_hidro_1",
+				"hidro_5"
 			],
 			"fases_completadas": [
 				"fase_dd_teste",
@@ -23,17 +39,14 @@
 				"fase_relate_teste",
 				"fase_exemplo_completa",
 				"fase_habito",
-				"fase_mat"
+				"fase_mat",
+				"fase_consumo",
+				"fase_const",
+				"fase_recic",
+				"fase_hidro"
 			],
 			"nome": "Teste",
-			"pontuacao": 6405.0
-		},
-		"tefasa": {
-			"data_criacao": "2025-11-12T13:01:59",
-			"desafios_completados": [],
-			"fases_completadas": [],
-			"nome": "tefasa",
-			"pontuacao": 0.0
+			"pontuacao": 8440.0
 		}
 	},
 	"ultimo_jogador": "Teste",

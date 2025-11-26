@@ -18,7 +18,16 @@ self_modulate = Color(1, 1, 1, 0)
 [node name="ChallengeContentContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer" index="4"]
 theme_override_styles/panel = SubResource("StyleBoxTexture_ytub7")
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+[node name="FeedbackLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_8n0mu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer" index="1"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -37,7 +46,7 @@ size_flags_vertical = 4
 
 [node name="QuestionTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="1"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 62)
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.435294, 0.113725, 0.105882, 1)
@@ -50,14 +59,6 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("3_8n0mu")
 text = "Confirmar Resposta"
-
-[node name="FeedbackLabel" type="Label" parent="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2" index="3"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("3_8n0mu")
-horizontal_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/BackGround/MarginContainer/HBoxContainer/VBoxContainer/ChallengeContentContainer/MarginContainer2/NextButton" to="." method="_ir_para_proxima_pergunta"]

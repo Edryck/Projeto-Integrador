@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6pmrtlwqyj41"]
+[gd_scene load_steps=24 format=3 uid="uid://b6pmrtlwqyj41"]
 
 [ext_resource type="Script" uid="uid://b1e72i6g84lb8" path="res://scripts/UI/WorldMap.gd" id="1_41tqo"]
 [ext_resource type="Texture2D" uid="uid://belp6i61qr8ex" path="res://assets/backgrounds/BackgroundMenuInicial.png" id="2_8iyyc"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="2_sg503"]
 [ext_resource type="Texture2D" uid="uid://dar0pgpj4hcvx" path="res://assets/backgrounds/Tema 1.png" id="3_ofp3r"]
 [ext_resource type="Texture2D" uid="uid://blko503yh804n" path="res://assets/backgrounds/Tema 2.png" id="4_44mrp"]
+[ext_resource type="Theme" uid="uid://3nwpa37w67em" path="res://assets/UI/MenuInicialTema.tres" id="4_nnpuy"]
 [ext_resource type="Theme" uid="uid://dyuiinxgr32wi" path="res://assets/UI/fase_mat.tres" id="5_8flrr"]
 [ext_resource type="Texture2D" uid="uid://lr5xdul1c1ua" path="res://assets/backgrounds/Tema 3.png" id="5_ofp3r"]
 [ext_resource type="Theme" uid="uid://cbqtyk8oorwgv" path="res://assets/UI/fase_rec.tres" id="5_saod2"]
@@ -13,7 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://dv1rtgrw43iar" path="res://assets/sprites/previous.png" id="6_ljyde"]
 [ext_resource type="Texture2D" uid="uid://c3bpsxm3egipa" path="res://assets/sprites/next.png" id="7_sg503"]
 [ext_resource type="Theme" uid="uid://bpwut8wetnkp3" path="res://assets/UI/fase_con.tres" id="8_a7lib"]
+[ext_resource type="Theme" uid="uid://ywfsvvycfjq7" path="res://assets/UI/fase_nutri.tres" id="12_g5hql"]
+[ext_resource type="Theme" uid="uid://b15m3ieg046ei" path="res://assets/UI/fase_hab.tres" id="13_g5hql"]
 [ext_resource type="Texture2D" uid="uid://ecne23nphxyh" path="res://assets/sprites/student_hud.png" id="14_a7lib"]
+[ext_resource type="Theme" uid="uid://dc1etwf1toxym" path="res://assets/UI/fase_const.tres" id="15_0tv54"]
+[ext_resource type="Theme" uid="uid://7gckfqxemnug" path="res://assets/UI/fase_lua.tres" id="15_aamua"]
+[ext_resource type="Theme" uid="uid://b7ehht40qc600" path="res://assets/UI/fase_rot.tres" id="16_aamua"]
+[ext_resource type="Theme" uid="uid://bqjrtr24tbh0v" path="res://assets/UI/fase_optico.tres" id="18_phd65"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7lib"]
 
@@ -38,20 +45,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_8iyyc")
 expand_mode = 1
-
-[node name="ThemeTitleLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.051
-anchor_right = 0.5
-anchor_bottom = 0.086
-offset_left = -20.0
-offset_top = -0.0480003
-offset_right = 20.0
-offset_bottom = 0.271999
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_sg503")
 
 [node name="ThemeViewer" type="Control" parent="."]
 layout_mode = 1
@@ -85,6 +78,22 @@ offset_right = 244.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ThemeTitleLabel" type="Label" parent="ThemeViewer/Background1/Theme1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.051
+anchor_right = 0.5
+anchor_bottom = 0.086
+offset_left = -20.0
+offset_top = -66.5
+offset_right = 20.0
+offset_bottom = -64.0
+grow_horizontal = 2
+theme = ExtResource("4_nnpuy")
+theme_override_fonts/font = ExtResource("2_sg503")
+text = "Matéria e Energia"
 
 [node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background1/Theme1"]
 layout_mode = 1
@@ -197,6 +206,22 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ThemeTitleLabel" type="Label" parent="ThemeViewer/Background1/Theme2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.051
+anchor_right = 0.5
+anchor_bottom = 0.086
+offset_left = -20.0
+offset_top = -66.5
+offset_right = 20.0
+offset_bottom = -64.0
+grow_horizontal = 2
+theme = ExtResource("4_nnpuy")
+theme_override_fonts/font = ExtResource("2_sg503")
+text = "Vida e Evolução"
+
 [node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background1/Theme2"]
 layout_mode = 1
 anchors_preset = 15
@@ -215,8 +240,14 @@ anchor_left = 0.468
 anchor_top = 0.226
 anchor_right = 0.568
 anchor_bottom = 0.326
+offset_left = -10.0
+offset_top = -8.0
+offset_right = -10.0
+offset_bottom = -8.0
+theme = ExtResource("12_g5hql")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
-text = "nutri"
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="fase_habito" type="Button" parent="ThemeViewer/Background1/Theme2"]
 layout_mode = 1
@@ -225,12 +256,12 @@ anchor_left = 0.485
 anchor_top = 0.518
 anchor_right = 0.552
 anchor_bottom = 0.589
-offset_left = -140.5
-offset_top = -91.0
-offset_right = -124.0
-offset_bottom = -76.5
+offset_left = -138.5
+offset_top = 48.0
+offset_right = -122.0
+offset_bottom = 62.5
+theme = ExtResource("13_g5hql")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
-text = "hab"
 
 [node name="Theme3" type="Control" parent="ThemeViewer/Background1"]
 visible = false
@@ -248,6 +279,22 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ThemeTitleLabel" type="Label" parent="ThemeViewer/Background1/Theme3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.051
+anchor_right = 0.5
+anchor_bottom = 0.086
+offset_left = -20.0
+offset_top = -66.5
+offset_right = 20.0
+offset_bottom = -64.0
+grow_horizontal = 2
+theme = ExtResource("4_nnpuy")
+theme_override_fonts/font = ExtResource("2_sg503")
+text = "Terra e Universo"
+
 [node name="ThemeBackground" type="TextureRect" parent="ThemeViewer/Background1/Theme3"]
 layout_mode = 1
 anchors_preset = 15
@@ -259,17 +306,53 @@ grow_vertical = 2
 texture = ExtResource("5_ofp3r")
 expand_mode = 1
 
+[node name="fase_lua" type="Button" parent="ThemeViewer/Background1/Theme3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 365.0
+offset_top = 124.0
+offset_right = 407.0
+offset_bottom = 166.0
+theme = ExtResource("15_aamua")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
+
+[node name="fase_rot" type="Button" parent="ThemeViewer/Background1/Theme3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 231.0
+offset_top = 206.0
+offset_right = 273.0
+offset_bottom = 248.0
+theme = ExtResource("16_aamua")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
+
 [node name="fase_const" type="Button" parent="ThemeViewer/Background1/Theme3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.016
 anchor_bottom = 0.016
-offset_left = 109.0
-offset_top = 165.0
-offset_right = 151.0
-offset_bottom = 207.0
+offset_left = 64.0
+offset_top = 135.0
+offset_right = 106.0
+offset_bottom = 177.0
+theme = ExtResource("15_0tv54")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
-text = "con"
+
+[node name="fase_optico" type="Button" parent="ThemeViewer/Background1/Theme3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.016
+anchor_bottom = 0.016
+offset_left = 329.0
+offset_top = 364.0
+offset_right = 371.0
+offset_bottom = 406.0
+theme = ExtResource("18_phd65")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7lib")
 
 [node name="PreviousThemeButton" type="TextureButton" parent="ThemeViewer/Background1"]
 layout_mode = 1
@@ -338,7 +421,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.435294, 0.113725, 0.105882, 1)
 theme_override_fonts/font = ExtResource("2_sg503")
 
-[connection signal="gui_input" from="ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
+[connection signal="gui_input" from="ThemeViewer/Background1/Theme1/ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_quiz_teste" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_dd_teste" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_relate_teste" to="." method="_on_botao_fase_pressionado"]
@@ -346,8 +429,14 @@ theme_override_fonts/font = ExtResource("2_sg503")
 [connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_hidro" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_recic" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme1/fase_consumo" to="." method="_on_botao_fase_pressionado"]
+[connection signal="gui_input" from="ThemeViewer/Background1/Theme2/ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme2/fase_nutri" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background1/Theme2/fase_habito" to="." method="_on_botao_fase_pressionado"]
+[connection signal="gui_input" from="ThemeViewer/Background1/Theme3/ThemeTitleLabel" to="." method="_on_theme_title_label_gui_input"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme3/fase_lua" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme3/fase_rot" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme3/fase_const" to="." method="_on_botao_fase_pressionado"]
+[connection signal="pressed" from="ThemeViewer/Background1/Theme3/fase_optico" to="." method="_on_botao_fase_pressionado"]
 [connection signal="pressed" from="ThemeViewer/Background1/PreviousThemeButton" to="." method="_on_previous_theme_pressed"]
 [connection signal="pressed" from="ThemeViewer/Background1/NextThemeButton" to="." method="_on_next_theme_pressed"]
 [connection signal="gui_input" from="MarginContainer/StudentHUD/MarginContainer/VBoxContainer/StudentNameLabel" to="." method="_on_student_name_label_gui_input"]

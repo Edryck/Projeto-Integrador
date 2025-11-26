@@ -39,9 +39,10 @@
 			{ "type": "quiz", "id": "hidro_2"},
 			{ "type": "quiz", "id": "hidro_3"},
 			{ "type": "quiz", "id": "hidro_4"},
+			{ "type": "dragdrop", "id": "dd_hidro_1"},
 			{ "type": "quiz", "id": "hidro_5"},
 			{ "type": "quiz", "id": "hidro_6"},
-			{ "type": "quiz", "id": "hidro_7"},
+			{ "type": "quiz", "id": "hidro_7"}
 		]
 	},
 	"fase_consumo": {
@@ -49,8 +50,12 @@
 		"challenges": [
 			{ "type": "quiz", "id": "consumo_1"},
 			{ "type": "quiz", "id": "consumo_2"},
+			{ "type": "relate", "id": "relate_consumo_1"},
 			{ "type": "quiz", "id": "consumo_3"},
-			{ "type": "quiz", "id": "consumo_4"}
+			{ "type": "quiz", "id": "consumo_4"},
+			{ "type": "dragdrop", "id": "dd_5rs_1"},
+			{ "type": "quiz", "id": "consumo_5"},
+			{ "type": "quiz", "id": "consumo_6"}
 		]
 	},
 	"fase_recic": {
@@ -58,6 +63,7 @@
 		"challenges": [
 			{ "type": "quiz", "id": "recic_1"},
 			{ "type": "quiz", "id": "recic_2"},
+			{ "type": "dragdrop", "id": "dd_recic_1"},
 			{ "type": "quiz", "id": "recic_3"},
 			{ "type": "quiz", "id": "recic_4"},
 			{ "type": "quiz", "id": "recic_5"},
@@ -77,19 +83,56 @@
 		]
 	},
 	"fase_habito": {
-		"title": "Nutrição do Organismo",
+		"title": "Hábitos Alimentares",
 		"challenges": [
 			{ "type": "quiz", "id": "habito_1"},
 			{ "type": "quiz", "id": "habito_2"},
-			{ "type": "quiz", "id": "habito_3"}
+			{ "type": "quiz", "id": "habito_3"},
+			{ "type": "quiz", "id": "habito_4"},
+			{ "type": "quiz", "id": "habito_5"},
+			{ "type": "quiz", "id": "habito_6"}
 		]
 	},
 	"fase_const": {
 		"title": "Constelações e mapas celestes",
 		"challenges": [
 			{ "type": "quiz", "id": "const_1"},
+			{ "type": "relate", "id": "relate_const_1"},
 			{ "type": "quiz", "id": "const_2"},
-			{ "type": "quiz", "id": "const_3"}
+			{ "type": "quiz", "id": "const_3"},
+			{ "type": "quiz", "id": "const_4"},
+			{ "type": "relate", "id": "relate_const_2"},
+			{ "type": "quiz", "id": "const_5"}
+		]
+	},
+	"fase_rot": {
+		"title": "Movimento de rotação da Terra",
+		"challenges": [
+			{ "type": "quiz", "id": "rotacao_1"},
+			{ "type": "quiz", "id": "rotacao_2"},
+			{ "type": "quiz", "id": "rotacao_3"},
+			{ "type": "quiz", "id": "rotacao_4"},
+			{ "type": "quiz", "id": "rotacao_5"},
+			{ "type": "quiz", "id": "rotacao_6"},
+			{ "type": "quiz", "id": ""}
+		]
+	},
+	"fase_lua": {
+		"title": "Periodicidade das fases da Lua",
+		"challenges": [
+			{ "type": "quiz", "id": "lua_1"},
+			{ "type": "quiz", "id": "lua_2"},
+			{ "type": "quiz", "id": "lua_3"},
+			{ "type": "quiz", "id": "lua_4"},
+			{ "type": "quiz", "id": "lua_5"},
+			{ "type": "quiz", "id": ""}
+		]
+	},
+	"fase_optico": {
+		"title": "Instrumentos Ópticos",
+		"challenges": [
+			{ "type": "quiz", "id": "optico_1"},
+			{ "type": "quiz", "id": ""}
 		]
 	}
 }

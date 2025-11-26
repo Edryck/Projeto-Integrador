@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba13eosb0hodl"
-path="res://.godot/imported/VerdePressionado.png-7b4372bde62350161c616b3993b219d0.ctex"
+uid="uid://bx47lka00a2s1"
+path="res://.godot/imported/botao_habito_hover.png-94542e807a4d2aabc09ccab126967a0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/VerdePressionado.png"
-dest_files=["res://.godot/imported/VerdePressionado.png-7b4372bde62350161c616b3993b219d0.ctex"]
+source_file="res://assets/sprites/botao_habito_hover.png"
+dest_files=["res://.godot/imported/botao_habito_hover.png-94542e807a4d2aabc09ccab126967a0b.ctex"]
 
 [params]
 

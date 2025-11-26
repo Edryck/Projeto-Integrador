@@ -55,5 +55,58 @@
 			{"left_id": "banco", "right_id": "couro"},
 			{"left_id": "capo", "right_id": "aco"}
 		]
+	},"relate_consumo_1": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Clique em um item à esquerda e depois em seu correspondente à direita para conectar.",
+		"question": "Veja as situações abaixo e ligue em reutilização ou em reciclagem:",
+		"items_left_column": [
+			{"id": "pote", "text": "Pote de sorvete utilizado\npara guardar açúcar."},
+			{"id": "plastico", "text": "Derreter plástico para\nformar plástico novo."},
+		],
+		"items_right_column": [
+			{"id": "recic", "text": "Reciclagem"},
+			{"id": "reut", "text": "Reutilização "}
+		],
+		"correct_connections": [
+			{"left_id": "pote", "right_id": "reut"},
+			{"left_id": "plastico", "right_id": "recic"}
+		]
+	},
+	"relate_const_1": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Clique em um item à esquerda e depois em seu correspondente à direita para conectar.",
+		"question": "Relacione a constelação ou grupo estelar à sua estrela ou nome popular correspondente:",
+		"items_left_column": [
+			{"id": "cruzeiro", "text": "Cruzeiro do Sul"},
+			{"id": "cao", "text": "Cão Maior"},
+			{"id": "cinturao", "text": "Cinturão de Órion"}
+		],
+		"items_right_column": [
+			{"id": "sirius", "text": "Estrela Sirius"},
+			{"id": "maria", "text": "Três Marias"},
+			{"id": "magalhaes", "text": "Estrela de Magalhães"}
+		],
+		"correct_connections": [
+			{"left_id": "cao", "right_id": "sirius"},
+			{"left_id": "cruzeiro", "right_id": "magalhaes"},
+			{"left_id": "cinturao", "right_id": "maria"}
+		]
+	},
+	"relate_const_2": {
+		"title": "Propriedades Físicas dos Materiais",
+		"instructions": "Clique em um item à esquerda e depois em seu correspondente à direita para conectar.",
+		"question": "Associe a constelação ao seu hemisfério de visibilidade e classificação:",
+		"items_left_column": [
+			{"id": "cruzeiro", "image_path": "res://assets/images/cruzeiro_do_sul.png"},
+			{"id": "ursa", "image_path": "res://assets/images/ursa_maior.png"}
+		],
+		"items_right_column": [
+			{"id": "sul", "text": "Hemisfério Sul (Austrais)"},
+			{"id": "norte", "text": "Hemisfério Norte (Boreais)"}
+		],
+		"correct_connections": [
+			{"left_id": "cruzeiro", "right_id": "sul"},
+			{"left_id": "ursa", "right_id": "norte"}
+		]
 	}
 }

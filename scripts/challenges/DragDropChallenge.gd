@@ -48,7 +48,7 @@ func configurar_interface():
 	
 	# Cria o grid dos itens arrastaveis
 	grid_itens = GridContainer.new()
-	grid_itens.columns = 1  # Quantidade de colunas para os itens
+	grid_itens.columns = 2  # Quantidade de colunas para os itens
 	grid_itens.add_theme_constant_override("h_separation", 10)
 	grid_itens.add_theme_constant_override("v_separation", 10)
 	container_itens_arrastaveis.add_child(grid_itens)
@@ -63,7 +63,7 @@ func configurar_interface():
 	
 	# Cria o grid de soltura
 	grid_zonas = GridContainer.new()
-	grid_zonas.columns = 1  # Quantidade colunas para as zonas
+	grid_zonas.columns = 2  # Quantidade colunas para as zonas
 	grid_zonas.add_theme_constant_override("h_separation", 10)
 	grid_zonas.add_theme_constant_override("v_separation", 10)
 	container_areas_soltura.add_child(grid_zonas)
@@ -104,9 +104,10 @@ func criar_item_arrastavel(dados: Dictionary) -> Control:
 		var texture = load(dados["image_path"])
 		if texture:
 			texture_rect.texture = texture
-			texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			texture_rect.custom_minimum_size = Vector2(100, 100)
+			texture_rect.custom_minimum_size = Vector2(80, 80)
+			texture_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
 			conteudo.add_child(texture_rect)
 	
 	# Adicionar texto SE existir
@@ -114,7 +115,10 @@ func criar_item_arrastavel(dados: Dictionary) -> Control:
 		var label = Label.new()
 		label.text = dados["text"]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.autowrap_mode = TextServer.AUTOWRAP_WORD
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.custom_minimum_size = Vector2(100, 0) # Força a largura para quebra de linha
+		label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		conteudo.add_child(label)
 	
 	# Configurar para ser arrastável
@@ -142,13 +146,34 @@ func criar_zona_soltura(dados: Dictionary) -> Control:
 	estilo.draw_center = true
 	zona.add_theme_stylebox_override("panel", estilo)
 	
+	var conteudo = VBoxContainer.new()
+	conteudo.alignment = BoxContainer.ALIGNMENT_CENTER
+	conteudo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	conteudo.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	zona.add_child(conteudo)
+	
+	var id_str = str(dados["id"])
+	
 	# Label da zona
-	var label = Label.new()
-	label.text = dados["id"]
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD
-	zona.add_child(label)
+	if id_str.begins_with("res://") or id_str.ends_with(".png"):
+		# É uma imagem de lixeira
+		var texture_rect = TextureRect.new()
+		var texture = load(id_str)
+		if texture:
+			texture_rect.texture = texture
+			texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			texture_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			conteudo.add_child(texture_rect)
+	else:
+		# É apenas texto (Ex: base_repensar)
+		var label = Label.new()
+		# Limpa o texto para ficar bonito (remove "base_" e coloca maiúscula)
+		label.text = id_str.replace("base_", "").capitalize()
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD
+		conteudo.add_child(label)
 	
 	return zona
 

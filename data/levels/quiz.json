@@ -149,6 +149,30 @@
 		"options": ["economia", "reciclagem", "reutilização", "recusa"],
 		"correct_answer": "reutilização"
 	},
+	"consumo_5": {
+		"title": "Consumo Consciente",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Os 5R’s da Sustentabilidade propõem um estilo de vida focado na diminuição da geração de resíduos. Quais são as cinco ações fundamentais que compõem esse conceito?",
+		"options": [
+			"Repensar, Recusar, Reduzir, Reutilizar e Reciclar.",
+			"Repetir, Reclamar, Reduzir, Reutilizar e Reciclar.",
+			"Repensar, Resumir, Reduzir, Reverter e Reciclar.",
+			"Reter, Recusar, Reduzir, Reutilizar e Restaurar."
+		],
+		"correct_answer": "Repensar, Recusar, Reduzir, Reutilizar e Reciclar."
+	},
+	"consumo_6": {
+		"title": "Consumo Consciente",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A vegetação desempenha um papel crucial na manutenção do ecossistema. Por que a presença de árvores e plantas é considerada importante para a conservação do solo e da água?",
+		"options": [
+			"Porque elas ajudam a reter a água no solo, evitando a erosão e o escoamento superficial.",
+			"Porque elas impermeabilizam o solo, impedindo totalmente que a água penetre na terra.",
+			"Porque elas aceleram o processo de erosão, facilitando a limpeza do terreno.",
+			"Porque elas consomem toda a água da chuva, evitando que o solo fique úmido."
+		],
+		"correct_answer": "Porque elas ajudam a reter a água no solo, evitando a erosão e o escoamento superficial."
+	},
 	"recic_1": {
 		"title": "Reciclagem",
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
@@ -311,36 +335,87 @@
 		"options": ["6 grupos", "8 grupos", "10 grupos", "9 grupos"],
 		"correct_answer": "8 grupos"
 	},
+	"habito_4": {
+		"title": "Hábitos Alimentares",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A que a alimentação saudável deve estar associada para garantir uma melhor qualidade de vida e prevenir doenças?",
+		"options": ["Ao sedentarismo", "10 gruposAo consumo exclusivo de suplementos", "À prática de atividade física regular", "A dietas restritivas extremas"],
+		"correct_answer": "À prática de atividade física regular"
+	},
+	"habito_5": {
+		"title": "Hábitos Alimentares",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Qual das alternativas abaixo representa um bom hábito alimentar?",
+		"options": ["Comer frutas, legumes e verduras", "Comer muita batata frita", "Substituir refeições por lanches rápidos", "Preferir alimentos industrializados"],
+		"correct_answer": "Comer frutas, legumes e verduras"
+	},
+	"habito_6": {
+		"title": "Hábitos Alimentares",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Por que o consumo de alimentos saudáveis é considerado importante?",
+		"options": ["Exclusivamente para fins estéticos", "Para substituir a necessidade de beber água", "Apenas para satisfazer o paladar", "Para fornecer nutrientes essenciais e prevenir doenças"],
+		"correct_answer": "Para fornecer nutrientes essenciais e prevenir doenças"
+	},
 	"const_1": {
 		"title": "Constelações e Mapas Celestes",
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
-		"question": "As estrelas só são vistas em tamanhos pequenos devido",
+		"question": "As galáxias estão presentes em todo o universo e são formadas por corpos celestes, como as estrelas e os planetas. As estrelas são corpos celestes que produzem luz, sendo, portanto, chamadas de astros luminosos. Ao observar as estrelas, só conseguimos vê-las em tamanhos pequenos, porém, mesmo que não pareça, elas podem chegar a um tamanho semelhante ao do Sol. Assim sendo, só não conseguimos enxergar nessas proporções devido",
 		"options": [
-			"à proximidade com a terra",
-			"à distância elevada da terra",
-			"ao brilho intenso das estrelas",
-			"à luz fraca das estrelas"
+			"à proximidade com a terra.",
+			"à distância elevada da terra.",
+			"ao brilho intenso das estrelas.",
+			"à luz fraca das estrelas."
 		],
-		"correct_answer": "à distância elevada da terra"
+		"correct_answer": "à distância elevada da terra."
 	},
 	"const_2": {
 		"title": "Constelações e Mapas Celestes",
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
-		"question": "A constelação do Cruzeiro do Sul é representada pela figura que lembra",
+		"question": "Ao observar o céu, é possível enxergar que as estrelas estão sempre agrupadas. Este agrupamento recebe o nome de constelação. Os povos antigos associavam as constelações a figuras de animais, pessoas e objetos a aparência que as estrelas formavam ao serem ligadas por linhas imaginárias. Essas figuras possuem diferentes formatos e recebem nomes específicos, um exemplo a ser citado é a constelação do Cruzeiro do Sul, representada pela figura que lembra",
 		"options": [
-			"uma cruz, formada pela ligação imaginária de 05 estrelas",
-			"um cruzeiro no mar, formada pela ligação imaginária de 10 estrelas",
-			"uma espada, formada pela ligação imaginária de 20 estrelas",
-			"um animal crucificado, formada pela ligação imaginária de 25 estrelas"
+			"uma cruz, formada pela ligação imaginária de 05 estrelas.",
+			"um cruzeiro no mar, formada pela ligação imaginária de 10 estrelas.",
+			"uma espada, formada pela ligação imaginária de 20 estrelas.",
+			"um animal crucificado, formada pela ligação imaginária de 25 estrelas."
 		],
-		"correct_answer": "uma cruz, formada pela ligação imaginária de 05 estrelas"
+		"correct_answer": "uma cruz, formada pela ligação imaginária de 05 estrelas."
 	},
 	"const_3": {
 		"title": "Constelações e Mapas Celestes",
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
-		"question": "Abaixo estão algumas constelações que são visualizadas da terra, EXCETO:",
-		"options": ["Cruzeiro do sul", "Andrômeda", "Ursa maior", "Lunar"],
-		"correct_answer": "Lunar"
+		"question": "As galáxias estão presentes em todo o universo e são formadas por corpos celestes, como as estrelas e os planetas. As estrelas são corpos celestes que produzem luz, sendo, portanto, chamadas de astros luminosos. Ao observar as estrelas, só conseguimos vê-las em tamanhos pequenos, porém, mesmo que não pareça, elas podem chegar a um tamanho semelhante ao do Sol. Assim sendo, só não conseguimos enxergar nessas proporções devido",
+		"question": "Uma constelação representa o agrupamento de estrelas e/ou objetos celestes localizados no céu. Muitas constelações podem ser vistas aqui da terra, formando alguns desenhos que são interpretados pelos astrônomos. Abaixo estão algumas constelações que são visualizadas da terra, EXCETO:",
+		"options": [
+			"Cruzeiro do sul.",
+			"Andrômeda.",
+			"Ursa maior.",
+			"Lunar."
+		],
+		"correct_answer": "Lunar."
+	},
+	"const_4": {
+		"title": "Constelações e Mapas Celestes",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Toda constelação é formada pela junção de estrelas, aquela estrela considerada mais importante é destaque na constelação. A Cão Maior possui uma estrela que é caracterizada pelo seu brilho intenso no céu referente às outras estrelas. Marque abaixo a estrela descrita anteriormente.",
+		"options": [
+			"Polar.",
+			"Sirius.",
+			"Orion.",
+			"Zodíaco."
+		],
+		"correct_answer": "Sirius."
+	},
+	"const_5": {
+		"title": "Constelações e Mapas Celestes",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A constelação ocidental de Orion, ou cinturão de Orion, é vista a olho nu, tanto no Hemisfério Norte quanto no Hemisfério Sul, é composta de estrelas bem brilhantes, consideradas bem maiores que o Sol, localizadas cerca de 1500 anos-luz da Terra. Estas estrelas recebem o nome de:",
+		"options": [
+			"Três Marias.",
+			"Três Órion.",
+			"Três Sirius.",
+			"Três lunares."
+		],
+		"correct_answer": "Três Marias."
 	},
 	"rotacao_1": {
 		"title": "Movimento de Rotação da Terra",
@@ -349,6 +424,66 @@
 		"options": ["órbita", "rotatório", "translação", "rotação"],
 		"correct_answer": "rotação"
 	},
+	"rotacao_2": {
+		"title": "Movimento de Rotação da Terra",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Não é possível perceber ou sentir o movimento da terra, entretanto, a impressão que temos é que o sol está se movendo ao longo do dia. Por causa disso, por muitos anos, acreditou-se que a Terra era o centro do universo. Essa visão ficou conhecida como",
+		"options": [
+			"geocentrismo.",
+			"evolucionismo.",
+			"criacionismo.",
+			"teocentrismo."
+		],
+		"correct_answer": "geocentrismo."
+	},
+	"rotacao_3": {
+		"title": "Movimento de Rotação da Terra",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O movimento de rotação da Terra ocorre a uma velocidade constante. Um ciclo de rotação completo chama-se dia sideral e tem a duração de:",
+		"options": [
+			"24 horas.",
+			"24 dias.",
+			"20 semanas.",
+			"60 minutos."
+		],
+		"correct_answer": "24 horas."
+	},
+	"rotacao_4": {
+		"title": "Movimento de Rotação da Terra",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O modelo geocêntrico oferecia aos homens e mulheres da idade antiga uma compreensão do que ocorria no céu. Esse modelo esclarecia que:",
+		"options": [
+			"não havia movimento dos corpos celestes.",
+			"a terra se movimentava ao redor do sol.",
+			"somente o sol poderia se movimentar.",
+			"todos os corpos celestes giravam em torno da Terra."
+		],
+		"correct_answer": "todos os corpos celestes giravam em torno da Terra."
+	},
+	"rotacao_5": {
+		"title": "Movimento de Rotação da Terra",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Se observarmos os movimentos dos corpos celestes a partir da terra, é possível notar que:",
+		"options": [
+			"o sol e o planeta terra parecem não se movimentar.",
+			"o planeta terra e o sol circundam os outros planetas.",
+			"o sol parece circundar outros planetas.",
+			"o planeta gira em torno de um eixo imaginário."
+		],
+		"correct_answer": "o sol e o planeta terra parecem não se movimentar."
+	},
+	"rotacao_6": {
+		"title": "Movimento de Rotação da Terra",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Variações marcantes de temperatura, períodos de chuva e períodos secos, épocas com dias mais curtos e noites mais longas e outras com dias mais longos e noites mais curtas, são mudanças que podemos sentir ao longo do ano. A mudança das estações do ano ocorre por conta do:",
+		"options": [
+			"aumento da temperatura do Sol.",
+			"aumento da temperatura da terra.",
+			"movimento de rotação e translação.",
+			"movimento de translação."
+		],
+		"correct_answer": "movimento de translação."
+	},
 	"lua_1": {
 		"title": "Periodicidade das Fases da Lua",
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
@@ -356,11 +491,124 @@
 		"options": ["2 fases", "4 fases", "5 fases", "8 fases"],
 		"correct_answer": "4 fases"
 	},
+	"lua_2": {
+		"title": "Periodicidade das Fases da Lua",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "A lua tem uma relação direta com a terra e com o sol. Ela se movimenta em função desses astros. O fenômeno gerado pelo alinhamento da posição desses três astros chama-se:",
+		"options": [
+			"Rotação.",
+			"Translação.",
+			"Eclipse.",
+			"Fases da Lua."
+		],
+		"correct_answer": "Eclipse."
+	},
+	"lua_3": {
+		"title": "Periodicidade das Fases da Lua",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "As fases da lua representam os diferentes aspectos que a vemos da terra ao longo de um ciclo. Em média, quantos dias duram cada fase da lua?",
+		"options": [
+			"3 e 4 dias.",
+			"7 e 8 dias.",
+			"15 e 16 dias.",
+			"30 e 31 dias."
+		],
+		"correct_answer": "7 e 8 dias."
+	},
+	"lua_4": {
+		"title": "Periodicidade das Fases da Lua",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Em torno de aproximadamente um mês, a lua passa por um ciclo de diversas fases, em que sua aparência muda de tamanho, até ficar completamente iluminada e depois diminui até desaparecer. Chamamos esse ciclo de",
+		"options": [
+			"tempo de iluminação.",
+			"ciclo lunar.",
+			"rotação lunar.",
+			"ciclo de relação lua e sol."
+		],
+		"correct_answer": "ciclo lunar."
+	},
+	"lua_5": {
+		"title": "Periodicidade das Fases da Lua",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Além das quatro fases principais, a lua passa pelas fases intermediárias, ou seja, o período de transição. As fases intermediárias são:",
+		"options": [
+			"Quarto Crescente; Crescente Gibosa; Minguante Gibosa; Quarto Minguante.",
+			"Lua Crescente; Crescente Gibosa; Minguante Gibosa; Quarto Minguante.",
+			"Quarto Crescente; Crescente Gibosa; Cheia Gibosa; Quarto Minguante.",
+			"Quarto Crescente; Cheia Gibosa; Minguante Gibosa; Crescente Minguante."
+		],
+		"correct_answer": "Quarto Crescente; Crescente Gibosa; Minguante Gibosa; Quarto Minguante."
+	},
 	"optico_1": {
 		"title": "Instrumentos Ópticos",
 		"instructions": "Leia a pergunta e selecione a alternativa correta.",
-		"question": "O sentido encarregado pela percepção visual é:",
-		"options": ["tato", "paladar", "visão", "audição"],
-		"correct_answer": "visão"
+		"question": "Os dispositivos ópticos são empregados para melhorar a qualidade das imagens. O sentido encarregado pela percepção visual é:",
+		"options": [
+			"tato.",
+			"paladar.",
+			"visão.",
+			"audição."
+		],
+		"correct_answer": "visão."
+	},
+	"optico_2": {
+		"title": "Instrumentos Ópticos",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Larissa é professora de biologia e, durante uma aula sobre células, utilizou um objeto para ampliar um esfregaço sanguíneo e visualizar as células. Dos itens abaixo, qual objeto permite visualizar microrganismos e estruturas invisíveis a olho nu?",
+		"options": [
+			"Microscópio.",
+			"Câmera.",
+			"Lupa.",
+			"Óculos."
+		],
+		"correct_answer": "Microscópio."
+	},
+	"optico_3": {
+		"title": "Instrumentos Ópticos",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Entre os objetos abaixo, qual é considerado um instrumento óptico natural?",
+		"options": [
+			"Microscópio.",
+			"Telescópio.",
+			"Olhos.",
+			"Lupa."
+		],
+		"correct_answer": "Olhos."
+	},
+	"optico_4": {
+		"title": "Instrumentos Ópticos",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Gabi foi convidada a fazer um passeio no fundo do mar. Curiosa, começou a observar a superfície através de um objeto chamado periscópio. Andrey, o oceanógrafo que a acompanhava, explicou que o instrumento era usado quando a observação direta encontrava obstáculos, como a água naquele caso. Sobre o funcionamento do periscópio, assinale a alternativa correta.",
+		"options": [
+			"Eles funcionam através da associação de dois espelhos, que refletem as imagens.",
+			"Seu funcionamento se dá pela associação de um espelho.",
+			"Para refletir a imagem, ele possui lentes microscópicas.",
+			"São colocadas duas lupas de ampliação para a observação das imagens"
+		],
+		"correct_answer": "Eles funcionam através da associação de dois espelhos, que refletem as imagens."
+	},
+	"optico_5": {
+		"title": "Instrumentos Ópticos",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "O copo com água funciona como uma lente, ampliando o objeto. Marque a alternativa que indica uma função das lentes.",
+		"options": [
+			"Mudar a direção dos raios que incidem sobre elas.",
+			"Reduzir as escalas de visualização.",
+			"Melhorar problemas de saúde relacionadas a questões oculares.",
+			"Absorver os raios solares em sua totalidade."
+		],
+		"correct_answer": "Mudar a direção dos raios que incidem sobre elas."
+	},
+	"optico_6": {
+		"title": "Instrumentos Ópticos",
+		"instructions": "Leia a pergunta e selecione a alternativa correta.",
+		"question": "Para observar os planetas, podemos utilizar:",
+		"options": [
+			"Binóculos.",
+			"Telescópios.",
+			"Microscópios.",
+			"Lupa."
+		],
+		"correct_answer": "Telescópios."
 	}
 }

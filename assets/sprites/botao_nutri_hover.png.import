@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kt748moa1pur"
-path="res://.godot/imported/Modelo de botões.png-2a2e86ef68d8f815dfb7bcf842a0da85.ctex"
+uid="uid://dt3adslricy6e"
+path="res://.godot/imported/botao_nutri_hover.png-dba77e6d9605dca353f4aa7af3d0584a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Modelo de botões.png"
-dest_files=["res://.godot/imported/Modelo de botões.png-2a2e86ef68d8f815dfb7bcf842a0da85.ctex"]
+source_file="res://assets/sprites/botao_nutri_hover.png"
+dest_files=["res://.godot/imported/botao_nutri_hover.png-dba77e6d9605dca353f4aa7af3d0584a.ctex"]
 
 [params]
 
