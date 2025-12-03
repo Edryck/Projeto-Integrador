@@ -196,8 +196,7 @@ func _on_opcao_selecionada(indice_opcao: int):
 		botao_selecionado.theme = tema_opcao_correta
 		
 		if label_feedback:
-			label_feedback.text = "✓ Correto! +10 pontos"
-			label_feedback.modulate = Color.GREEN
+			label_feedback.text = ""
 	else:
 		print("Resposta INCORRETA")
 		
@@ -209,16 +208,13 @@ func _on_opcao_selecionada(indice_opcao: int):
 			botao_correto.theme = tema_opcao_correta
 		
 		if label_feedback:
-			label_feedback.text = "✗ Incorreto!\nResposta correta: " + resposta_correta
-			label_feedback.modulate = Color.RED
+			label_feedback.text = ""
 	
 	# Mostrar botão próximo
 	if botao_proximo:
 		# Trocar texto se for a última pergunta
 		if pergunta_atual == perguntas.size() - 1:
-			botao_proximo.text = "Finalizar Quiz"
-		else:
-			botao_proximo.text = "Próxima Pergunta"
+			botao_proximo.text = "Continuar"
 		
 		botao_proximo.visible = true
 	

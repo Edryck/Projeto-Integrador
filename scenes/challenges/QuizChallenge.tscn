@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://w35o4d4qix21"]
+[gd_scene load_steps=7 format=3 uid="uid://w35o4d4qix21"]
 
 [ext_resource type="PackedScene" uid="uid://cm5575sipopee" path="res://scenes/challenges/ChallengeBase.tscn" id="1_adb7o"]
 [ext_resource type="Script" uid="uid://bpu5unsw6fect" path="res://scripts/challenges/QuizChallenge.gd" id="2_ytub7"]
 [ext_resource type="FontFile" uid="uid://ykfyqbu8t5q7" path="res://assets/fonts/Pixel Digivolve.otf" id="3_8n0mu"]
 [ext_resource type="FontFile" uid="uid://0gtsrxp1nuwb" path="res://assets/fonts/Pixel Digivolve Italic.otf" id="4_3lek6"]
+[ext_resource type="Theme" uid="uid://3nwpa37w67em" path="res://assets/UI/MenuInicialTema.tres" id="5_3lek6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ytub7"]
 
@@ -57,6 +58,7 @@ theme_override_fonts/italics_font = ExtResource("4_3lek6")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
+theme = ExtResource("5_3lek6")
 theme_override_fonts/font = ExtResource("3_8n0mu")
 text = "Confirmar Resposta"
 

@@ -31,7 +31,9 @@
 				"recic_5",
 				"hidro_4",
 				"dd_hidro_1",
-				"hidro_5"
+				"hidro_5",
+				"dd_recic_1",
+				"const_4"
 			],
 			"fases_completadas": [
 				"fase_dd_teste",
@@ -46,7 +48,7 @@
 				"fase_hidro"
 			],
 			"nome": "Teste",
-			"pontuacao": 8440.0
+			"pontuacao": 8685.0
 		}
 	},
 	"ultimo_jogador": "Teste",
